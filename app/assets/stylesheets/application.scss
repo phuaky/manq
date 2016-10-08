@@ -13,8 +13,43 @@
  *= require_tree .
  *= require_self
  */
+
+ body {
+   text-align: center;
+ }
+
+ .thumbnail_img {
+   height: 100%;
+   border-radius: 5px;
+
+ }
+
+ .demo-layout-transparent {
+   background: url('../assets/demos/transparent.jpg') center / cover;
+ }
+ .demo-layout-transparent .mdl-layout__header,
+ .demo-layout-transparent .mdl-layout__drawer-button {
+   /* This background is dark, so we set text to white. Use 87% black instead if
+      your background is light. */
+   color: white;
+ }
+
+ .demo-card-square.mdl-card {
+  width: 320px;
+  height: 320px;
+}
+.demo-card-square {
+  background: #00ff00 url("http://www.themalaymailonline.com/images/sized/ez/chan_hong_meng_michelin0208_620_422_100_620_422_100.jpg") no-repeat fixed center;
+}
+.img_thumbnail{
+  color: #fff;
+  height: 60%;
+  z-index: -1;
+  }
+
  @import "material";
- @import "materialize/components/color";
- $primary-color: color("blue", "lighten-2") !default;
- $secondary-color: color("yellow") !default;
- @import 'materialize';
+
+ // @import "materialize/components/color";
+ // $primary-color: color("blue", "lighten-2") !default;
+ // $secondary-color: color("yellow") !default;
+ // @import 'materialize';

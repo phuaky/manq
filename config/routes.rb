@@ -18,7 +18,6 @@ Rails.application.routes.draw do
   get 'stores/update'
   get 'stores/destroy'
 
-
   get 'queues/index'
 
   get 'queues/show'
@@ -33,10 +32,6 @@ Rails.application.routes.draw do
 
   get 'queues/destroy'
 
-
-
-
-
   get 'users/index'
 
   get 'users/show'
@@ -50,9 +45,6 @@ Rails.application.routes.draw do
   get 'users/update'
 
   get 'users/destroy'
-
-
-
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

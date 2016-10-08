@@ -16,3 +16,6 @@
 //= require material
 //= require materialize-sprockets
 //= require_tree .
+
+$(".button-collapse").sideNav();
+$(".dropdown-button").dropdown();
