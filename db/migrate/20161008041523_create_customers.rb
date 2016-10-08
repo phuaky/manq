@@ -1,6 +1,6 @@
-class CreateQs < ActiveRecord::Migration[5.0]
+class CreateCustomers < ActiveRecord::Migration[5.0]
   def change
-    create_table :qs do |t|
+    create_table :customers do |t|
       t.integer :user_id
       t.integer :store_id
       t.integer :queue_no
