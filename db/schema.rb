@@ -10,9 +10,66 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 20161007104247) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "biz_users", force: :cascade do |t|
+    t.string   "email"
+    t.string   "password_digest"
+    t.string   "reg_no"
+    t.string   "name"
+    t.text     "address"
+    t.integer  "contact_no"
+    t.string   "contact_person"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  create_table "qs", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "store_id"
+    t.integer  "queue_no"
+    t.integer  "status_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "queue_histories", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "store_id"
+    t.integer  "queue_no"
+    t.integer  "status_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "statuses", force: :cascade do |t|
+    t.string   "status_type"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "stores", force: :cascade do |t|
+    t.string   "email"
+    t.string   "password_digest"
+    t.text     "address"
+    t.integer  "contact_no"
+    t.string   "contact_person"
+    t.integer  "biz_user_id"
+    t.integer  "max_queue_allow"
+    t.float    "reservation_fee"
+    t.integer  "max_leeway"
+    t.integer  "max_queue_no"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.integer  "phone_no"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
 end
