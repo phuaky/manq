@@ -3,23 +3,25 @@
 one:
   email: MyString
   password_digest: MyString
+  name: MyText
   address: MyText
   contact_no: 1
   contact_person: MyString
   biz_user_id: 1
+  max_queue_no: 1
   max_queue_allow: 1
   reservation_fee: 1.5
   max_leeway: 1
-  max_queue_no: 1
 
 two:
   email: MyString
   password_digest: MyString
+  name: MyText
   address: MyText
   contact_no: 1
   contact_person: MyString
   biz_user_id: 1
+  max_queue_no: 1
   max_queue_allow: 1
   reservation_fee: 1.5
   max_leeway: 1
-  max_queue_no: 1

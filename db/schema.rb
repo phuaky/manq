@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161008041523) do
+ActiveRecord::Schema.define(version: 20161008105919) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,13 +34,15 @@ ActiveRecord::Schema.define(version: 20161008041523) do
     t.integer  "status_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id", "store_id"], name: "index_customers_on_user_id_and_store_id", unique: true, using: :btree
   end
 
-  create_table "queue_histories", force: :cascade do |t|
+  create_table "historical_customers", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "store_id"
     t.integer  "queue_no"
     t.integer  "status_id"
+    t.datetime "time"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -54,14 +56,15 @@ ActiveRecord::Schema.define(version: 20161008041523) do
   create_table "stores", force: :cascade do |t|
     t.string   "email"
     t.string   "password_digest"
+    t.text     "name"
     t.text     "address"
     t.integer  "contact_no"
     t.string   "contact_person"
     t.integer  "biz_user_id"
+    t.integer  "max_queue_no"
     t.integer  "max_queue_allow"
     t.float    "reservation_fee"
     t.integer  "max_leeway"
-    t.integer  "max_queue_no"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
   end
