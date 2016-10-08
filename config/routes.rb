@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+
+  root 'main#index'
+  
   get 'queues/index'
 
   get 'queues/show'
@@ -54,8 +57,6 @@ Rails.application.routes.draw do
   get 'users/update'
 
   get 'users/destroy'
-
-  get 'main/index'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
