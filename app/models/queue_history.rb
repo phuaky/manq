@@ -1,0 +1,2 @@
+class QueueHistory < ApplicationRecord
+end
