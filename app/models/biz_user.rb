@@ -1,10 +1,10 @@
 class BizUser < ApplicationRecord
-  has_many: stores
+  has_many :stores
 
   validates :email,
   presence: true,
   uniqueness: {case_sensitive: false},
-  format: {with: /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})/, message: "Please enter a valid email"}
+  format: {with: /([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})/, message: "Please enter a valid email"}
 
   validates :password,
   confirmation: true,
@@ -36,5 +36,5 @@ class BizUser < ApplicationRecord
   presence: true,
   length: {is: 8},
   numericality: {only_integer: true},
-  format: {with: (8|9)\d{7}, message: "Please enter a valid Singpore mobile number without country code."}
+  format: {with: /(8|9)\d{7}/, message: "Please enter a valid Singpore mobile number without country code."}
 end
