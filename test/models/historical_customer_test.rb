@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class QueueHistoryTest < ActiveSupport::TestCase
+class HistoricalCustomerTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

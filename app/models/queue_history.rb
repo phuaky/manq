@@ -1,2 +1,0 @@
-class QueueHistory < ApplicationRecord
-end
