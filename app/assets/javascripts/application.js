@@ -17,27 +17,8 @@
 //= require materialize-sprockets
 //= require_tree .
 
-
-
-function myFunction() {
-    document.getElementById("myDialog").showModal();
-}
-
 $( document ).ready(function() {
-  console.log('hello');
-  var dialog = document.querySelector('dialog');
-  var showDialogButton = document.getElementById('#show-dialog');
-  if (! dialog.showModal) {
-    dialogPolyfill.registerDialog(dialog);
-  }
+  $(".button-collapse").sideNav();
+  $(".dropdown-button").dropdown();
 
-  showDialogButton.addEventListener('click', function() {
-    console.log('hello');
-    dialog.showModal();
-  });
-  dialog.querySelector('.close').addEventListener('click', function() {
-    dialog.close();
-  });
-
-  console.log('bye');
 });

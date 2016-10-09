@@ -12,12 +12,12 @@ class SessionsController < ApplicationController
       redirect_to '/'
     else
       flash[:danger] = "Credentials Invalid!"
-      redirect_to '/'
+      redirect_to '/login'
     end
   end
 
   def destroy
-    session[:user_id] = nil
+    session[:registered_user_id] = nil
     flash[:success] = "Logged out!"
     redirect_to '/'
   end
