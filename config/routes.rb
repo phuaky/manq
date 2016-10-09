@@ -4,6 +4,9 @@ Rails.application.routes.draw do
 
   get '/' => 'main#index' #Landing page (public)
 
+  get '/login' => 'sessions#new' #page to login (public)
+  post '/login' => 'sessions#create' #login create action (public)
+  delete '/logout' => 'sessions#destroy' #page to logout (public)
 
   get 'biz_users/' => 'biz_users#index' #show all biz_users (admin)
   get 'biz_users/:id' => 'biz_users#show' #show a particular biz (admin)

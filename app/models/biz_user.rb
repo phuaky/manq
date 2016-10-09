@@ -1,28 +1,19 @@
 class BizUser < ApplicationRecord
   has_many :stores
+  belongs_to :registered_user
 
-  validates :email,
+  validates :registered_user_id,
   presence: true,
-  uniqueness: {case_sensitive: false},
-  format: {with: /([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})/, message: "Please enter a valid email"}
-
-  validates :password,
-  confirmation: true,
-  length: { in: 8..72 },
-  on: :create
-
-  validates :password_confirmation,
-  length: { in: 8..72 },
-  presence: true,
-  on: :create
-
-  has_secure_password
+  uniqueness: true
+  # Validates that the corresponding registered_user_id exists in TABLE registered_users before allowing the entry to be created
+  # validates :registered_user,
+  # presence: true
 
   validates :reg_no,
   presence: true,
   uniqueness: true
 
-  validates :name,
+  validates :company_name,
   presence: true,
   uniqueness: true
 

@@ -1,7 +1,7 @@
 class HistoricalCustomer < ApplicationRecord
   belongs_to :user
   belongs_to :store
-  has_one :status
+  belongs_to :status
 
   validates :user_id,
   presence: true

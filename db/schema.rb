@@ -10,21 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161008105919) do
+ActiveRecord::Schema.define(version: 20161009072157) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "biz_users", force: :cascade do |t|
-    t.string   "email"
-    t.string   "password_digest"
+    t.integer  "registered_user_id"
     t.string   "reg_no"
-    t.string   "name"
+    t.string   "company_name"
     t.text     "address"
-    t.integer  "contact_no"
     t.string   "contact_person"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.integer  "contact_no"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
   end
 
   create_table "customers", force: :cascade do |t|
@@ -47,6 +46,14 @@ ActiveRecord::Schema.define(version: 20161008105919) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "registered_users", force: :cascade do |t|
+    t.string   "email"
+    t.string   "password_digest"
+    t.integer  "user_type_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
   create_table "statuses", force: :cascade do |t|
     t.string   "status_type"
     t.datetime "created_at",  null: false
@@ -67,6 +74,12 @@ ActiveRecord::Schema.define(version: 20161008105919) do
     t.integer  "max_leeway"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+  end
+
+  create_table "user_types", force: :cascade do |t|
+    t.string   "user_type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|

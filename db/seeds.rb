@@ -11,12 +11,32 @@ for i in 90000001..90000100 do
   User.find_or_create_by!(phone_no: i)
 end
 
+
+UserType.find_or_create_by!(user_type: 'admin')
+UserType.find_or_create_by!(user_type: 'biz_user')
+UserType.find_or_create_by!(user_type: 'store')
+UserType.find_or_create_by!(user_type: 'member')
+
 for i in 1..20 do
-  biz_user = BizUser.find_or_create_by!(email: 'biz' + i.to_s + '@email.com') do |biz_user|
-    biz_user.password = 'password'
-    biz_user.password_confirmation = 'password'
+  registered_user = RegisteredUser.find_or_create_by!(email: 'biz' + i.to_s + '@email.com') do |registered_user|
+    registered_user.password = 'password'
+    registered_user.password_confirmation = 'password'
+    registered_user.user_type_id = 2
+  end
+end
+
+# Create default admin user
+registered_user = RegisteredUser.find_or_create_by!(email: 'admin@email.com') do |registered_user|
+  registered_user.password = 'password'
+  registered_user.password_confirmation = 'password'
+  registered_user.user_type_id = 1
+end
+
+
+for i in 1..20 do
+  biz_user = BizUser.find_or_create_by!(registered_user_id: i) do |biz_user|
     biz_user.reg_no = 'biz' + i.to_s
-    biz_user.name = 'Company ' + i.to_s + ' Pte Ltd'
+    biz_user.company_name = 'Company ' + i.to_s + ' Pte Ltd'
     biz_user.address = i.to_s + ' Street Singapore ' + i.to_s
     biz_user.contact_no = 80000000 + i
     biz_user.contact_person = 'owner' + i.to_s
