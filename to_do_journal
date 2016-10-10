@@ -1,9 +1,6 @@
 KY:
   issues:
-    1. dialog not working (showModal cant work)
-    2. navbar covering content
-    3. on load, javascript doesnt seem to be working
-    4. text input - not loading properly
+
   to-do:
     2. add sign up & log in forms onto dialog
     3. User browse page - 2 listings a grid
