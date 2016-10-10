@@ -17,6 +17,14 @@
   </head>
 
   <body>
+    <ul id="dropdown1" class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect"
+        for="demo-menu-lower-right">
+      <li><a href="/stores">Stores</a></li>
+      <li><a href="#!">two</a></li>
+      <li class="divider"></li>
+      <li><%= link_to "Log Out", '/logout', method: :delete %></li>
+    </ul>
+
     <!-- Always shows a header, even in smaller screens. -->
       <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
         <header class="mdl-layout__header">
@@ -43,16 +51,54 @@
             <!-- Add spacer, to align navigation to the right -->
             <div class="mdl-layout-spacer"></div>
 
-            <!-- Navigation. We hide it in small screens. -->
             <nav class="mdl-navigation mdl-layout--large-screen-only">
-              <a class="mdl-navigation__link" href=""><i class="material-icons">add_box</i>Sign Up</a>
+            <% if @current_user %>
+              <% if @current_user.biz_user %>
+              <%= @current_user.email %>
+              <button id="demo-menu-lower-right"
+                      class="mdl-button mdl-js-button mdl-button--icon">
+                <i class="material-icons">more_vert</i>
+              </button>
+                <% elsif @current_user.user_type_id = 1 %>
+                <% end %>
+              <% else %>
+              <a class="mdl-navigation__link" href="/biz_users/new"><i class="material-icons">add_box</i>Register</a>
+              <a class="mdl-navigation__link" href="/login"><i class="material-icons">account_box</i>Log In</a>
+              <% end %>
+
+            <!-- Navigation. We hide it in small screens. -->
+            <!-- <nav class="mdl-navigation mdl-layout--large-screen-only">
+              <a class="mdl-navigation__link" href=""><i class="material-icons">add_box</i>Register</a>
               <a class="mdl-navigation__link" href="login"><i class="material-icons">account_box</i>Log In</a>
-              <a class="mdl-navigation__link" href="logout">Log Out</a>
+              <a><%= link_to "Log Out", '/logout', method: :delete %></a>
               <a class="mdl-navigation__link" href="stores/new">Add Store</a>
             </nav>
-          </div>
+          </div> -->
+
         </header>
+
         <div class="mdl-layout__drawer">
+          <span class="mdl-layout-title">Title</span>
+          <nav class="mdl-navigation">
+
+        <% if @current_user %>
+          <% if @current_user.biz_user %>
+          <button id="demo-menu-lower-right"
+                  class="mdl-button mdl-js-button mdl-button--icon">
+            <i class="material-icons">more_vert</i>
+          </button>
+        <% elsif @current_user.user_type_id = 1 %>
+
+        <% end %>
+      <% else %>
+      <a class="mdl-navigation__link" href="/biz_users/new">Register</a>
+      <a class="mdl-navigation__link" href="/login">Log In</a>
+      <% end %>
+        </nav>
+      </div>
+
+
+        <!-- <div class="mdl-layout__drawer">
           <span class="mdl-layout-title">Title</span>
           <nav class="mdl-navigation">
             <a class="mdl-navigation__link" href="">Sign Up</a>
@@ -60,7 +106,7 @@
             <a class="mdl-navigation__link" href="">Log Out</a>
             <a class="mdl-navigation__link" href="">Add Store</a>
           </nav>
-        </div>
+        </div> -->
         <main class="mdl-layout__content">
           <div class="page-content">
             <%= yield %>
