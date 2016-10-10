@@ -45,11 +45,14 @@ end
 
 for i in 1..20 do
   for j in 1..rand(1..10) do
-    store = Store.find_or_create_by!(email: 'store' + j.to_s + '@biz' + i.to_s + '.com') do |store|
-      store.password = 'password'
-      store.password_confirmation = 'password'
-      store.name = 'Store ' + j.to_s
-      store.address = i.to_s + j.to_s + ' Lane Singapore 123456'
+    registered_user = RegisteredUser.find_or_create_by!(email: 'store' + j.to_s + '@biz' + i.to_s + '.com') do |registered_user|
+      registered_user.password = 'password'
+      registered_user.password_confirmation = 'password'
+      registered_user.user_type_id = 3
+    end
+    store = Store.find_or_create_by!(registered_user_id: registered_user.id) do |store|
+      store.store_name = 'Store ' + j.to_s
+      store.store_address = i.to_s + j.to_s + ' Lane Singapore 123456'
       store.contact_no = 81000000 + (i*1000) + j
       store.contact_person = 'Manager' + i.to_s + j.to_s
       store.biz_user_id = i
