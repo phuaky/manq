@@ -11,5 +11,9 @@
   <%= biz_user.contact_person %>
   <br>
   <%= biz_user.contact_no %>
+  <br>
+  <%= link_to 'Details', '/biz_users/' + biz_user.id.to_s, method: :get %>
+  <%= link_to 'Edit', '/biz_users/' + biz_user.id.to_s + '/edit', method: :get %>
+  <%= link_to 'Delete', '/biz_users/' + biz_user.id.to_s, method: :delete %>
 </p>
 <% end %>

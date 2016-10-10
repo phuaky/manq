@@ -1,2 +1,19 @@
 <h1>Stores#show</h1>
 <p>Find me in app/views/stores/show.html.erb</p>
+<p>
+  <%= @store.biz_user.company_name %>
+  <br>
+  <%= @store.store_name %>
+  <br>
+  <%= @store.store_address %>
+  <br>
+  <%= @store.contact_person %>
+  <br>
+  <%= @store.contact_no %>
+  <br>
+  Customers in Queue: <%= @customers_in_queue %>
+  <br>
+  Average Time in Line: <%= @average_time_in_queue_min %> min(s)
+  <br>
+  Longest Wait: <%= @max_time_in_queue_min %> min(s)
+</p>
