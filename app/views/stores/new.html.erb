@@ -1,2 +1,49 @@
 <h1>Stores#new</h1>
 <p>Find me in app/views/stores/new.html.erb</p>
+
+<!-- Textfield with Floating Label -->
+
+<form action="#" class="grid">
+  <div class="mdl-cell mdl-cell--2-col mdl-cell--4-col-phone">
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+      <input class="mdl-textfield__input" type="text" id="store_name">
+      <label class="mdl-textfield__label" for="store_name">Store Name...</label>
+    </div> <br>
+
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+      <input class="mdl-textfield__input" type="text" id="store_address">
+      <label class="mdl-textfield__label" for="store_address">Store Address...</label>
+    </div> <br>
+
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+      <input class="mdl-textfield__input" type="text" id="contact_person">
+      <label class="mdl-textfield__label" for="contact_person">Contact Person...</label>
+    </div> <br>
+
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+     <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="contact_no">
+     <label class="mdl-textfield__label" for="contact_no">Contact no...</label>
+     <span class="mdl-textfield__error">Input is not a number!</span>
+    </div> <br>
+
+    Max Queue No.
+    <input class="mdl-slider mdl-js-slider" type="range"
+    min="0" max="100" value="25" tabindex="0">
+
+    Max Lee way.
+    <input class="mdl-slider mdl-js-slider" type="range"
+     min="0" max="5" value="3" tabindex="0">
+
+     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+      <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="reservation_fee">
+      <label class="mdl-textfield__label" for="reservation_fee">Reservation Fee...</label>
+      <span class="mdl-textfield__error">Input is not a number!</span>
+    </div> <br>
+
+    <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored pull-right" type="submit" name="action">Submit
+     <i class="material-icons right">send</i>
+    </button>
+  </div>
+
+
+</form>
