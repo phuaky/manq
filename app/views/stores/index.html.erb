@@ -12,5 +12,8 @@
   <br>
   <%= store.contact_no %>
   <br>
+  <%= link_to 'Details', '/stores/' + store.id.to_s, method: :get %>
+  <%= link_to 'Edit', '/stores/' + store.id.to_s + '/edit', method: :get %>
+  <%= link_to 'Delete', '/stores/' + store.id.to_s, method: :delete %>
 </p>
 <% end %>

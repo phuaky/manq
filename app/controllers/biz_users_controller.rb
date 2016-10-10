@@ -42,6 +42,8 @@ class BizUsersController < ApplicationController
 
   def destroy
     @biz_user = BizUser.find(params[:id])
+    @registered_user = RegisteredUser.find(@biz_user.registered_user_id)
+    @registered_user.destroy
     @biz_user.destroy
     redirect_to '/biz_users'
   end
