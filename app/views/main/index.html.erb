@@ -16,25 +16,47 @@
 
   </div>
   <div class="mdl-card__actions mdl-card--border">
-    <button class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored">
+    <button class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored" id="show-dialog" type="button">
       <i class="material-icons">person_add</i>
     </button>
   </div>
 </div>
 
-<button id="show-dialog" type="button" class="mdl-button">Show Dialog</button>
-  <dialog class="mdl-dialog">
-    <h4 class="mdl-dialog__title">Allow data collection?</h4>
+<dialog id="dialog" class="mdl-dialog">
+    <h4 class="mdl-dialog__title">Join the queue</h4>
     <div class="mdl-dialog__content">
       <p>
-        Allowing us to collect data will let us get you the information you want faster.
+        Key in your phone number to join the queue.
       </p>
     </div>
     <div class="mdl-dialog__actions">
-      <button type="button" class="mdl-button">Agree</button>
-      <button type="button" class="mdl-button close">Disagree</button>
+      <form action="#">
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+          <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="sample4">
+          <label class="mdl-textfield__label" for="sample4">Number...</label>
+          <span class="mdl-textfield__error">Input is not a number!</span>
+        </div>
+        <!-- Accent-colored raised button -->
+        <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent" type="submit" name="action">
+          Submit
+        </button>
+      </form>
     </div>
   </dialog>
+
+  <script type="text/javascript">
+    var dialog = document.querySelector('#dialog');
+    var showDialogButton = document.querySelector('#show-dialog');
+    if (! dialog.showModal) {
+      dialogPolyfill.registerDialog(dialog);
+    }
+    showDialogButton.addEventListener('click', function() {
+      dialog.showModal();
+    });
+    dialog.querySelector('.close').addEventListener('click', function() {
+      dialog.close();
+    });
+  </script>
 
 
 <!-- FAB button with ripple -->
