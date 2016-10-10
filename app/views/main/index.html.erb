@@ -1,5 +1,7 @@
 <div class="mdl-grid">
+<% count = 0 %>
 <% @stores.each do |store| %>
+  <% count += 1 %>
     <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--4-col-phone mdl-card mdl-shadow--2dp">
       <figure class="mdl-card__media">
         <img class="img_thumbnail" src="https://s-media-cache-ak0.pinimg.com/originals/aa/6f/44/aa6f440cab69783a39bc77624f67d370.jpg" height="100%" width="100%" alt="not loading" />
@@ -10,57 +12,68 @@
       <div class="mdl-card__supporting-text">
         <div class="mdl-grid">
           <div class="mdl-cell mdl-cell--6-col mdl-cell--2-col-phone">
-            <i class="material-icons">people</i>
+            <i class="material-icons">people</i><%= store.customers.count %>
           </div>
           <div class="mdl-cell mdl-cell--6-col mdl-cell--2-col-phone">
-            <i class="material-icons">timelapse</i>20 mins
+            <% total_time = 0 %>
+            <% store.customers.each do |customer| %>
+              <% wait_time =  Time.now.utc - customer.created_at %>
+              <% total_time += wait_time %>
+            <% end %>
+            <% total_time = (total_time/60).round(0) %>
+            <i class="material-icons">timelapse</i><%= total_time %> min(s)
           </div>
         </div>
       </div>
       <div class="mdl-card__actions mdl-card--border">
-        <button class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored" id="show-dialog" type="button">
+        <button class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored" id=<%="show-dialog-"+count.to_s%> type="button">
           <i class="material-icons">person_add</i>
         </button>
       </div>
     </div>
+
+    <dialog id=<%="dialog-"+count.to_s%> class="mdl-dialog">
+      <h4 class="mdl-dialog__title">Join the queue</h4>
+      <div class="mdl-dialog__content">
+        <p>
+          Key in your phone number to join the queue.
+        </p>
+      </div>
+      <div class="mdl-dialog__actions">
+        <form action="/customers" method="post">
+          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="sample4" name="user[phone_no]">
+            <label class="mdl-textfield__label" for="sample4">Number...</label>
+            <span class="mdl-textfield__error">Input is not a number!</span>
+            <input type="hidden" value=<%= total_time %>>
+          </div>
+          <!-- Accent-colored raised button -->
+          <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent" type="submit" name="action">
+            Submit
+          </button>
+        </form>
+      </div>
+    </dialog>
 <% end %>
 </div>
 
-<dialog id="dialog" class="mdl-dialog">
-  <h4 class="mdl-dialog__title">Join the queue</h4>
-  <div class="mdl-dialog__content">
-    <p>
-      Key in your phone number to join the queue.
-    </p>
-  </div>
-  <div class="mdl-dialog__actions">
-    <form action="#">
-      <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-        <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="sample4">
-        <label class="mdl-textfield__label" for="sample4">Number...</label>
-        <span class="mdl-textfield__error">Input is not a number!</span>
-      </div>
-      <!-- Accent-colored raised button -->
-      <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent" type="submit" name="action">
-        Submit
-      </button>
-    </form>
-  </div>
-</dialog>
 
+<% for i in 1..count do %>
 <script type="text/javascript">
-  var dialog = document.querySelector('#dialog');
-  var showDialogButton = document.querySelector('#show-dialog');
-  if (! dialog.showModal) {
-    dialogPolyfill.registerDialog(dialog);
-  }
-  showDialogButton.addEventListener('click', function() {
-    dialog.showModal();
-  });
-  dialog.querySelector('.close').addEventListener('click', function() {
-    dialog.close();
-  });
+
+    var dialog = document.querySelector('#dialog-<%= i %>');
+    var showDialogButton = document.querySelector('#show-dialog-<%= i %>');
+    if (! dialog.showModal) {
+      dialogPolyfill.registerDialog(dialog);
+    }
+    showDialogButton.addEventListener('click', function() {
+      dialog.showModal();
+    });
+    dialog.querySelector('.close').addEventListener('click', function() {
+      dialog.close();
+    });
 </script>
+<% end %>
 
 
 <!-- FAB button with ripple -->
