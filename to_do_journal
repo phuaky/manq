@@ -1,7 +1,26 @@
 KY:
   issues:
-    1.  dialog not working (showModal cant work)
+    1. dialog not working (showModal cant work)
+    2. navbar covering content
+    3. on load, javascript doesnt seem to be working
+    4. text input - not loading properly
   to-do:
-    1. Get dialog to work
     2. add sign up & log in forms onto dialog
-    
+    3. User browse page - 2 listings a grid
+    4. Forms in dialog
+    5. Style the forms
+
+    forms - all the new and edit forms
+      biz user
+        create
+        edit
+
+      Stores
+        create
+        edit
+
+      Customers
+        create
+        edit
+
+      Users
