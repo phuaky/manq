@@ -60,18 +60,15 @@
             <nav class="mdl-navigation mdl-layout--large-screen-only">
             <% if @current_user %>
               <% if @current_user.user_type_id == 3 %>
-                <%= @current_user.store.store_name %>
-                <button id="dropdown-right" class="mdl-button mdl-js-button mdl-button--icon">
+                <button id="dropdown-right" class="mdl-button mdl-js-button mdl-button--accent"><%= @current_user.store.store_name %>
                   <i class="material-icons">arrow_drop_down</i>
                 </button>
               <% elsif @current_user.user_type_id == 2 %>
-                <%= @current_user.biz_user.company_name %>
-                <button id="dropdown-right" class="mdl-button mdl-js-button mdl-button--icon">
+                <button id="dropdown-right" class="mdl-button mdl-js-button mdl-button--accent"><%= @current_user.biz_user.company_name %>
                   <i class="material-icons">arrow_drop_down</i>
                 </button>
               <% elsif @current_user.user_type_id == 1 %>
-                Admin
-                <button id="dropdown-right" class="mdl-button mdl-js-button mdl-button--icon">
+                <button id="dropdown-right" class="mdl-button mdl-js-button mdl-button--accent">Admin
                   <i class="material-icons">arrow_drop_down</i>
                 </button>
                 <% end %>
@@ -87,18 +84,18 @@
         <nav class="mdl-navigation">
         <% if @current_user %>
           <% if @current_user.user_type_id == 3 %>
-            <%= @current_user.store.store_name %>
-            <button id="dropdown-left" class="mdl-button mdl-js-button mdl-button--icon">
+
+            <button id="dropdown-left" class="mdl-button mdl-js-button mdl-button--accent"><%= @current_user.store.store_name %>
               <i class="material-icons">arrow_drop_down</i>
             </button>
           <% elsif @current_user.user_type_id == 2 %>
-            <%= @current_user.biz_user.company_name %>
-            <button id="dropdown-left" class="mdl-button mdl-js-button mdl-button--icon">
+
+            <button id="dropdown-left" class="mdl-button mdl-js-button mdl-button--accent"><%= @current_user.biz_user.company_name %>
               <i class="material-icons">arrow_drop_down</i>
             </button>
           <% elsif @current_user.user_type_id == 1 %>
-            Admin
-            <button id="dropdown-left" class="mdl-button mdl-js-button mdl-button--icon">
+
+            <button id="dropdown-left" class="mdl-button mdl-js-button mdl-button--accent">Admin
               <i class="material-icons">arrow_drop_down</i>
             </button>
           <% end %>

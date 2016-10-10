@@ -1,19 +1,22 @@
-<div class="row">
-  <form class="col s12" action='/login' method='post'>
-    <div class="row">
-      <div class="input-field col s12">
-        <input placeholder="abc@email.com" id="email" type="text" class="validate" name="registered_user[email]">
-        <label class="active" for="email">Email</label>
-      </div>
+<form action='/login' method='post'>
+  <div class="grid">
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+      <input class="mdl-textfield__input validate" type="text" id="email" placeholder="abc@email.com" name="registered_user[email]">
+      <label class="mdl-textfield__label active" for="email">Email...</label>
     </div>
-    <div class="row">
-      <div class="input-field col s12">
-        <input id="password" type="password" class="validate" name="registered_user[password]">
-        <label class="active" for="password">Password</label>
-      </div>
+  </div>
+
+  <div class="grid">
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+      <input class="mdl-textfield__input validate" type="password" id="password" name="registered_user[password]">
+      <label class="mdl-textfield__label active" for="password">Password...</label>
     </div>
-    <button class="btn waves-effect waves-light right" type="submit" name="action">Submit
-      <i class="material-icons right">play_arrow</i>
+  </div>
+
+  <div class="grid">
+    <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--accent" type="submit" name="action">Submit
+      <i class="material-icons">directions_run</i>
     </button>
-  </form>
-</div>
+  </div>
+
+</form>
