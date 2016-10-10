@@ -15,16 +15,22 @@
 
   <body>
     <ul id="dropdown1" class="dropdown-content">
+      <% if @current_user && @current_user.user_type_id = 1 %>
+      <li><%= link_to 'Businesses', '/biz_users', method: :get %></li>
+      <% end %>
       <li><a href="/stores">Stores</a></li>
       <li><a href="#!">two</a></li>
       <li class="divider"></li>
       <li><%= link_to "Log Out", '/logout', method: :delete %></li>
     </ul>
     <ul id="dropdown2" class="dropdown-content">
+      <% if @current_user && @current_user.user_type_id = 1 %>
+      <li><%= link_to 'Businesses', '/biz_users', method: :get %></li>
+      <% end %>
       <li><a href="/stores">Stores</a></li>
       <li><a href="#!">two</a></li>
       <li class="divider"></li>
-      <li><a href="#!">Log Out</a></li>
+      <li><%= link_to "Log Out", '/logout', method: :delete %></li>
     </ul>
     <nav>
       <div class="nav-wrapper">

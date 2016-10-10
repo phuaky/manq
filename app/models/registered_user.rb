@@ -1,5 +1,5 @@
 class RegisteredUser < ApplicationRecord
-  has_one :biz_user
+  has_one :biz_user, dependent: :destroy
   belongs_to :user_type
 
   validates :email,
@@ -22,8 +22,8 @@ class RegisteredUser < ApplicationRecord
   validates :user_type_id,
   presence: true
   # Validates that the corresponding user_type_id exists in TABLE uesr_types before allowing the entry to be created
-  # validates :user_type,
-  # presence: true
+  validates :user_type,
+  presence: true
 
   def self.authenticate(params)
     RegisteredUser.find_by_email(params[:email]).try(:authenticate, params[:password])

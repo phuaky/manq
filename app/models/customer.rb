@@ -22,6 +22,6 @@ class Customer < ApplicationRecord
   validates :status_id,
   presence: true
   # Validates that the corresponding status_id exists in TABLE statuses before allowing the entry to be created
-  # validates :status,
-  # presence: true
+  validates :status,
+  presence: true
 end

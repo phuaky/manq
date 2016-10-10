@@ -1,2 +1,16 @@
 <h1>Stores#index</h1>
 <p>Find me in app/views/stores/index.html.erb</p>
+<% @stores.each do |store| %>
+<p>
+  <%= store.biz_user.company_name %>
+  <br>
+  <%= link_to store.store_name, '/stores/'+store.id.to_s, method: :get %>
+  <br>
+  <%= store.store_address %>
+  <br>
+  <%= store.contact_person %>
+  <br>
+  <%= store.contact_no %>
+  <br>
+</p>
+<% end %>

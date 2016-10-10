@@ -1,13 +1,13 @@
 class BizUser < ApplicationRecord
-  has_many :stores
+  has_many :stores, dependent: :destroy
   belongs_to :registered_user
 
   validates :registered_user_id,
   presence: true,
   uniqueness: true
   # Validates that the corresponding registered_user_id exists in TABLE registered_users before allowing the entry to be created
-  # validates :registered_user,
-  # presence: true
+  validates :registered_user,
+  presence: true
 
   validates :reg_no,
   presence: true,

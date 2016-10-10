@@ -4,24 +4,24 @@ Rails.application.routes.draw do
 
   get '/' => 'main#index' #Landing page (public)
 
-  get '/login' => 'sessions#new' #page to login (public)
-  post '/login' => 'sessions#create' #login create action (public)
-  delete '/logout' => 'sessions#destroy' #page to logout (public)
+  get '/login' => 'sessions#new' #page to login (public) DONE
+  post '/login' => 'sessions#create' #login create action (public) DONE
+  delete '/logout' => 'sessions#destroy' #page to logout (public) DONE
 
-  get 'biz_users/' => 'biz_users#index' #show all biz_users (admin)
-  post 'biz_users/' => 'biz_users#create' #biz user creation action (public)
-  get 'biz_users/new' => 'biz_users#new' #page to add a new biz user (public)
+  get 'biz_users/' => 'biz_users#index' #show all biz_users (admin) DONE
+  post 'biz_users/' => 'biz_users#create' #biz user creation action (public) DONE
+  get 'biz_users/new' => 'biz_users#new' #page to add a new biz user (public) DONE
   get 'biz_users/:id/edit' => 'biz_users#edit' #page to edit biz user (admin, biz_user)
-  get 'biz_users/:id' => 'biz_users#show' #show a particular biz (admin)
+  get 'biz_users/:id' => 'biz_users#show' #show a particular biz (admin) DONE
   patch 'biz_users/:id' => 'biz_users#update' #biz user updating action (admin, biz_user)
-  delete 'biz_users/:id' => 'biz_users#destroy' #biz user delete action (admin, biz_user)
+  delete 'biz_users/:id' => 'biz_users#destroy' #biz user delete action (admin, biz_user) DONE
 
 
-  get 'stores/' => 'stores#index' #show all stores (admin, biz_user)
+  get 'stores/' => 'stores#index' #show all stores (admin, biz_user) DONE
   post 'stores/' => 'stores#create' #store creation action (admin, biz_user)
   get 'stores/new' => 'stores#new' #page to add a new store (admin, biz_user)
   get 'stores/:id/edit' => 'stores#edit' #page to edit store info (admin, biz_user, store)
-  get 'stores/:id' => 'stores#show' #show a particular store (admin, biz_user)
+  get 'stores/:id' => 'stores#show' #show a particular store (admin, biz_user, store) DONE
   patch 'stores/:id' => 'stores#update' #store update action (admin, biz_user, store)
   delete 'stores/:id' => 'stores#destroy' #store delete action (admin, biz_user)
 
