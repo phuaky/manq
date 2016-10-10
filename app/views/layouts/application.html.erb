@@ -61,12 +61,17 @@
 
             <nav class="mdl-navigation mdl-layout--large-screen-only">
             <% if @current_user %>
-              <% if @current_user.biz_user %>
-              <%= @current_user.email %>
-              <button id="demo-menu-lower-right" class="mdl-button mdl-js-button mdl-button--icon">
-                <i class="material-icons">arrow_drop_down</i>
-              </button>
-                <% elsif @current_user.user_type_id = 1 %>
+              <% if @current_user.user_type_id == 3 %>
+                <%= @current_user.store.store_name %>
+                <button id="demo-menu-lower-right" class="mdl-button mdl-js-button mdl-button--icon">
+                  <i class="material-icons">arrow_drop_down</i>
+                </button>
+              <% elsif @current_user.user_type_id == 2 %>
+                <%= @current_user.biz_user.company_name %>
+                <button id="demo-menu-lower-right" class="mdl-button mdl-js-button mdl-button--icon">
+                  <i class="material-icons">arrow_drop_down</i>
+                </button>
+              <% elsif @current_user.user_type_id == 1 %>
                 Admin
                 <button id="demo-menu-lower-right" class="mdl-button mdl-js-button mdl-button--icon">
                   <i class="material-icons">arrow_drop_down</i>
@@ -84,16 +89,21 @@
           <nav class="mdl-navigation">
 
         <% if @current_user %>
-          <% if @current_user.biz_user %>
-            <%= @current_user.email %>
-              <button id="demo-menu-lower-left" class="mdl-button mdl-js-button mdl-button--icon">
-                <i class="material-icons">arrow_drop_down</i>
-              </button>
-          <% elsif @current_user.user_type_id = 1 %>
-              Admin
-              <button id="demo-menu-lower-left" class="mdl-button mdl-js-button mdl-button--icon">
-                <i class="material-icons">arrow_drop_down</i>
-              </button>
+          <% if @current_user.user_type_id == 3 %>
+            <%= @current_user.store.store_name %>
+            <button id="demo-menu-lower-left" class="mdl-button mdl-js-button mdl-button--icon">
+              <i class="material-icons">arrow_drop_down</i>
+            </button>
+          <% elsif @current_user.user_type_id == 2 %>
+            <%= @current_user.biz_user.company_name %>
+            <button id="demo-menu-lower-left" class="mdl-button mdl-js-button mdl-button--icon">
+              <i class="material-icons">arrow_drop_down</i>
+            </button>
+          <% elsif @current_user.user_type_id == 1 %>
+            Admin
+            <button id="demo-menu-lower-left" class="mdl-button mdl-js-button mdl-button--icon">
+              <i class="material-icons">arrow_drop_down</i>
+            </button>
           <% end %>
         <% else %>
           <a class="mdl-navigation__link" href="/biz_users/new">Register</a>

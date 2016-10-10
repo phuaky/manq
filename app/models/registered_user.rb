@@ -1,5 +1,6 @@
 class RegisteredUser < ApplicationRecord
   has_one :biz_user, dependent: :destroy
+  has_one :store, dependent: :destroy
   belongs_to :user_type
 
   validates :email,

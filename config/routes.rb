@@ -23,7 +23,7 @@ Rails.application.routes.draw do
   get 'stores/:id/edit' => 'stores#edit' #page to edit store info (admin, biz_user, store)
   get 'stores/:id' => 'stores#show' #show a particular store (admin, biz_user, store) DONE
   patch 'stores/:id' => 'stores#update' #store update action (admin, biz_user, store)
-  delete 'stores/:id' => 'stores#destroy' #store delete action (admin, biz_user)
+  delete 'stores/:id' => 'stores#destroy' #store delete action (admin, biz_user) DONE
 
 
   get 'customers/' => 'customers#index' #show all customers at a store (admin, biz_user, store)
