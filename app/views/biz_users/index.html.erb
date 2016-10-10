@@ -1,2 +1,15 @@
 <h1>BizUsers#index</h1>
 <p>Find me in app/views/biz_users/index.html.erb</p>
+<% @biz_users.each do |biz_user| %>
+<p>
+  <%= biz_user.company_name %>
+  <br>
+  <%= biz_user.reg_no %>
+  <br>
+  <%= biz_user.address %>
+  <br>
+  <%= biz_user.contact_person %>
+  <br>
+  <%= biz_user.contact_no %>
+</p>
+<% end %>

@@ -1,5 +1,6 @@
 class BizUsersController < ApplicationController
   def index
+    @biz_users = BizUser.all
   end
 
   def show

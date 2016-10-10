@@ -1,0 +1,7 @@
+KY:
+  issues:
+    1.  dialog not working (showModal cant work)
+  to-do:
+    1. Get dialog to work
+    2. add sign up & log in forms onto dialog
+    

@@ -13,8 +13,64 @@
  *= require_tree .
  *= require_self
  */
- @import "material";
- @import "materialize/components/color";
- $primary-color: color("blue", "lighten-2") !default;
- $secondary-color: color("yellow") !default;
+
+//  body {
+//    text-align: center;
+//  }
+//
+//  .thumbnail_img {
+//    height: 100%;
+//    border-radius: 5px;
+//
+//  }
+//
+//  .demo-layout-transparent .mdl-layout__header,
+//  .demo-layout-transparent .mdl-layout__drawer-button {
+//    /* This background is dark, so we set text to white. Use 87% black instead if
+//       your background is light. */
+//    color: white;
+//  }
+//
+//  .demo-card-square.mdl-card {
+//   width: 320px;
+//   height: 320px;
+// }
+//
+// .img_thumbnail{
+//   color: #fff;
+//   height: 50%;
+//   z-index: -1;
+//   }
+
+ // @import "material";
+
+ // @import "materialize/components/color";
+ // $primary-color: color("blue", "lighten-2") !default;
+ // $secondary-color: color("yellow") !default;
  @import 'materialize';
+
+ @media only screen and (min-width : 601px) and (max-width : 1260px) {
+.toast {
+width: 100%;
+border-radius: 0;} }
+
+@media only screen and (min-width : 1261px) {
+.toast {
+width: 100%;
+border-radius: 0; } }
+
+@media only screen and (min-width : 601px) and (max-width : 1260px) {
+#toast-container {
+min-width: 100%;
+bottom: 0%;
+top: 90%;
+right: 0%;
+left: 0%;} }
+
+@media only screen and (min-width : 1261px) {
+#toast-container {
+min-width: 100%;
+bottom: 0%;
+top: 90%;
+right: 0%;
+left: 0%; } }
