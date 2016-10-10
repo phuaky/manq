@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161009072157) do
+ActiveRecord::Schema.define(version: 20161010001448) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -61,19 +61,18 @@ ActiveRecord::Schema.define(version: 20161009072157) do
   end
 
   create_table "stores", force: :cascade do |t|
-    t.string   "email"
-    t.string   "password_digest"
-    t.text     "name"
-    t.text     "address"
+    t.integer  "registered_user_id"
+    t.integer  "biz_user_id"
+    t.string   "store_name"
+    t.string   "store_address"
     t.integer  "contact_no"
     t.string   "contact_person"
-    t.integer  "biz_user_id"
     t.integer  "max_queue_no"
     t.integer  "max_queue_allow"
-    t.float    "reservation_fee"
     t.integer  "max_leeway"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.float    "reservation_fee"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
   end
 
   create_table "user_types", force: :cascade do |t|
