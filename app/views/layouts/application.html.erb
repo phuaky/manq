@@ -55,8 +55,7 @@
             <% if @current_user %>
               <% if @current_user.biz_user %>
               <%= @current_user.email %>
-              <button id="demo-menu-lower-right"
-                      class="mdl-button mdl-js-button mdl-button--icon">
+              <button id="demo-menu-lower-right" class="mdl-button mdl-js-button mdl-button--icon">
                 <i class="material-icons">more_vert</i>
               </button>
                 <% elsif @current_user.user_type_id = 1 %>
