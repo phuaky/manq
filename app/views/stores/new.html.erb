@@ -3,7 +3,7 @@
 <form action="#" class="grid">
   <div class="mdl-cell mdl-cell--2-col mdl-cell--4-col-phone">
     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-      <input class="mdl-textfield__input" type="text" id="store_name">
+      <input class="mdl-textfield__input" type="text" id="store_name" name="store[store_name]">
       <label class="mdl-textfield__label" for="store_name">Store Name...</label>
     </div> <br>
 
@@ -11,6 +11,11 @@
       <input class="mdl-textfield__input" type="text" id="store_address">
       <label class="mdl-textfield__label" for="store_address">Store Address...</label>
     </div> <br>
+
+    <div>
+      <label for="store_picture"></label>
+      <input type="file" name="store[picture]" value="store_picture">
+    </div>
 
     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
       <input class="mdl-textfield__input" type="text" id="contact_person">
