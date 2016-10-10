@@ -1,5 +1,8 @@
 class StoresController < ApplicationController
+  before_action :is_biz_user, only [:index, :create, :new, :show, :destroy]
+
   def index
+
   end
 
   def show
