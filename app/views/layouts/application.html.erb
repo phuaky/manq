@@ -60,18 +60,15 @@
             <nav class="mdl-navigation mdl-layout--large-screen-only">
             <% if @current_user %>
               <% if @current_user.user_type_id == 3 %>
-                <%= @current_user.store.store_name %>
-                <button id="dropdown-right" class="mdl-button mdl-js-button mdl-button--icon">
+                <button id="dropdown-right" class="mdl-button mdl-js-button mdl-button--accent"><%= @current_user.store.store_name %>
                   <i class="material-icons">arrow_drop_down</i>
                 </button>
               <% elsif @current_user.user_type_id == 2 %>
-                <%= @current_user.biz_user.company_name %>
-                <button id="dropdown-right" class="mdl-button mdl-js-button mdl-button--icon">
+                <button id="dropdown-right" class="mdl-button mdl-js-button mdl-button--accent"><%= @current_user.biz_user.company_name %>
                   <i class="material-icons">arrow_drop_down</i>
                 </button>
               <% elsif @current_user.user_type_id == 1 %>
-                Admin
-                <button id="dropdown-right" class="mdl-button mdl-js-button mdl-button--icon">
+                <button id="dropdown-right" class="mdl-button mdl-js-button mdl-button--accent">Admin
                   <i class="material-icons">arrow_drop_down</i>
                 </button>
                 <% end %>
@@ -87,24 +84,24 @@
         <nav class="mdl-navigation">
         <% if @current_user %>
           <% if @current_user.user_type_id == 3 %>
-            <%= @current_user.store.store_name %>
-            <button id="dropdown-left" class="mdl-button mdl-js-button mdl-button--icon">
+
+            <button id="dropdown-left" class="mdl-button mdl-js-button mdl-button--accent"><%= @current_user.store.store_name %>
               <i class="material-icons">arrow_drop_down</i>
             </button>
           <% elsif @current_user.user_type_id == 2 %>
-            <%= @current_user.biz_user.company_name %>
-            <button id="dropdown-left" class="mdl-button mdl-js-button mdl-button--icon">
+
+            <button id="dropdown-left" class="mdl-button mdl-js-button mdl-button--accent"><%= @current_user.biz_user.company_name %>
               <i class="material-icons">arrow_drop_down</i>
             </button>
           <% elsif @current_user.user_type_id == 1 %>
-            Admin
-            <button id="dropdown-left" class="mdl-button mdl-js-button mdl-button--icon">
+
+            <button id="dropdown-left" class="mdl-button mdl-js-button mdl-button--accent">Admin
               <i class="material-icons">arrow_drop_down</i>
             </button>
           <% end %>
         <% else %>
           <a class="mdl-navigation__link" href="/biz_users/new">Register</a>
-          <a class="mdl-navigation__link" href="/login">Log In</a>
+          <a class="mdl-navigation__link" id="show_login_dialog">Log In</a>
         <% end %>
       </nav>
     </div>
@@ -115,6 +112,31 @@
     </main>
   </div>
 
+  <dialog id="login_dialog" class="mdl-dialog">
+    <h4 class="mdl-dialog__title">Log In</h4>
+    <div class="mdl-dialog__content">
+
+      <%= render "sessions/form" %>
+
+    </div>
+    <div class="mdl-dialog__actions">
+      <button type="button" class="mdl-button close">Cancel</button>
+    </div>
+  </dialog>
+
+  <script type="text/javascript">
+    var dialog = document.querySelector('#login_dialog');
+    var showDialogButton = document.querySelector('#show_login_dialog');
+    if (! dialog.showModal) {
+      dialogPolyfill.registerDialog(dialog);
+    }
+    showDialogButton.addEventListener('click', function() {
+      dialog.showModal();
+    });
+    dialog.querySelector('.close').addEventListener('click', function() {
+      dialog.close();
+    });
+  </script>
 
   </body>
 </html>

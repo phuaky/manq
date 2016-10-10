@@ -31,6 +31,8 @@ class StoresController < ApplicationController
   end
 
   def create
+    uploaded_file = params[:store][:picture].path
+    cloudnary_file = Cloudinary::Uploader.upload(uploaded_file)
   end
 
   def edit
@@ -45,4 +47,8 @@ class StoresController < ApplicationController
     @store.destroy
     redirect_to '/stores'
   end
+  # For heroku upload photo
+  def path
+  @tempfile.path
+end
 end
