@@ -3,21 +3,7 @@ KY:
 
   to-do:
     2. add sign up & log in forms onto dialog
-    3. User browse page - 2 listings a grid
     4. Forms in dialog
     5. Style the forms
-
-    forms - all the new and edit forms
-      biz user
-        create
-        edit
-
-      Stores
-        create
-        edit
-
-      Customers
-        create
-        edit
-
-      Users
+    6. Tabs for biz_user to view stores
+    7. can click on the stores on browse page
