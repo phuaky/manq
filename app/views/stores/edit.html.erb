@@ -1,51 +1,74 @@
-<h1>Edit Stores</h1>
+<form action="#" class="ui small form">
 
-<form action="#" class="ui form">
-  <div class="mdl-cell mdl-cell--2-col mdl-cell--4-col-phone">
-    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-      <input class="mdl-textfield__input" type="text" id="store_name" value="<%= @store.store_name%>">
-      <label class="mdl-textfield__label" for="store_name">Store Name...</label>
-    </div> <br>
-
-    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-      <input class="mdl-textfield__input" type="text" id="store_address" value="<%= @store.store_address%>">
-      <label class="mdl-textfield__label" for="store_address">Store Address...</label>
-    </div> <br>
-
-    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-      <input class="mdl-textfield__input" type="text" id="contact_person" value="<%= @store.contact_person%>">
-      <label class="mdl-textfield__label" for="contact_person">Contact Person...</label>
-    </div> <br>
-
-    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-     <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="contact_no" value="<%= @store.contact_no%>">
-     <label class="mdl-textfield__label" for="contact_no">Contact no...</label>
-     <span class="mdl-textfield__error">Input is not a number!</span>
-    </div> <br>
-
-    <div>
-      <label for="max_queue_no">Max Queue No.</label>
-      <input id="max_queue_no" class="mdl-slider mdl-js-slider" type="range" min="0" max="100" value="<%= @store.max_queue_no %>">
+<div class="ui one column centered grid">
+  <div class="ui one wide left aligned container">
+    <h1>Edit Stores</h1>
+    <div class="ui centered row">
+      <div class="field">  
+        <div class="ui blue small label">
+          <label>Store Name</label>
+        </div> <br>
+        <div class="ui small input">
+          <input style="width:200px; height: 22px;" type="text" id="store_name" value="<%= @store.store_name%>">
+        </div> <br>
+      </div>
+      <div class="field">  
+        <div class="ui blue small label">
+           <label>Store Address</label>
+        </div> <br>
+        <div class="ui small input">
+           <input style="width:200px; height: 22px;" type="text" id="store_address" value="<%= @store.store_address%>">
+        </div>
+      </div>
+      <div class="field">  
+        <div class="ui blue small label">
+           <label>Contact Person</label>
+        </div> <br>
+        <div class="ui small input">
+           <input style="width:200px; height: 22px;" type="text" id="contact_person" value="<%= @store.contact_person%>">
+        </div> <br>
+      </div>
+      <div class="field">  
+        <div class="ui blue small label">
+           <label>Contact No</label>
+        </div> <br>
+        <div class="ui input">
+           <input style="width:200px; height: 22px;" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="contact_no" value="<%= @store.contact_no%>">
+        </div> <br>
+      </div>
+      <div class="field">  
+        <div class="ui blue small label">
+           <label>Max Queue No.</label>
+        </div> <br>
+        <div class="ui small input">
+           <input style="width:200px; height: 22px;" type="range" min="0" max="100" value="<%= @store.max_queue_no %>">
+        </div> <br>
+      </div>
+      <div class="field">  
+        <div class="ui blue small label">
+           <label>Max Leeway</label>
+        </div> <br>
+        <div class="ui small input">
+           <input style="width:200px; height: 22px;" type="range" min="0" max="20" value="<%= @store.max_leeway %>">
+        </div> <br>
+      </div>
+      <div class="field">  
+        <div class="ui blue small label">
+           <label>Reservation Fee...</label>
+        </div> <br>
+        <div class="ui small input">
+           <input style="width:200px; height: 22px;" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="reservation_fee" value="<%= @store.reservation_fee%>">
+        </div> <br>
+      </div>
+      <div class="field">  
+        <div class="ui small buttons">
+          <button class="ui button"><a href="/stores/<%= @store.id %>">Back</a></button>
+          <div class="or"></div>
+          <button class="ui positive button" type="submit" name="action">Save</button>
+        </div>
+      </div>
     </div>
-
-    <div>
-      <label for="max_leeway">Max Leeway</label>
-      <input id="max_leeway" class="mdl-slider mdl-js-slider" type="range" min="0" max="20" value="<%= @store.max_leeway %>">
-    </div>
-
-     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-      <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="reservation_fee" value="<%= @store.reservation_fee%>">
-      <label class="mdl-textfield__label" for="reservation_fee">Reservation Fee...</label>
-      <span class="mdl-textfield__error">Input is not a number!</span>
-    </div> <br>
-
-    <div class="ui buttons">
-      <button class="ui button"><a href="/stores/<%= @store.id %>">Back</a></button>
-      <div class="or"></div>
-      <button class="ui positive button" type="submit" name="action">Save</button>
-    </div>
-
   </div>
-
+</div>
 
 </form>
