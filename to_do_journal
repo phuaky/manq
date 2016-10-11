@@ -1,17 +1,6 @@
 KY:
   issues:
 
-  to-do:
-    2. add sign up & log in forms onto dialog
-    4. Forms in dialog
-    5. Style the forms
-    6. Tabs for biz_user to view stores
-    7. can click on the stores on browse page
-
-admin can see biz user
-all stores
-add edit store links
-
 for biz owner when log in should see stores
 add a store under controllers
 stores listed and in cards
@@ -28,6 +17,8 @@ Tek Yong:
 
 
 Things left to do:
+  EDIT FORMS FOR (biz_user, stores, login)
+  Flash message
   finding how to use twilio
   finding nice photos for biz upload to cloudinary/heroku
   populate data
