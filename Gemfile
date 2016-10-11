@@ -8,7 +8,7 @@ gem 'pg', '~> 0.18'
 # Use Puma as the app server
 gem 'puma', '~> 3.0'
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 5.0'
+gem 'sass-rails', '~> 5.0', '>= 5.0.6'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .coffee assets and views
@@ -29,8 +29,9 @@ gem 'bcrypt', '~> 3.1.7'
 
 gem 'rails_12factor', group: :production
 
-# gem 'materialize-sass'
-# gem 'material_design_lite-rails', '~> 1.2'
+gem 'cloudinary'
+
+gem 'semantic-ui-sass', github: 'doabit/semantic-ui-sass'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

@@ -6,8 +6,6 @@ class StoresController < ApplicationController
     if is_admin?
       @stores = Store.all
     elsif is_biz_user?
-      puts @current_user.biz_user.id
-      # @stores = Store.all
       @stores = Store.where(biz_user_id: @current_user.biz_user.id)
     end
   end
@@ -31,6 +29,8 @@ class StoresController < ApplicationController
   end
 
   def create
+    uploaded_file = params[:store][:picture].path
+    cloudnary_file = Cloudinary::Uploader.upload(uploaded_file)
   end
 
   def edit
@@ -45,4 +45,8 @@ class StoresController < ApplicationController
     @store.destroy
     redirect_to '/stores'
   end
+  # For heroku upload photo
+  def path
+  @tempfile.path
+end
 end
