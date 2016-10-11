@@ -1,21 +1,15 @@
-<form action='/login' method='post'>
-  <div class="grid">
-    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-      <input class="mdl-textfield__input validate" type="text" id="email" placeholder="abc@email.com" name="registered_user[email]">
-      <label class="mdl-textfield__label active" for="email">Email...</label>
-    </div>
-  </div>
 
-  <div class="grid">
-    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-      <input class="mdl-textfield__input validate" type="password" id="password" name="registered_user[password]">
-      <label class="mdl-textfield__label active" for="password">Password...</label>
+<div class="row">
+  <form class="ui form" action='/login' method='post'>
+    <h4 class="ui dividing header">Sign In</h4>
+    <div class="field">
+      <label>Email</label>
+      <input type="text" name="registered_user[email]" placeholder="Email">
     </div>
-  </div>
-
-  <div class="grid">
-    <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--accent mdl-cell--2-offset-phone" type="submit" name="action">Submit
-      <i class="material-icons">directions_run</i>
-    </button>
-  </div>
-</form>
+    <div class="field">
+      <label>Password</label>
+      <input type="text" name="registered_user[password]" placeholder="Enter password here">
+    </div>
+    <div class="ui button" tabindex="0">Submit Order</div>
+  </form>
+</div>

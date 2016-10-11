@@ -3,140 +3,64 @@
   <head>
     <title>Manq</title>
     <%= csrf_meta_tags %>
-
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
-
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" href="https://code.getmdl.io/1.2.1/material.grey-red.min.css" />
-    <script defer src="https://code.getmdl.io/1.2.1/material.min.js"></script>
-
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   </head>
-
   <body>
-    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect"
-        for="dropdown-right">
-      <li><a href="/stores">Stores</a></li>
-      <li><a href="#!">two</a></li>
-      <li class="divider"></li>
-      <li><%= link_to "Log Out", '/logout', method: :delete %></li>
-    </ul>
-    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect"
-        for="dropdown-left">
-      <li><a href="/stores">Stores</a></li>
-      <li><a href="#!">two</a></li>
-      <li class="divider"></li>
-      <li><%= link_to "Log Out", '/logout', method: :delete %></li>
-    </ul>
 
-  <!-- Always shows a header, even in smaller screens. -->
-    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
-      <header class="mdl-layout__header">
-        <div class="mdl-layout__header-row">
-          <!-- Title -->
-          <span class="mdl-layout-title"><a href="/">Q Man</a></span>
-
-          <!-- Add spacer, to align navigation to the right -->
-          <div class="mdl-layout-spacer"></div>
-
-          <!-- Expandable Textfield -->
-          <form action="#">
-            <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable">
-              <label class="mdl-button mdl-js-button mdl-button--icon" for="sample6">
-                <i class="material-icons">search</i>
-              </label>
-              <div class="mdl-textfield__expandable-holder">
-                <input class="mdl-textfield__input" type="text" id="sample6">
-                <label class="mdl-textfield__label" for="sample-expandable">Expandable Input</label>
+<!-- NAV BAR -->
+    <div class="ui menu">
+      <div class="header item">
+        ManQ
+      </div>
+      <a class="item">Dummy</a>
+      <div class="right menu">
+        <% if @current_user %>
+          <% if @current_user.biz_user %>
+            <li><a class="dropdown-button" href="" data-activates="dropdown1"><i class="material-icons left">account_circle</i><%= @current_user.biz_user.company_name %><i class="material-icons right">arrow_drop_down</i></a></li>
+          <% elsif @current_user.user_type_id == 1 %>
+            <div class="ui right dropdown item" id="dropdown-menu-admin">
+              <span>Admin</span>
+              <i class="dropdown icon"></i>
+              <div class="menu">
+                <div class="item"><a href="/stores">Stores</a></div>
+                <div class="divider"></div>
+                <div class="item"><%= link_to "Log Out", '/logout', method: :delete %></div>
               </div>
             </div>
-          </form>
-
-          <!-- Add spacer, to align navigation to the right -->
-          <div class="mdl-layout-spacer"></div>
-            <nav class="mdl-navigation mdl-layout--large-screen-only">
-            <% if @current_user %>
-              <% if @current_user.user_type_id == 3 %>
-                <button id="dropdown-right" class="mdl-button mdl-js-button mdl-button--accent"><%= @current_user.store.store_name %>
-                  <i class="material-icons">arrow_drop_down</i>
-                </button>
-              <% elsif @current_user.user_type_id == 2 %>
-                <button id="dropdown-right" class="mdl-button mdl-js-button mdl-button--accent"><%= @current_user.biz_user.company_name %>
-                  <i class="material-icons">arrow_drop_down</i>
-                </button>
-              <% elsif @current_user.user_type_id == 1 %>
-                <button id="dropdown-right" class="mdl-button mdl-js-button mdl-button--accent">Admin
-                  <i class="material-icons">arrow_drop_down</i>
-                </button>
-                <% end %>
-              <% else %>
-              <a class="mdl-navigation__link" href="/biz_users/new"><i class="material-icons">add_box</i>Register</a>
-              <a class="mdl-navigation__link" href="/login"><i class="material-icons">account_box</i>Log In</a>
-              <% end %>
-
-        </header>
-
-      <div class="mdl-layout__drawer mdl-layout--small-screen-only">
-        <span class="mdl-layout-title">Menu</span>
-        <nav class="mdl-navigation">
-        <% if @current_user %>
-          <% if @current_user.user_type_id == 3 %>
-
-            <button id="dropdown-left" class="mdl-button mdl-js-button mdl-button--accent"><%= @current_user.store.store_name %>
-              <i class="material-icons">arrow_drop_down</i>
-            </button>
-          <% elsif @current_user.user_type_id == 2 %>
-
-            <button id="dropdown-left" class="mdl-button mdl-js-button mdl-button--accent"><%= @current_user.biz_user.company_name %>
-              <i class="material-icons">arrow_drop_down</i>
-            </button>
-          <% elsif @current_user.user_type_id == 1 %>
-
-            <button id="dropdown-left" class="mdl-button mdl-js-button mdl-button--accent">Admin
-              <i class="material-icons">arrow_drop_down</i>
-            </button>
           <% end %>
         <% else %>
-          <a class="mdl-navigation__link" href="/biz_users/new">Register</a>
-          <a class="mdl-navigation__link" id="show_login_dialog">Log In</a>
+        <a class="item" href="/biz_users/new">Register</a>
+        <a class="item" id='manq-login-submit'>Sign In</a>
         <% end %>
-      </nav>
-    </div>
-    <main class="mdl-layout__content">
-      <div class="page-content">
-        <%= yield %>
       </div>
-    </main>
-  </div>
-
-  <dialog id="login_dialog" class="mdl-dialog">
-    <h4 class="mdl-dialog__title">Log In</h4>
-    <div class="mdl-dialog__content">
-
-      <%= render "sessions/form" %>
-
     </div>
-    <div class="mdl-dialog__actions">
-      <button type="button" class="mdl-button close">Cancel</button>
+
+<!-- LOG IN MODAL: UNHIDDEN BY JAVASCRIPT -->
+    <div class="ui modal">
+      <i class="close icon"></i>
+      <div class="header">
+        Sign In
+      </div>
+      <div class="content">
+        <form class="ui form" action='/login' method='post'>
+          <div class="field">
+            <label>Email</label>
+            <input type="text" name="registered_user[email]" placeholder="Email">
+          </div>
+          <div class="field">
+            <label>Password</label>
+            <input type="password" name="registered_user[password]" placeholder="Enter password here">
+          </div>
+      </div>
+      <div class="actions">
+        <button class="ui button" type="submit">Submit</button>
+        </form>
+      </div>
     </div>
-  </dialog>
 
-  <script type="text/javascript">
-    var dialog = document.querySelector('#login_dialog');
-    var showDialogButton = document.querySelector('#show_login_dialog');
-    if (! dialog.showModal) {
-      dialogPolyfill.registerDialog(dialog);
-    }
-    showDialogButton.addEventListener('click', function() {
-      dialog.showModal();
-    });
-    dialog.querySelector('.close').addEventListener('click', function() {
-      dialog.close();
-    });
-  </script>
-
+<!-- RENDER LAYOUT INSERTS -->
+    <%= yield %>
   </body>
 </html>
