@@ -26,3 +26,4 @@
 </p>
 
 <button class="ui secondary basic button"><a href="/stores/<%= @store.id %>/edit">Edit</a></button>
+<button class="ui secondary basic button"> <%= link_to 'Delete', '/stores/' + @store.id.to_s, method: :delete %> </button>
