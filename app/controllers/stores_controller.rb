@@ -37,7 +37,7 @@ class StoresController < ApplicationController
       @store.biz_user_id = @current_user.biz_user.id
 
 
-      uploaded_file = params[:store][:picture].path
+      uploaded_file = params[:store_picture].path
       cloudnary_file = Cloudinary::Uploader.upload(uploaded_file)
 
 

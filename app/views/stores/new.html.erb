@@ -1,6 +1,6 @@
 <h1>Stores#new</h1>
 <p>Find me in app/views/stores/new.html.erb</p>
-<form action="/stores" class="ui form" method="post">
+<form action="/stores" class="ui form" method="post" enctype='multipart/form-data'>
 
   <div class="field">
     <label for="email">Email</label>
@@ -30,7 +30,7 @@
 
     <div class="field">
       <label for="store_picture">Add Store Picture</label>
-      <input class="validate"  type="file" name="store[picture]" value="store_picture">
+      <input class="validate"  type="file" name="store_picture" value="store[store_picture]">
     </div>
 
     <div class="field">
