@@ -15,10 +15,41 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def is_admin?
+    if @current_user.user_type_id == 1
+      return true
+    else
+      return false
+    end
+  end
+
   def is_biz_user
     unless @current_user.user_type_id == 1 || @current_user.user_type_id == 2
       flash[:danger] = "Credentials Invalid"
       redirect_to '/'
+    end
+  end
+
+  def is_biz_user?
+    if @current_user.user_type_id == 2
+      return true
+    else
+      return false
+    end
+  end
+
+  def is_store_user
+    unless @current_user.user_type_id == 1 || @current_user.user_type_id == 2 || @current_user.user_type_id == 3
+      flash[:danger] = "Credentials Invalid"
+      redirect_to '/'
+    end
+  end
+
+  def is_store_user?
+    if @current_user.user_type_id == 3
+      return true
+    else
+      return false
     end
   end
 end

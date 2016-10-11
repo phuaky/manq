@@ -3,67 +3,86 @@
   <head>
     <title>Manq</title>
     <%= csrf_meta_tags %>
-
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-
-    <%= stylesheet_link_tag "https://fonts.googleapis.com/icon?family=Material+Icons" %>
-
+    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%= javascript_include_tag 'application' %>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   </head>
-
   <body>
-    <ul id="dropdown1" class="dropdown-content">
-      <li><a href="/stores">Stores</a></li>
-      <li><a href="#!">two</a></li>
-      <li class="divider"></li>
-      <li><%= link_to "Log Out", '/logout', method: :delete %></li>
-    </ul>
-    <ul id="dropdown2" class="dropdown-content">
-      <li><a href="/stores">Stores</a></li>
-      <li><a href="#!">two</a></li>
-      <li class="divider"></li>
-      <li><a href="#!">Log Out</a></li>
-    </ul>
-    <nav>
-      <div class="nav-wrapper">
-        <a href="#!" class="brand-logo">ManQ</a>
-        <a href="#" data-activates="mobile-menu" class="button-collapse"><i class="material-icons">menu</i></a>
-        <ul class="right hide-on-med-and-down">
-          <% if @current_user %>
-            <% if @current_user.biz_user %>
-              <li><a class="dropdown-button" href="#!" data-activates="dropdown1"><i class="material-icons left">account_circle</i><%= @current_user.biz_user.company_name %><i class="material-icons right">arrow_drop_down</i></a></li>
-            <% elsif @current_user.user_type_id = 1 %>
-              <li><a class="dropdown-button" href="#!" data-activates="dropdown1"><i class="material-icons left">account_circle</i>Admin<i class="material-icons right">arrow_drop_down</i></a></li>
-            <% end %>
-          <% else %>
-          <li><a href="/biz_users/new">Register</a></li>
-          <li><a href="/login">Log In</a></li>
-          <% end %>
-        </ul>
-        <ul class="side-nav" id="mobile-menu">
-          <% if @current_user %>
-            <% if @current_user.biz_user %>
-              <li><a class="dropdown-button" href="#!" data-activates="dropdown2"><i class="material-icons left">account_circle</i><%= @current_user.biz_user.company_name %><i class="material-icons right">arrow_drop_down</i></a></li>
-            <% elsif @current_user.user_type_id = 1 %>
-              <li><a class="dropdown-button" href="#!" data-activates="dropdown2"><i class="material-icons left">account_circle</i>Admin<i class="material-icons right">arrow_drop_down</i></a></li>
-            <% end %>
-          <% else %>
-          <li><a href="/biz_users/new">Register</a></li>
-          <li><a href="/login">Log In</a></li>
-          <% end %>
-        </ul>
+
+<!-- NAV BAR -->
+    <div class="ui menu">
+      <div class="header item">
+        <a href="/">ManQ</a>
       </div>
-    </nav>
+      <a class="item">Dummy</a>
+      <div class="right menu">
+        <% if @current_user %>
+        <!-- STORE -->
+          <% if @current_user.user_type_id == 3 %>
+            <div class="ui right dropdown item" id="dropdown-menu-store_manager">
+              <span><%= @current_user.store.store_name %></span>
+              <i class="dropdown icon"></i>
+              <div class="menu">
+                <div class="item"><a href="/stores/<%= @current_user.store.id %>">Store Profile</a></div>
+                <div class="divider"></div>
+                <div class="item"><%= link_to "Log Out", '/logout', method: :delete %></div>
+              </div>
+            </div>
+            <!-- BIZ USER -->
+          <% elsif @current_user.user_type_id == 2 %>
+            <div class="ui right dropdown item" id="dropdown-menu-biz_user">
+              <span><%= @current_user.biz_user.company_name %></span>
+              <i class="dropdown icon"></i>
+              <div class="menu">
+                <div class="item"><a href="/stores">Stores Profile</a></div>
+                <div class="divider"></div>
+                <div class="item"><%= link_to "Log Out", '/logout', method: :delete %></div>
+              </div>
+            </div>
+            <!-- ADMIN -->
+          <% elsif @current_user.user_type_id == 1 %>
+            <div class="ui right dropdown item" id="dropdown-menu-admin">
+              <span>Admin</span>
+              <i class="dropdown icon"></i>
+              <div class="menu">
+                <div class="item"><a href="/biz_users">Business Users</a></div>
+                <div class="item"><a href="/stores">Stores</a></div>
+                <div class="divider"></div>
+                <div class="item"><%= link_to "Log Out", '/logout', method: :delete %></div>
+              </div>
+            </div>
+          <% end %>
+        <% else %>
+        <a class="item" href="/biz_users/new">Register</a>
+        <a class="item" id='manq-login-submit'>Sign In</a>
+        <% end %>
+      </div>
+    </div>
 
+<!-- LOG IN MODAL: UNHIDDEN BY JAVASCRIPT -->
+    <div class="ui modal">
+      <i class="close icon"></i>
+      <div class="header">
+        Sign In
+      </div>
+      <div class="content">
+        <form class="ui form" action='/login' method='post'>
+          <div class="field">
+            <label>Email</label>
+            <input type="text" name="registered_user[email]" placeholder="Email">
+          </div>
+          <div class="field">
+            <label>Password</label>
+            <input type="password" name="registered_user[password]" placeholder="Enter password here">
+          </div>
+      </div>
+      <div class="actions">
+        <button class="ui button" type="submit">Submit</button>
+        </form>
+      </div>
+    </div>
+
+<!-- RENDER LAYOUT INSERTS -->
     <%= yield %>
-
-    <!-- SCRIPT FOR FLASH MESSAGE VIA MATERIALIZE TOAST-->
-    <script>
-    var $toastContent = $('<span><%= flash[:success] %><%= flash[:danger] %></span>');
-    Materialize.toast($toastContent, 5000);
-
-    </script>
   </body>
 </html>

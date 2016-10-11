@@ -3,6 +3,6 @@ class Status < ApplicationRecord
   has_many :historical_customers
 
   validates :status_type,
-  uniqueness: {case_sensitive: false},
+  # uniqueness: {case_sensitive: false},
   presence: true
 end

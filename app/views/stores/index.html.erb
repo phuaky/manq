@@ -1,2 +1,19 @@
 <h1>Stores#index</h1>
 <p>Find me in app/views/stores/index.html.erb</p>
+<% @stores.each do |store| %>
+<p>
+  <%= store.biz_user.company_name %>
+  <br>
+  <%= link_to store.store_name, '/stores/'+store.id.to_s, method: :get %>
+  <br>
+  <%= store.store_address %>
+  <br>
+  <%= store.contact_person %>
+  <br>
+  <%= store.contact_no %>
+  <br>
+  <%= link_to 'Details', '/stores/' + store.id.to_s, method: :get %>
+  <%= link_to 'Edit', '/stores/' + store.id.to_s + '/edit', method: :get %>
+  <%= link_to 'Delete', '/stores/' + store.id.to_s, method: :delete %>
+</p>
+<% end %>
