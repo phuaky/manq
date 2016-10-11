@@ -8,7 +8,27 @@ and several stores
 look at validations > forms > behaviours
 
 Yi Hui:
-  restrict store owners from accessing other stores and biz owners page
+
+Guest check status of queue:
+- estimated wait
+- no of ppl ahead in queue
+- show picture of the position of the person using picture xxxxxOxx
+
+Store user index page:
+- should display list of people in queue with buttons to change their status
+- allow for 3 sec before moving to completed list in case staff press wrongly
+
+SMS trigger to customer:
+- send a SMS when left 1 person ahead or estimated wait time less than 5min
+- send a SMS once number keyed into system with information of customer queue no and estimated wait time
+- send reminded SMS when customer late
+
+Business user can set adhoc system only:
+- customer cannot join queue via online but only through the store user logged in system which will only be available at the store
+
+Reservation system:
+- allow customer to reserve in advance
+
 
 Tek Yong:
 

@@ -38,7 +38,6 @@ class CustomersController < ApplicationController
   def ajax
     id = User.where(phone_no: params[:phone_no]).take
     @customers = Customer.where(user_id: id)
-
     respond_to do |format|
       format.json {
         render json: @customers, :include => {:store => {:include => {:biz_user => {:only => :company_name}}, :only => :store_name}}}

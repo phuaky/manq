@@ -2,6 +2,8 @@ Rails.application.routes.draw do
 
   # method 'url' => 'controller#action' #description (access rights)
 
+  get '/test_sms' => 'messages#sms'
+
   get '/' => 'main#index' #Landing page (public)
 
   get '/login' => 'sessions#new' #page to login (public) DONE
@@ -36,6 +38,7 @@ Rails.application.routes.draw do
   delete 'customers/:id' => 'customers#destroy' #customer delete action (admin, biz_user)
 
   get 'users/new' => 'users#new'
+
   # get 'users/index'
   # get 'users/show'
   # get 'users/new'
