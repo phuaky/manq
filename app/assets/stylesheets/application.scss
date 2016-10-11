@@ -13,7 +13,17 @@
  *= require_tree .
  *= require_self
  */
- 
- $font-url: 'http://fonts.useso.com/css?family=Lato:400,700,400italic,700italic&subset=latin';
+
  @import "semantic-ui";
  @import "semantic-ui/collections/menu";
+
+//  .image .overlay {
+//    position: absolute;
+//    width: 100%;
+//   //  top: 0;
+//    left: 0;
+//   //  right: 0;
+//    bottom: 0;
+//    background: rgba(255, 255, 255, 0.8);
+//    z-index: 100;
+// }

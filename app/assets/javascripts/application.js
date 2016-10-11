@@ -16,11 +16,38 @@
 //= require semantic-ui
 
 $(document).ready(function (){
+  $('.ui.dropdown').dropdown();
+
   $('#manq-login-submit').click(function() {
-    $('.ui.modal').modal({blurring: true}).modal('show');
+    $('#login-modal').modal({blurring: true}).modal('show');
   });
 
-  $('#dropdown-menu-admin').click(function() {
-    $('.ui.dropdown').dropdown();
+
+  $('#check-status').click(function() {
+
+    $('.coupled.modal').modal({allowMultiple: false});
+    $('#return-status-modal').modal('attach events', '#check-status-modal .button');
+    $('#check-status-modal').modal({blurring: true}).modal('show');
+    $('#check-status-modal').on('click','.button',function(event) {
+      event.preventDefault();
+    });
+  });
+
+  $('.ui.fluid.card').hover(
+    function() {
+      $(this).addClass('raised')
+    },
+    function() {
+      $(this).removeClass('raised')
+    }
+  );
+
+  // Index page js
+  // Join Queue modal trigger
+  $('.join-queue').click(function() {
+    $('#join-queue-modal').find('.header').text('Join Queue - ' + $(this).parent().parent().find('.header').text() + ' - ' + $(this).parent().parent().find('.date').text());
+    $('#join-queue-modal').find('form').append("<input type='hidden' name='store_id' value='"+$(this).attr('id')+"'>");
+    $('#join-queue-modal').modal({blurring: true}).modal('show');
+
   });
 });

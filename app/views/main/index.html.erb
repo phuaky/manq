@@ -1,1 +1,48 @@
-<p>wefew</p>
+
+<div class="ui four stackable cards" style="margin:10px">
+  <% @stores.each do |store| %>
+  <div class="ui fluid card" id="store-card">
+    <div class="image">
+      <img src="https://s-media-cache-ak0.pinimg.com/736x/aa/6f/44/aa6f440cab69783a39bc77624f67d370.jpg">
+    </div>
+    <div class="content">
+      <a class="header"><%= store.biz_user.company_name %></a>
+      <div class="meta">
+        <span class="date"><%= store.store_name %></span>
+      </div>
+      <div class="description">
+        <span class="left floated" style="padding-right: 10px"><i class="user icon"></i><%= store.customers.count %> in Queue</span>
+        <% total_time = 0 %>
+        <% store.customers.each do |customer| %>
+          <% wait_time =  Time.now.utc - customer.created_at %>
+          <% total_time += wait_time %>
+        <% end %>
+        <% total_time = (total_time/60).round(0) %>
+        <span class="left floated"><i class="hourglass half icon"></i>Est. Wait <%= total_time %> mins</span>
+      </div>
+    </div>
+    <div class="extra content">
+      <button class="ui labeled icon olive button right floated join-queue" id="<%=store.id%>"><i class="add user icon"></i>Join Queue</button>
+    </div>
+  </div>
+  <% end %>
+</div>
+
+<!-- JOIN QUEUE MODAL: UNHIDDEN BY JAVASCRIPT -->
+<div class="ui modal" id="join-queue-modal">
+  <i class="close icon"></i>
+  <div class="header">
+    Join Queue
+  </div>
+  <div class="content">
+    <form class="ui form" action='/customers' method='post'>
+    <div class="field">
+      <label>Mobile Number</label>
+      <input type="text" name="user[phone_no]" placeholder="Please enter a valid Singapore mobile number">
+    </div>
+  </div>
+  <div class="actions">
+    <button class="ui button" type="submit">Submit</button>
+    </form>
+  </div>
+</div>

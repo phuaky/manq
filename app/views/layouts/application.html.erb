@@ -14,7 +14,7 @@
       <div class="header item">
         ManQ
       </div>
-      <a class="item">Dummy</a>
+      <a class="item" href='/'>Home</a>
       <div class="right menu">
         <% if @current_user %>
           <% if @current_user.biz_user %>
@@ -31,6 +31,7 @@
             </div>
           <% end %>
         <% else %>
+        <a class="item" id='check-status'>Check Status</a>
         <a class="item" href="/biz_users/new">Register</a>
         <a class="item" id='manq-login-submit'>Sign In</a>
         <% end %>
@@ -38,7 +39,7 @@
     </div>
 
 <!-- LOG IN MODAL: UNHIDDEN BY JAVASCRIPT -->
-    <div class="ui modal">
+    <div class="ui modal" id='login-modal'>
       <i class="close icon"></i>
       <div class="header">
         Sign In
@@ -59,6 +60,40 @@
         </form>
       </div>
     </div>
+
+<!-- CHECK QUEUE STATUS MODAL: UNHIDDEN BY JAVASCRIPT -->
+<div class="ui basic small coupled modal" id="check-status-modal">
+  <i class="close icon"></i>
+  <div class="header">
+    Check Queue Status
+  </div>
+  <div class="content">
+    <form class="ui form">
+    <div class="field">
+      <label>Mobile Number</label>
+      <input type="text" name="user[phone_no]" placeholder="Please enter the number you used earlier">
+    </div>
+  </div>
+  <div class="actions">
+    <button class="ui button" type="submit">Submit</button>
+    </form>
+  </div>
+</div>
+
+<div class="ui basic small coupled modal" id="return-status-modal">
+  <i class="close icon"></i>
+  <div class="header">
+    Queue Status
+  </div>
+  <div class="content">
+    <div class="field">
+      show the queue status here
+    </div>
+  </div>
+  <div class="actions">
+
+  </div>
+</div>
 
 <!-- RENDER LAYOUT INSERTS -->
     <%= yield %>
