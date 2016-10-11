@@ -49,5 +49,11 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
 
+# Use Figaro to make it easy to securely configure Rails applications.
+gem 'figaro'
+
+# Use Cloudinary to upload images in Rails.
+gem 'cloudinary'
+
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
