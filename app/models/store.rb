@@ -40,6 +40,6 @@ class Store < ApplicationRecord
   validates :reservation_fee,
   presence: true
 
-  validates :img_url,
+  validates :store_picture,
   presence: true
 end

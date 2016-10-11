@@ -60,6 +60,7 @@ for i in 1..20 do
       store.max_queue_allow = 9999
       store.reservation_fee = 0.00
       store.max_leeway = 3
+      store.store_picture = 'http://res.cloudinary.com/phuaky/image/upload/v1476168520/yyuoiwxc2qs47tpedltj.jpg'
     end
   end
 end

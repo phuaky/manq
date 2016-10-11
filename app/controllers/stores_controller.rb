@@ -36,10 +36,10 @@ class StoresController < ApplicationController
       @store.registered_user_id = @current_user.id
       @store.biz_user_id = @current_user.biz_user.id
 
-
       uploaded_file = params[:store_picture].path
       cloudnary_file = Cloudinary::Uploader.upload(uploaded_file)
 
+      @store.store_picture = cloudnary_file['public_id']
 
       if @store.save!
         flash[:success] = "Successfully Created Store!"
