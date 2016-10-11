@@ -29,17 +29,26 @@ class StoresController < ApplicationController
   end
 
   def create
-    @store = Store.new(store_params)
+    @registered_user = RegisteredUser.new(registered_user_params)
+    @registered_user.user_type_id = 3
+    if @registered_user.save!
+      @store = Store.new(store_params)
+      @store.registered_user_id = @current_user.id
+      @store.biz_user_id = @current_user.biz_user.id
 
-    # uploaded_file = params[:store][:picture].path
-    # cloudinary_file = Cloudinary::Uploader.upload(uploaded_file)
-    #
-    if @store.save!
-      session[:store] = @store.id
-      flash[:success] = "Successfully Created Store!"
-      redirect_to '/stores'
+
+      uploaded_file = params[:store][:picture].path
+      cloudnary_file = Cloudinary::Uploader.upload(uploaded_file)
+
+
+      if @store.save!
+        flash[:success] = "Successfully Created Store!"
+        redirect_to '/stores'
+      else
+        flash[:danger] = "Register fail, please check your entries"
+        redirect_to '/stores/new'
+      end
     else
-      session[:store] = nil
       flash[:danger] = "Register fail, please check your entries"
       redirect_to '/stores/new'
     end
@@ -57,14 +66,19 @@ class StoresController < ApplicationController
     @store.destroy
     redirect_to '/stores'
   end
+
   # For heroku upload photo
   def path
-  @tempfile.path
+    @tempfile.path
   end
 
   private
 
   def store_params
       params.require(:store).permit(:registered_user_id, :biz_user_id, :store_name, :store_address, :contact_person, :contact_no, :max_queue_no, :max_queue_allow, :max_leeway, :reservation_fee)
+  end
+
+  def registered_user_params
+    params.require(:registered_user).permit(:email, :password, :password_confirmation)
   end
 end
