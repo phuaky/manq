@@ -48,12 +48,5 @@ $(document).ready(function (){
     $('#join-queue-modal').find('.header').text('Join Queue - ' + $(this).parent().parent().find('.header').text() + ' - ' + $(this).parent().parent().find('.date').text());
     $('#join-queue-modal').find('form').append("<input type='hidden' name='store_id' value='"+$(this).attr('id')+"'>");
     $('#join-queue-modal').modal({blurring: true}).modal('show');
-
-  // $('#dropdown-menu-biz_user').click(function () {
-  //   $('.ui.dropdown').dropdown();
-  // });
-  //
-  // $('#dropdown-menu-store_manager').click(function () {
-  //   $('.ui.dropdown').dropdown();
-  // });
+  });
 });
