@@ -15,7 +15,6 @@
 // = require_tree .
 // = require semantic-ui
 
-<<<<<<< HEAD
 $(document).ready(function (){
   $('.ui.dropdown').dropdown();
 
