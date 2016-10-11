@@ -3,7 +3,6 @@ class Customer < ApplicationRecord
   belongs_to :store
   belongs_to :status
 
-
   validates :user_id,
   presence: true
   # Validates that the corresponding user_id exists in TABLE users before allowing the entry to be created

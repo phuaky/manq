@@ -16,7 +16,16 @@
 // = require semantic-ui
 
 $(document).ready(function (){
+  $('.ui.sidebar')
+    .sidebar({
+      context: $('.bottom.segment')
+    })
+    .sidebar('attach events', '.menu .item')
+  ;
+
   $('.ui.dropdown').dropdown();
+
+  $('table').tablesort();
 
   $('#manq-login-submit').click(function() {
     $('#login-modal').modal({inverted: true}).modal('show');
@@ -27,7 +36,7 @@ $(document).ready(function (){
 
     $('.coupled.modal').modal({allowMultiple: false});
     $('#return-status-modal').modal('attach events', '#check-status-modal .button');
-    $('#check-status-modal').modal({inverted: true}).modal('show');
+    $('#check-status-modal').modal('show');
     $('#check-status-modal').on('click','.button',function(event) {
       event.preventDefault();
 
@@ -36,9 +45,28 @@ $(document).ready(function (){
         url: "/customers/queue_status/" + $('#check-status-modal').find('input').val(),
         success: function(serverResponse) {
           console.log(serverResponse);
-          console.log($('#return-status-modal').find('.content').empty());
+
+
+
+          $('#return-status-modal').find('.content').empty();
           for(var i=0; i<serverResponse.length; i++) {
-              $('#return-status-modal').find('.content').append('<div class="field">'+serverResponse[i].store.biz_user.company_name+' - '+serverResponse[i].store.store_name+' '+serverResponse[i].store_id+'</div><div class="ui inverted segment">This is the status</div>');
+            string = "<i class='sign in horizontally flipped icon'></i>";
+            for(var j=0; j<serverResponse[i].id; j++) {
+              if(j==serverResponse[i].status_id){
+                string += "<i class='orange male icon' style='margin:-3px'></i>";
+              } else {
+                string += "<i class='black male icon' style='margin:-3px'></i>";
+              }
+            }
+            for(var j=serverResponse[i].id; j<20; j++) {
+              // string += "<i class='inverted male icon' style='margin:-3px'></i>";
+            }
+
+            $('#return-status-modal').find('.content').append(
+              '<h3 class="ui top attached header">'+serverResponse[i].store.biz_user.company_name+'<div class="sub header">'+serverResponse[i].store.store_name+'</div></h3>'+
+              '<div class="ui attached secondary segment">'+string+
+              '<br><i class="wait icon"></i>'+serverResponse[i].user_id+' mins</div>'
+            );
           }
         },
         error: function(error) {

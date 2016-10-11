@@ -9,11 +9,6 @@ look at validations > forms > behaviours
 
 Yi Hui:
 
-Guest check status of queue:
-- estimated wait
-- no of ppl ahead in queue
-- show picture of the position of the person using picture xxxxxOxx
-
 Store user index page:
 - should display list of people in queue with buttons to change their status
 - allow for 3 sec before moving to completed list in case staff press wrongly
