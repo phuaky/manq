@@ -29,8 +29,20 @@ class StoresController < ApplicationController
   end
 
   def create
-    uploaded_file = params[:store][:picture].path
-    cloudnary_file = Cloudinary::Uploader.upload(uploaded_file)
+    @store = Store.new(store_params)
+
+    # uploaded_file = params[:store][:picture].path
+    # cloudinary_file = Cloudinary::Uploader.upload(uploaded_file)
+    #
+    if @store.save!
+      session[:store] = @store.id
+      flash[:success] = "Successfully Created Store!"
+      redirect_to '/stores'
+    else
+      session[:store] = nil
+      flash[:danger] = "Register fail, please check your entries"
+      redirect_to '/stores/new'
+    end
   end
 
   def edit
@@ -48,5 +60,11 @@ class StoresController < ApplicationController
   # For heroku upload photo
   def path
   @tempfile.path
-end
+  end
+
+  private
+
+  def store_params
+      params.require(:store).permit(:registered_user_id, :biz_user_id, :store_name, :store_address, :contact_person, :contact_no, :max_queue_no, :max_queue_allow, :max_leeway, :reservation_fee)
+  end
 end

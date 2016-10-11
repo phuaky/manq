@@ -1,6 +1,6 @@
 <h1>Stores#new</h1>
 <p>Find me in app/views/stores/new.html.erb</p>
-<form action="#" class="grid">
+<form action="/stores" class="grid" method="post">
   <div class="mdl-cell mdl-cell--2-col mdl-cell--4-col-phone">
     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
       <input class="mdl-textfield__input" type="text" id="store_name" name="store[store_name]">
@@ -12,10 +12,10 @@
       <label class="mdl-textfield__label" for="store_address">Store Address...</label>
     </div> <br>
 
-    <div>
+    <!-- <div>
       <label for="store_picture"></label>
       <input type="file" name="store[picture]" value="store_picture">
-    </div>
+    </div> -->
 
     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
       <input class="mdl-textfield__input" type="text" id="contact_person">

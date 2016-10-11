@@ -1,5 +1,15 @@
 <h1>Stores#index</h1>
 <p>Find me in app/views/stores/index.html.erb</p>
+
+<div class="ui animated button" tabindex="0">
+  <a href="/stores/new">
+    <div class="visible content">New Store</div>
+    <div class="hidden content">
+      <i class="right arrow icon"></i>
+    </div>
+  </a>
+</div>
+
 <% @stores.each do |store| %>
 <p>
   <%= store.biz_user.company_name %>
