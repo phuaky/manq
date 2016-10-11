@@ -30,6 +30,20 @@ $(document).ready(function (){
     $('#check-status-modal').modal({blurring: true}).modal('show');
     $('#check-status-modal').on('click','.button',function(event) {
       event.preventDefault();
+
+      $.ajax({
+        method: "GET",
+        url: "/customers/queue_status/" + $('#check-status-modal').find('input').val(),
+        success: function(serverResponse) {
+          console.log(serverResponse);
+          for(var i=0; i<serverResponse.length; i++) {
+              $('#return-status-modal').find('.content').append('<div class="field">'+serverResponse[i].store.biz_user.company_name+' - '+serverResponse[i].store.store_name+'</div><div class="ui inverted segment">This is the status</div>');
+          }
+        },
+        error: function(error) {
+          console.log("Error:", error)
+        }
+      });
     });
   });
 
