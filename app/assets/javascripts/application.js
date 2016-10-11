@@ -10,11 +10,12 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require jquery
-//= require jquery_ujs
-//= require_tree .
-//= require semantic-ui
+// = require jquery
+// = require jquery_ujs
+// = require_tree .
+// = require semantic-ui
 
+<<<<<<< HEAD
 $(document).ready(function (){
   $('.ui.dropdown').dropdown();
 
@@ -49,5 +50,11 @@ $(document).ready(function (){
     $('#join-queue-modal').find('form').append("<input type='hidden' name='store_id' value='"+$(this).attr('id')+"'>");
     $('#join-queue-modal').modal({blurring: true}).modal('show');
 
-  });
+  // $('#dropdown-menu-biz_user').click(function () {
+  //   $('.ui.dropdown').dropdown();
+  // });
+  //
+  // $('#dropdown-menu-store_manager').click(function () {
+  //   $('.ui.dropdown').dropdown();
+  // });
 });

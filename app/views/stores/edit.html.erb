@@ -1,7 +1,6 @@
-<h1>Stores#edit</h1>
-<p>Find me in app/views/stores/edit.html.erb</p>
+<h1>Edit Stores</h1>
 
-<form action="#" class="grid">
+<form action="#" class="ui form">
   <div class="mdl-cell mdl-cell--2-col mdl-cell--4-col-phone">
     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
       <input class="mdl-textfield__input" type="text" id="store_name" value="<%= @store.store_name%>">
@@ -40,9 +39,12 @@
       <span class="mdl-textfield__error">Input is not a number!</span>
     </div> <br>
 
-    <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored pull-right" type="submit" name="action">Submit
-     <i class="material-icons right">send</i>
-    </button>
+    <div class="ui buttons">
+      <button class="ui button"><a href="/stores/<%= @store.id %>">Back</a></button>
+      <div class="or"></div>
+      <button class="ui positive button" type="submit" name="action">Save</button>
+    </div>
+
   </div>
 
 

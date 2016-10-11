@@ -11,6 +11,7 @@ class CreateStores < ActiveRecord::Migration[5.0]
       t.integer :max_queue_allow
       t.integer :max_leeway
       t.float :reservation_fee
+      t.string :img_url
 
       t.timestamps
     end
