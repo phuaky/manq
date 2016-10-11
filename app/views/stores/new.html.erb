@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <form action="/stores" class="ui small form" method="post">
   
 <div class="ui one column centered grid">
@@ -76,4 +77,71 @@
     </div>
   </div>
 </div>
+=======
+<h1>Stores#new</h1>
+<p>Find me in app/views/stores/new.html.erb</p>
+<form action="/stores" class="ui form" method="post" enctype='multipart/form-data'>
+
+  <div class="field">
+    <label for="email">Email</label>
+    <input class="validate" type="text" id="email" name="registered_user[email]">
+  </div>
+
+  <div class="field">
+    <label for="password">Password</label>
+    <input class="validate" type="password" id="password" name="registered_user[password]">
+  </div>
+
+  <div class="field">
+    <label for="password_confirmation">Confirm Password</label>
+    <input class="validate" type="password" id="password_confirmation" name="registered_user[password_confirmation]">
+  </div>
+
+
+    <div class="field">
+      <label for="store_name">Store Name</label>
+      <input class="validate" type="text" id="store_name" name="store[store_name]">
+    </div>
+
+    <div class="field">
+      <label for="store_address">Store Address</label>
+      <input class="validate" type="text" id="store_address" name="store[store_address]">
+    </div>
+
+    <div class="field">
+      <label for="store_picture">Add Store Picture</label>
+      <input class="validate"  type="file" id="store_picture" name="store_picture">
+    </div>
+
+    <div class="field">
+      <label for="contact_person">Contact Person</label>
+      <input class="validate" type="text" id="contact_person" name="store[contact_person]">
+    </div>
+
+    <div class="field">
+      <label for="contact_no">Contact no</label>
+     <input class="validate" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="contact_no" name="store[contact_no]">
+    </div>
+
+    Max Queue No.
+    <input type="range"
+    min="0" max="100" value="25" tabindex="0" id="max_queue_no" name="store[max_queue_no]">
+
+    Max Lee way.
+    <input type="range"
+     min="0" max="5" value="3" tabindex="0" id="max_leeway" name="store[max_leeway]">
+
+     <div class="field">
+       <label for="reservation_fee">Max Queue Allow</label>
+      <input class="validate" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="max_queue_allow" name="store[max_queue_allow]">
+    </div>
+
+     <div class="field">
+       <label for="reservation_fee">Reservation Fee</label>
+      <input class="validate" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="reservation_fee" name="store[reservation_fee]">
+    </div>
+
+     <button class="ui button" type="submit">Submit</button>
+
+>>>>>>> f4a4c9053976b2ff39679070e43cac379d843970
 </form>

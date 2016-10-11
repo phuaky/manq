@@ -9,7 +9,13 @@ class SessionsController < ApplicationController
     if registered_user
       session[:registered_user_id] = registered_user.id
       flash[:success] = "Successfully Logged In!"
-      redirect_to '/'
+      if registered_user.user_type_id == 3
+        redirect_to '/stores/' + @current_user.store.id.to_s
+      elsif registered_user.user_type_id == 2
+        redirect_to '/stores'
+      else  registered_user.user_type_id == 1
+        redirect_to '/'
+      end
     else
       flash[:danger] = "Credentials Invalid!"
       redirect_to '/'

@@ -39,4 +39,7 @@ class Store < ApplicationRecord
 
   validates :reservation_fee,
   presence: true
+
+  validates :store_picture,
+  presence: true
 end
