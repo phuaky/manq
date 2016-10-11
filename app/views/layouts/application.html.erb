@@ -12,18 +12,40 @@
 <!-- NAV BAR -->
     <div class="ui menu">
       <div class="header item">
-        ManQ
+        <a href="/">ManQ</a>
       </div>
       <a class="item">Dummy</a>
       <div class="right menu">
         <% if @current_user %>
-          <% if @current_user.biz_user %>
-            <li><a class="dropdown-button" href="" data-activates="dropdown1"><i class="material-icons left">account_circle</i><%= @current_user.biz_user.company_name %><i class="material-icons right">arrow_drop_down</i></a></li>
+        <!-- STORE -->
+          <% if @current_user.user_type_id == 3 %>
+            <div class="ui right dropdown item" id="dropdown-menu-store_manager">
+              <span><%= @current_user.store.store_name %></span>
+              <i class="dropdown icon"></i>
+              <div class="menu">
+                <div class="item"><a href="/stores/<%= @current_user.store.id %>">Store Profile</a></div>
+                <div class="divider"></div>
+                <div class="item"><%= link_to "Log Out", '/logout', method: :delete %></div>
+              </div>
+            </div>
+            <!-- BIZ USER -->
+          <% elsif @current_user.user_type_id == 2 %>
+            <div class="ui right dropdown item" id="dropdown-menu-biz_user">
+              <span><%= @current_user.biz_user.company_name %></span>
+              <i class="dropdown icon"></i>
+              <div class="menu">
+                <div class="item"><a href="/stores">Stores Profile</a></div>
+                <div class="divider"></div>
+                <div class="item"><%= link_to "Log Out", '/logout', method: :delete %></div>
+              </div>
+            </div>
+            <!-- ADMIN -->
           <% elsif @current_user.user_type_id == 1 %>
             <div class="ui right dropdown item" id="dropdown-menu-admin">
               <span>Admin</span>
               <i class="dropdown icon"></i>
               <div class="menu">
+                <div class="item"><a href="/biz_users">Business Users</a></div>
                 <div class="item"><a href="/stores">Stores</a></div>
                 <div class="divider"></div>
                 <div class="item"><%= link_to "Log Out", '/logout', method: :delete %></div>

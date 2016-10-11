@@ -6,8 +6,6 @@ class StoresController < ApplicationController
     if is_admin?
       @stores = Store.all
     elsif is_biz_user?
-      puts @current_user.biz_user.id
-      # @stores = Store.all
       @stores = Store.where(biz_user_id: @current_user.biz_user.id)
     end
   end

@@ -7,3 +7,32 @@ KY:
     5. Style the forms
     6. Tabs for biz_user to view stores
     7. can click on the stores on browse page
+
+admin can see biz user
+all stores
+add edit store links
+
+for biz owner when log in should see stores
+add a store under controllers
+stores listed and in cards
+with tabs
+and several stores
+
+look at validations > forms > behaviours
+
+
+Yi Hui:
+  restrict store owners from accessing other stores
+
+Tek Yong:
+
+
+Things left to do:
+  finding how to use twilio
+  finding nice photos for biz upload to cloudinary/heroku
+  populate data
+  planning process
+  models like
+  association
+  how we split up the work
+  all the github features

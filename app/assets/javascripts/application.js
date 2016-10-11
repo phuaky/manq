@@ -10,17 +10,25 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require jquery
-//= require jquery_ujs
-//= require_tree .
-//= require semantic-ui
+// = require jquery
+// = require jquery_ujs
+// = require_tree .
+// = require semantic-ui
 
-$(document).ready(function (){
-  $('#manq-login-submit').click(function() {
+$(document).ready(function () {
+  $('#manq-login-submit').click(function () {
     $('.ui.modal').modal({blurring: true}).modal('show');
   });
 
-  $('#dropdown-menu-admin').click(function() {
+  $('#dropdown-menu-admin').click(function () {
+    $('.ui.dropdown').dropdown();
+  });
+
+  $('#dropdown-menu-biz_user').click(function () {
+    $('.ui.dropdown').dropdown();
+  });
+
+  $('#dropdown-menu-store_manager').click(function () {
     $('.ui.dropdown').dropdown();
   });
 });
