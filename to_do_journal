@@ -1,18 +1,14 @@
 KY:
 
-Upload photo
-
 for biz owner when log in should see stores
-add a store under controllers
 stores listed and in cards
 with tabs
 and several stores
 
 look at validations > forms > behaviours
 
-
 Yi Hui:
-  restrict store owners from accessing other stores
+  restrict store owners from accessing other stores and biz owners page
 
 Tek Yong:
 

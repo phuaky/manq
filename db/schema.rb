@@ -71,6 +71,7 @@ ActiveRecord::Schema.define(version: 20161010001448) do
     t.integer  "max_queue_allow"
     t.integer  "max_leeway"
     t.float    "reservation_fee"
+    t.string   "store_picture"
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
   end

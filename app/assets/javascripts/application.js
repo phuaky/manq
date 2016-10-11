@@ -63,4 +63,6 @@ $(document).ready(function (){
     $('#join-queue-modal').find('form').append("<input type='hidden' name='store_id' value='"+$(this).attr('id')+"'>");
     $('#join-queue-modal').modal({blurring: true}).modal('show');
   });
+
+  
 });

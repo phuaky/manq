@@ -29,8 +29,6 @@ gem 'bcrypt', '~> 3.1.7'
 
 gem 'rails_12factor', group: :production
 
-gem 'cloudinary'
-
 gem 'semantic-ui-sass', github: 'doabit/semantic-ui-sass'
 
 # Use Capistrano for deployment

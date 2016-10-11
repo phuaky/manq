@@ -13,8 +13,14 @@
  *= require_tree .
  *= require_self
  */
+.form_input {
+  width:200px;
+  height: 22px;
+}
+
  @import "semantic-ui";
  @import "semantic-ui/collections/menu";
+
 
 //  .image .overlay {
 //    position: absolute;
