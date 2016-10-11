@@ -1,19 +1,14 @@
 <div class="row">
-  <form class="col s12" action='/login' method='post'>
-    <div class="row">
-      <div class="input-field col s12">
-        <input placeholder="abc@email.com" id="email" type="text" class="validate" name="registered_user[email]">
-        <label class="active" for="email">Email</label>
-      </div>
+  <form class="ui form" action='/login' method='post'>
+    <h4 class="ui dividing header">Sign In</h4>
+    <div class="field">
+      <label>Email</label>
+      <input type="text" name="registered_user[email]" placeholder="Email">
     </div>
-    <div class="row">
-      <div class="input-field col s12">
-        <input id="password" type="password" class="validate" name="registered_user[password]">
-        <label class="active" for="password">Password</label>
-      </div>
+    <div class="field">
+      <label>Password</label>
+      <input type="text" name="registered_user[password]" placeholder="Enter password here">
     </div>
-    <button class="btn waves-effect waves-light right" type="submit" name="action">Submit
-      <i class="material-icons right">play_arrow</i>
-    </button>
+    <div class="ui button" tabindex="0">Submit Order</div>
   </form>
 </div>
