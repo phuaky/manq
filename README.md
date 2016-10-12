@@ -21,28 +21,30 @@
 - Join a queue and return only when it's your turn!
 - Check out the status of the queue (remaining number of people in front and estimated waiting time) online without having to return to the place.
 - See in advance whether the place you're heading to has a queue, how many people are waiting in line and the estimated waiting time.
-- ~~Be Kiasu~~ :alien: Exercise effective time management and reserve in advance if necessary :)
+- ~~Be Kiasu~~ :sweat: Exercise effective time management and reserve in advance if necessary :)
 
 
 ### Additional
 
 - Suss out new food places by seeing which are the places that people are willing to <strikethrough>kill</strikethrough> queue for.
 
-:alien:
 
+## Features For Business Owners
 
-Features For Business Owners
-Core
+### Core
+
 - Free to use
   - Specialized hardware and software designed specially to make you part with your hard-earned money? Nah, totally unnecessary.
 - Reduce the physical queue and free up space
-  - Long snaking queues tend to invite complaints from <strikethrough>jealous</strikethrough> neighbouring tenants.
+  - Long snaking queues tend to invite complaints from ~~jealous~~ neighbouring tenants :grin:.
 - Free up manpower to focus on the business
   - No more having to answer questions like "Eh, how long more do I have to wait?", customers can check out the queue status online as well as estimated remaining waiting time
-  - Just hired someone to manage the customer queues? You can <strikethrough>sack them</strikethrough> redeploy them and put them to better use with automated queue management. Customers get notified via phone when it's almost their turn and again when it's their turn.
+  - Just hired someone to manage the customer queues? You can ~~sack them~~ :cold_sweat: redeploy them and put them to better use with automated queue management. Customers get notified via phone when it's almost their turn and again when it's their turn.
 - Improve customer experience
   - Customers are less frustrated if they do not have to wait physically in line. Let them do their shopping, errands and other stuff while they're waiting. You don't need them around to show off their grumpy faces.
-Additional
+
+### Additional
+
 - Long queues are a good sign sometimes
   - We think so too. Show them off online to the whole world then. Users can sort businesses by <i>number in queue</i> and <i>estimated remaining queue time</i>. There's always many foodies who think that a long queue means the food must be good.
 - Improve your business with our analytics
