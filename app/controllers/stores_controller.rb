@@ -64,6 +64,10 @@ class StoresController < ApplicationController
   end
 
   def update
+    @store = Store.find(params[:id])
+    if @store.update(store_params)
+      redirect_to '/stores/'+params[:id].to_s
+    end
   end
 
   def destroy

@@ -49,4 +49,46 @@ $(document).ready(function (){
                   }
     }
   });
+
+
+  $('#store-details').form({
+    inline: true,
+    on: 'blur',
+    fields: {
+      store_name:  { identifier: 'store[store_name]',
+                                rules:  [{  type: 'empty',
+                                            prompt: 'Field must not be empty'}]
+              },
+      store_address: { identifier: 'store[store_address]',
+                                rules:  [{  type: 'empty',
+                                            prompt: 'Field must not be empty'}]
+                },
+      contact_person:  { identifier: 'store[contact_person]',
+                                rules:  [{  type: 'empty',
+                                            prompt: 'Field must not be empty'}]
+                              },
+      contact_no: { identifier: 'store[contact_no]',
+                                rules:  [{  type: 'integer',
+                                            prompt: 'Please enter only numbers'},
+                                          { type: 'regExp[/^(8|9)\\d{7}$/]',
+                                            prompt: 'Please enter a valid Singapore mobile number without country code'}]
+                    },
+      max_queue_no: { identifier: 'store[max_queue_no]',
+                                rules:  [{  type: 'integer',
+                                            prompt: 'Please enter only numbers'}]
+                                    },
+      max_leeway:{ identifier: 'store[max_leeway]',
+                                rules:  [{  type: 'integer',
+                                            prompt: 'Please enter only numbers'}]
+                      },
+      reservation_fee: { identifier: 'store[reservation_fee]',
+                                rules:  [{  type: 'decimal',
+                                            prompt: 'Please enter a valid decimal number'}]
+                      }
+      }
+  });
+
+
+
+
 });

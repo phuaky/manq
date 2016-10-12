@@ -104,5 +104,15 @@ $(document).ready(function (){
     });
   })
 
+  //Stores show page - edit store details
+  $('#update-store-submit').click(function() {
+    $('#update-store-modal').modal({inverted: true}).modal('show');
+  });
+
+  //Stores show page - edit store details
+  $('#new-store-submit').click(function() {
+    $('#new-store-modal').modal({inverted: true}).modal('show');
+  });
+
 
 });

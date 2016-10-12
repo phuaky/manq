@@ -18,10 +18,26 @@
             </tr>
           </thead>
           <tbody>
+            <tr>
+              <td>
+                <div class="ui animated compact button" tabindex="0">
+                  <a id='new-store-submit'>
+                    <div class="visible content"><i class="add square icon"></i>Add a store/branch</div>
+                    <div class="hidden content">
+                      <i class="right arrow icon"></i>
+                    </div>
+                  </a>
+                </div>
+              </td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
             <% @stores.each do |store| %>
             <tr>
               <td><%= store.store_name %></td>
-              <td></td>
+              <td><%= store.historical_customers.where(store_id: store.id, status_id: 4).count %></td>
               <td>
                 <!-- QUEUE SEGMENT -->
                 <% total_time = 0 %>
@@ -38,7 +54,7 @@
                 <% end %>
                 <% avg_time = total_time/store.customers.count %>
               </td>
-              <td><%= avg_time.round(0) %><% if avg_time.round(0) > 1 %><%= "minute".pluralize %><% else %>minute<% end %></td>
+              <td><%= avg_time.round(0) %><% if avg_time.round(0) > 1 %> <%= "minute".pluralize %><% else %>minute<% end %></td>
               <td class="selectable"><a href='/stores/<%= store.id %>'>Store Dashboard</a></td>
             </tr>
             <% end %>
@@ -48,54 +64,78 @@
     </div>
   </div>
 
-  <!-- ADD NEW STORES -->
-  <div class="ui animated button" tabindex="0">
-    <a href="/stores/new">
-      <div class="visible content">New Store</div>
-      <div class="hidden content">
-        <i class="right arrow icon"></i>
-      </div>
-    </a>
-  </div>
-</div>
 
-
-<% @stores.each do |store| %>
-
-<div class="ui centered compact center aligned segment grid">
-  <div class="content">
-    <div class="header"><%= link_to store.store_name, '/stores/'+store.id.to_s, method: :get %></div>
-    <div class="meta">
-      <div class="ui horizontal segments">
-        <!-- QUEUE SEGMENT -->
-        <div class="ui segment">
-          <% percentage = store.customers.count % 100 %>
-          <% puts "hello this is % #{percentage}" %>
-          <% for i in 0..19 %>
-            <% unless percentage < i %>
-              <i class="green male icon" style="padding:0; margin:-5px"></i>
-            <%else%>
-              <i class="male icon" style="padding:0; margin:-5px"></i>
-            <% end %>
-          <% end %>
+  <!-- NEW STORE MODAL: UNHIDDEN BY JAVASCRIPT -->
+      <div class="ui modal" id='new-store-modal'>
+        <i class="close icon"></i>
+        <div class="ui padded grid" style="padding-top:20px">
+          <h1 class="ui header">New store info</h1>
+          <div class="sixteen wide column">
+            <div class="ui form" id='store-details'>
+              <form action='/stores' method='post'>
+                <h4 class="ui dividing header">Store Details</h4>
+                <div class="field">
+                  <div class="two fields">
+                    <div class="six wide field">
+                      <label>Store Name</label>
+                      <div class="ui left icon input">
+                        <input type="text" placeholder="" name="store[store_name]">
+                        <i class="building icon"></i>
+                      </div>
+                    </div>
+                    <div class="ten wide field">
+                      <label>Store Address</label>
+                      <div class="ui left icon input">
+                        <input type="text" placeholder="" name="store[store_address]">
+                        <i class="marker icon"></i>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="two fields">
+                    <div class="eight wide field">
+                      <label>Store Manager</label>
+                      <div class="ui left icon input">
+                        <input type="text" placeholder="" name="store[contact_person]">
+                        <i class="user icon"></i>
+                      </div>
+                    </div>
+                    <div class="eight wide field">
+                      <label>Contact No</label>
+                      <div class="ui left icon input">
+                        <input type="text" placeholder="" name="store[contact_no]">
+                        <i class="mobile icon"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <h4 class="ui dividing header">Settings</h4>
+                <div class="three fields">
+                  <div class="four wide field">
+                    <label>Max Queue No</label>
+                    <div class="ui left icon input">
+                      <input type="text" placeholder="" name="store[max_queue_no]">
+                      <i class="ticket icon"></i>
+                    </div>
+                  </div>
+                  <div class="four wide field">
+                    <label>Max Leeway</label>
+                    <div class="ui left icon input">
+                      <input type="text" placeholder="" name="store[max_leeway]">
+                      <i class="share icon"></i>
+                    </div>
+                  </div>
+                  <div class="eight wide field">
+                    <label>Reservation Fee</label>
+                    <div class="ui left icon input">
+                      <input type="text" placeholder="" name="store[reservation_fee]">
+                      <i class="money icon"></i>
+                    </div>
+                  </div>
+                </div>
+                <button class="ui positive right floated button" type="submit" name="action">Save</button>
+                <div class="ui error message"></div>
+              </form>
+            </div>
+          </div>
         </div>
-
-        <!-- Calculate Est. Time SEGMENT -->
-        <% total_time = 0 %>
-        <% store.customers.each do |customer| %>
-          <% wait_time =  Time.now.utc - customer.created_at %>
-          <% total_time += wait_time %>
-        <% end %>
-        <div class="ui segment"><i class="hourglass half icon"></i><%= (total_time).floor %></div>
-
-        <!-- TOTAL QUEUE  -->
-        <div class="ui segment">
-          <i class="users icon"></i>
-        </div>
       </div>
-    </div>
-  </div>
-</div>
-
-
-<% end %>

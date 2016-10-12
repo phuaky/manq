@@ -1,7 +1,8 @@
 
-<div class="ui two column stackable divided padded grid">
+<div class="ui two column stackable divided padded grid" style="padding-top:20px">
   <div class="row">
     <div class="twelve wide column">
+      <h1 class="ui center aligned header">Store Dashboard</h1>
       <div class="ui horizontal divider">Waiting</div>
 
       <table class="ui celled sortable unstackable table">
@@ -77,7 +78,7 @@
             <div class="header">
               <%= @store.biz_user.company_name %>
               <div class="ui icon buttons right floated">
-                <button class="ui basic button"><a href="/stores/<%= @store.id %>/edit"><i class="edit icon"></i></a></button>
+                <button class="ui basic button"><a id='update-store-submit'><i class="edit icon"></i></a></button>
               </div>
             </div>
             <div class="meta">
@@ -144,3 +145,79 @@
     </div>
   </div>
 </div>
+
+<!-- UPDATE STORE MODAL: UNHIDDEN BY JAVASCRIPT -->
+    <div class="ui modal" id='update-store-modal'>
+      <i class="close icon"></i>
+      <div class="ui padded grid" style="padding-top:20px">
+        <h1 class="ui header">Edit store info</h1>
+        <div class="sixteen wide column">
+          <div class="ui form" id='store-details'>
+            <form action='/stores/<%= @store.id %>' method='post'>
+              <input type="hidden" name="_method" value="patch">
+              <h4 class="ui dividing header">Store Details</h4>
+              <div class="field">
+                <div class="two fields">
+                  <div class="six wide field">
+                    <label>Store Name</label>
+                    <div class="ui left icon input">
+                      <input type="text" placeholder="" name="store[store_name]" value="<%= @store.store_name%>">
+                      <i class="building icon"></i>
+                    </div>
+                  </div>
+                  <div class="ten wide field">
+                    <label>Store Address</label>
+                    <div class="ui left icon input">
+                      <input type="text" placeholder="" name="store[store_address]" value="<%= @store.store_address%>">
+                      <i class="marker icon"></i>
+                    </div>
+                  </div>
+                </div>
+                <div class="two fields">
+                  <div class="eight wide field">
+                    <label>Store Manager</label>
+                    <div class="ui left icon input">
+                      <input type="text" placeholder="" name="store[contact_person]" value="<%= @store.contact_person%>">
+                      <i class="user icon"></i>
+                    </div>
+                  </div>
+                  <div class="eight wide field">
+                    <label>Contact No</label>
+                    <div class="ui left icon input">
+                      <input type="text" placeholder="" name="store[contact_no]" value="<%= @store.contact_no%>">
+                      <i class="mobile icon"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <h4 class="ui dividing header">Settings</h4>
+              <div class="three fields">
+                <div class="four wide field">
+                  <label>Max Queue No</label>
+                  <div class="ui left icon input">
+                    <input type="text" placeholder="" name="store[max_queue_no]" value="<%= @store.max_queue_no%>">
+                    <i class="ticket icon"></i>
+                  </div>
+                </div>
+                <div class="four wide field">
+                  <label>Max Leeway</label>
+                  <div class="ui left icon input">
+                    <input type="text" placeholder="" name="store[max_leeway]" value="<%= @store.max_leeway%>">
+                    <i class="share icon"></i>
+                  </div>
+                </div>
+                <div class="eight wide field">
+                  <label>Reservation Fee</label>
+                  <div class="ui left icon input">
+                    <input type="text" placeholder="" name="store[reservation_fee]" value="<%= @store.reservation_fee%>">
+                    <i class="money icon"></i>
+                  </div>
+                </div>
+              </div>
+              <button class="ui positive right floated button" type="submit" name="action">Submit</button>
+              <div class="ui error message"></div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
