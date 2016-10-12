@@ -1,23 +1,25 @@
 <form action="/stores" class="ui small form" method="post">
 
-<div class="ui one column centered grid">
-  <div class="ui one wide left aligned container">
-    <h2>Opening New Stores</h2>
-    <div class="ui centered row">
-      <div class="field">
-        <div class="ui blue small label">
-           <label>Email</label>
-        </div> <br>
-        <div class="ui small input">
-           <input style="width:300px; height: 30px;" class="validate" type="text" id="email" name="registered_user[email]">
-        </div> <br>
-      </div>
+<div class="ui padded grid" style="padding-top:20px">
+  <h1 class="ui dividing header">Opening New Stores</h1>
+
+  <div class="sixteen wide column">
+    <div class="field">
+      <div class="ui blue small label">
+         <label>Email</label>
+      </div> <br>
+      <div class="ui small input">
+         <input class="validate" type="text" id="email" name="registered_user[email]">
+      </div> <br>
+    </div>
+    
+    <div class="two fields">
       <div class="field">
         <div class="ui blue small label">
            <label>Password</label>
         </div> <br>
         <div class="ui small input">
-           <input style="width:300px; height: 30px;" class="validate" type="password" id="password" name="registered_user[password]">
+           <input class="validate" type="password" id="password" name="registered_user[password]">
         </div> <br>
       </div>
       <div class="field">
@@ -25,15 +27,18 @@
            <label>Confirm Password</label>
         </div> <br>
         <div class="ui small input">
-           <input style="width:300px; height: 30px;" class="validate" type="password" id="password_confirmation" name="registered_user[password_confirmation]">
+           <input class="validate" type="password" id="password_confirmation" name="registered_user[password_confirmation]">
         </div> <br>
       </div>
+    </div>
+    
+    <div class="two fields">
       <div class="field">
         <div class="ui blue small label">
            <label>Store Name</label>
         </div> <br>
         <div class="ui small input">
-           <input style="width:300px; height: 30px;" class="validate" type="text" id="store_name" name="store[store_name]">
+           <input class="validate" type="text" id="store_name" name="store[store_name]">
         </div> <br>
       </div>
       <div class="field">
@@ -41,23 +46,27 @@
            <label>Store Address</label>
         </div> <br>
         <div class="ui small input">
-           <input style="width:300px; height: 30px;" class="validate" type="text" id="store_address">
+           <input class="validate" type="text" id="store_address">
         </div> <br>
       </div>
-      <div class="field">
-        <div class="ui blue small label">
-           <label>Add Store Picture</label>
-        </div> <br>
-        <div class="ui small input">
-           <input style="width:300px; height: 30px;" class="validate" type="file" id="store_picture" name="store_picture">
-        </div> <br>
-      </div>
+    </div>
+    
+    <div class="field">
+      <div class="ui blue small label">
+         <label>Add Store Picture</label>
+      </div> <br>
+      <div class="ui small input">
+         <input class="validate" type="file" id="store_picture" name="store_picture">
+      </div> <br>
+    </div>
+      
+    <div class="two fields">  
       <div class="field">
         <div class="ui blue small label">
            <label>Contact Person</label>
         </div> <br>
          <div class="ui small input">
-            <input style="width:300px; height: 30px;" class="validate" type="text" id="contact_person">
+            <input class="validate" type="text" id="contact_person">
         </div> <br>
       </div>
       <div class="field">
@@ -65,45 +74,53 @@
            <label>Contact No</label>
         </div> <br>
         <div class="ui small input">
-            <input style="width:300px; height: 30px;" class="validate" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="contact_no">
+            <input class="validate" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="contact_no">
         </div> <br>
-      </div
+      </div>
+    </div>
+      
+    <div class="two fields">
       <div class="field">
         <div class="ui blue small label">
            <label>Max Queue No</label>
         </div> <br>
         <div class="ui small input">
-           <input style="width:300px; height: 30px;" type="text" type="range" 
-           min="0" max="100" value="25" tabindex="0">
+           <input type="text" type="range" min="0" max="100" value="25" tabindex="0">
         </div> <br>
+      </div>
+      <div class="field">
         <div class="ui blue small label">
            <label>Max Leeway</label>
         </div> <br>
         <div class="ui small input">
-           <input style="width:300px; height: 30px;" type="text" type="range"
-           min="0" max="5" value="3" tabindex="0">
+           <input type="text" type="range" min="0" max="5" value="3" tabindex="0">
         </div> <br>
       </div>
+    </div>
+    
+    <div class="two fields">
       <div class="field">
         <div class="ui blue small label">
            <label>Max Queue Allow</label>
         </div> <br>
         <div class="ui small input">
-           <input style="width:300px; height: 30px;" class="validate" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="max_queue_allow" name="store[max_queue_allow]">
+           <input class="validate" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="max_queue_allow" name="store[max_queue_allow]">
         </div> <br>
       </div>
+    
       <div class="field">
         <div class="ui blue small label">
            <label>Reservation Fee</label>
         </div> <br>
         <div class="ui small input">
-           <input style="width:300px; height: 30px;" class="validate" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="reservation_fee">
+           <input class="validate" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="reservation_fee">
         </div> <br>
       </div>
-      <div class="field">
-        <div class="ui small buttons">
-          <button class="ui green button" type="submit">Submit</button>
-        </div>
+    </div>
+    
+    <div class="field">
+      <div class="ui small buttons">
+        <button class="ui green button" type="submit">Submit</button>
       </div>
     </div>
   </div>
