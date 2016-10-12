@@ -21,7 +21,7 @@
 - Join a queue and return only when it's your turn!
 - Check out the status of the queue (remaining number of people in front and estimated waiting time) online without having to return to the place.
 - See in advance whether the place you're heading to has a queue, how many people are waiting in line and the estimated waiting time.
-- ~~Be Kiasu~~ :sweat: Exercise effective time management and reserve in advance if necessary :)
+- ~~Be Kiasu~~ :sweat: Exercise effective time management and reserve in advance if necessary :anguished:.
 
 
 ### Additional
@@ -41,7 +41,7 @@
   - No more having to answer questions like "Eh, how long more do I have to wait?", customers can check out the queue status online as well as estimated remaining waiting time
   - Just hired someone to manage the customer queues? You can ~~sack them~~ :cold_sweat: redeploy them and put them to better use with automated queue management. Customers get notified via phone when it's almost their turn and again when it's their turn.
 - Improve customer experience
-  - Customers are less frustrated if they do not have to wait physically in line. Let them do their shopping, errands and other stuff while they're waiting. You don't need them around to show off their grumpy faces.
+  - Customers are less frustrated if they do not have to wait physically in line. Let them do their shopping, errands and other stuff while they're waiting. You don't need them around to show off their grumpy faces :angry:.
 
 ### Additional
 
