@@ -31,7 +31,7 @@ $(document).ready(function (){
     $('#login-modal').modal({inverted: true}).modal('show');
   });
 
-
+//CHECK STATUS OF CUSTOMER'S QUEUES
   $('#check-status').click(function() {
 
     $('.coupled.modal').modal({allowMultiple: false});
@@ -44,10 +44,6 @@ $(document).ready(function (){
         method: "GET",
         url: "/customers/queue_status/" + $('#check-status-modal').find('input').val(),
         success: function(serverResponse) {
-          console.log(serverResponse);
-
-
-
           $('#return-status-modal').find('.content').empty();
           for(var i=0; i<serverResponse.length; i++) {
             string = "<i class='sign in horizontally flipped icon'></i>";
@@ -92,6 +88,21 @@ $(document).ready(function (){
     $('#join-queue-modal').find('form').append("<input type='hidden' name='store_id' value='"+$(this).attr('id')+"'>");
     $('#join-queue-modal').modal({inverted: true}).modal('show');
   });
+
+  //Stores show page - changing queue status of customer
+  $("a[data-action]").click(function (){
+    $.ajax({
+      method: "PATCH",
+      url: "/customers/" + $(this).attr('id'),
+      data: {type: $(this).attr('data-action'), status: $(this).attr('class'), customer_id: $(this).attr('id')},
+      success: function(serverResponse) {
+        window.location.href = "";
+      },
+      error: function(error) {
+        console.log("Error:", error)
+      }
+    });
+  })
 
 
 });

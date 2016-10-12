@@ -20,10 +20,13 @@ class StoresController < ApplicationController
       total_time += wait_time
       max_time = [max_time, wait_time].max
     end
-    @average_time_in_queue_min = (total_time/@customers_in_queue/60).round(0)
+
+    @average_time_in_queue_min = (total_time/[@customers_in_queue,1].max/60).round(0)
     @max_time_in_queue_min = (max_time/60).round(0)
 
-    @customers = Customer.where(store_id: params[:id]).order(created_at: :asc)
+    @customers = Customer.where(store_id: params[:id]).order(queue_no: :asc)
+    # @late_customers = HistoricalCustomer.where(store_id: params[:id], status_id: 2).order(created_at: :asc)
+    @historical_customers = HistoricalCustomer.where(store_id: params[:id]).select(:user_id).distinct
   end
 
   def new

@@ -66,9 +66,9 @@ for i in 1..20 do
 end
 
 Status.find_or_create_by!(status_type: 'waiting')
-Status.find_or_create_by!(status_type: 'served')
 Status.find_or_create_by!(status_type: 'late')
 Status.find_or_create_by!(status_type: 'no show')
+Status.find_or_create_by!(status_type: 'served')
 Status.find_or_create_by!(status_type: 'user cancel')
 Status.find_or_create_by!(status_type: 'incorrect entry')
 

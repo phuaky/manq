@@ -1,74 +1,80 @@
-<form action="#" class="ui small form">
+<!-- INCOMPLETE - variable names - linkage to submit form - validation checks -->
 
-<div class="ui one column centered grid">
-  <div class="ui one wide left aligned container">
-    <h1>Edit Stores</h1>
-    <div class="ui centered row">
-      <div class="field">  
-        <div class="ui blue small label">
-          <label>Store Name</label>
-        </div> <br>
-        <div class="ui small input">
-          <input style="width:200px; height: 22px;" type="text" id="store_name" value="<%= @store.store_name%>">
-        </div> <br>
-      </div>
-      <div class="field">  
-        <div class="ui blue small label">
-           <label>Store Address</label>
-        </div> <br>
-        <div class="ui small input">
-           <input style="width:200px; height: 22px;" type="text" id="store_address" value="<%= @store.store_address%>">
+<div class="ui padded grid" style="padding-top:20px">
+  <h1 class="ui header">Edit store info</h1>
+  <div class="sixteen wide column">
+    <div class="ui form" id='biz_user_registration'>
+      <form action='/stores/id/edit' method='post'>
+        <h4 class="ui dividing header">Store Details</h4>
+        <div class="field">
+          <div class="two fields">
+            <div class="six wide field">
+              <label>Store Name</label>
+              <div class="ui left icon input">
+                <input type="text" placeholder="Search users...">
+                <i class="building icon"></i>
+              </div>
+            </div>
+            <div class="ten wide field">
+              <label>Store Address</label>
+              <div class="ui left icon input">
+                <input type="text" placeholder="Search users...">
+                <i class="marker icon"></i>
+              </div>
+            </div>
+          </div>
+          <div class="two fields">
+            <div class="eight wide field">
+              <label>Store Manager</label>
+              <div class="ui left icon input">
+                <input type="text" placeholder="Search users...">
+                <i class="user icon"></i>
+              </div>
+            </div>
+            <div class="eight wide field">
+              <label>Contact No</label>
+              <div class="ui left icon input">
+                <input type="text" placeholder="Search users...">
+                <i class="mobile icon"></i>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
-      <div class="field">  
-        <div class="ui blue small label">
-           <label>Contact Person</label>
-        </div> <br>
-        <div class="ui small input">
-           <input style="width:200px; height: 22px;" type="text" id="contact_person" value="<%= @store.contact_person%>">
-        </div> <br>
-      </div>
-      <div class="field">  
-        <div class="ui blue small label">
-           <label>Contact No</label>
-        </div> <br>
-        <div class="ui input">
-           <input style="width:200px; height: 22px;" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="contact_no" value="<%= @store.contact_no%>">
-        </div> <br>
-      </div>
-      <div class="field">  
-        <div class="ui blue small label">
-           <label>Max Queue No.</label>
-        </div> <br>
-        <div class="ui small input">
-           <input style="width:200px; height: 22px;" type="range" min="0" max="100" value="<%= @store.max_queue_no %>">
-        </div> <br>
-      </div>
-      <div class="field">  
-        <div class="ui blue small label">
-           <label>Max Leeway</label>
-        </div> <br>
-        <div class="ui small input">
-           <input style="width:200px; height: 22px;" type="range" min="0" max="20" value="<%= @store.max_leeway %>">
-        </div> <br>
-      </div>
-      <div class="field">  
-        <div class="ui blue small label">
-           <label>Reservation Fee...</label>
-        </div> <br>
-        <div class="ui small input">
-           <input style="width:200px; height: 22px;" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="reservation_fee" value="<%= @store.reservation_fee%>">
-        </div> <br>
-      </div>
-      <div class="field">  
-        <div class="ui small buttons">
-          <button class="ui button"><a href="/stores/<%= @store.id %>">Back</a></button>
-          <div class="or"></div>
-          <button class="ui positive button" type="submit" name="action">Save</button>
+        <h4 class="ui dividing header">Settings</h4>
+        <div class="three fields">
+          <div class="four wide field">
+            <label>Max Queue No</label>
+            <div class="ui left icon input">
+              <input type="text" placeholder="Search users...">
+              <i class="ticket icon"></i>
+            </div>
+          </div>
+          <div class="four wide field">
+            <label>Max Leeway</label>
+            <div class="ui left icon input">
+              <input type="text" placeholder="Search users...">
+              <i class="share icon"></i>
+            </div>
+          </div>
+          <div class="eight wide field">
+            <label>Reservation Fee</label>
+            <div class="ui left icon input">
+              <input type="text" placeholder="Search users...">
+              <i class="money icon"></i>
+            </div>
+          </div>
         </div>
-      </div>
+        <div class="ui center aligned grid">
+          <div class="row">
+            <div class="ui buttons">
+              <button class="ui button"><a href="/stores/<%= @store.id %>">Back</a></button>
+              <div class="or"></div>
+              <button class="ui positive button" type="submit" name="action">Save</button>
+            </div>
+            <div class="ui error message"></div>
+          </div>
+        </div>
+      </form>
     </div>
   </div>
 </div>
-
-</form>
