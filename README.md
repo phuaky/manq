@@ -52,4 +52,4 @@
   - Identify peak periods within the day, throughout the week and even seasonal trends across the year and better schedule your employees to cope with the fluctuation in demand
 - Reduce business risk and improve turnover
   - Suffering from frequent cases of no-show reservations? Customers need to provide their phone number when making advance reservations. Nothing new, except our system has perfect memory and knows exactly how many times the particular customer has no-showed, not just on you, but across many other businesses as well. Our system allows you to decide how many chances you wish to give your customers before you blacklist them from making reservations.
-  - Still feeling vulnerable? Set a required reservation fee if you must. You get to keep this reservation fee if the customer doesn't show up. You decide the amount. Refund them the fee if it turns out to be just a huge misunderstanding :)
+  - Still feeling vulnerable? Set a required reservation fee if you must. You get to keep this reservation fee if the customer doesn't show up. You decide the amount. Refund them the fee if it turns out to be just a huge misunderstanding :anguished:.
