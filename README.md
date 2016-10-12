@@ -1,24 +1,32 @@
-WDI5 - Project 3 - ManQ
+# WDI5 - Project 3 - ManQ
 
-User Stories
-As a normal user:
+## User Stories
+
+### As a normal user:
+```
 - I should be able to join a queue without having to stay there physically. I can shop, walk around and run errands while waiting and only need to return when it is almost my turn
 - I should be able to see in advance whether there is a queue at the place I am heading to, and if so, reserve in advance if need be so that I can minimize my waiting time when I've reached
+```
 
-As a business owner:
+### As a business owner:
+```
 - I should be able to use the system without the need to invest in specialized hardware or software
 - The system should allow me to manage my queues better, automatically and reduce the need for manpower
+```
 
-
-Features For Normal Users
-Core
+## Features For Normal Users
+### Core
+```
 - Free to use
 - Join a queue and return only when it's your turn!
 - Check out the status of the queue (remaining number of people in front and estimated waiting time) online without having to return to the place.
 - See in advance whether the place you're heading to has a queue, how many people are waiting in line and the estimated waiting time.
 - <strikethrough>Be kiasu</strikethrough>Exercise effective time management and reserve in advance if necessary :)
-Additional
+```
+### Additional
+```
 - Suss out new food places by seeing which are the places that people are willing to <strikethrough>kill</strikethrough> queue for.
+```
 
 Features For Business Owners
 Core
