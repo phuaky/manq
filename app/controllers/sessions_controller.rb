@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
       session[:registered_user_id] = registered_user.id
       flash[:success] = "Successfully Logged In!"
       if registered_user.user_type_id == 3
-        redirect_to '/stores/' + @current_user.store.id.to_s
+        redirect_to '/stores/' + registered_user.store.id.to_s
       elsif registered_user.user_type_id == 2
         redirect_to '/stores'
       else  registered_user.user_type_id == 1

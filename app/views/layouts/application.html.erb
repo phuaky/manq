@@ -8,57 +8,47 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
   </head>
   <body>
-
 <!-- NAV BAR -->
-    <div class="ui menu">
-      <div class="header item">
-        <a href="/">ManQ</a>
-      </div>
-      <a class="item" href='/'>Home</a>
-      <div class="right menu">
+    <div class="ui top attached menu">
+      <a class="item"><i class="sidebar icon"></i>Menu</a>
+    </div>
+    <div class="ui bottom attached segment pushable">
+      <div class="ui inverted thin sidebar vertical menu">
+        <!-- LOGGED IN MENU -->
         <% if @current_user %>
-        <!-- STORE -->
+          <!-- STORE -->
           <% if @current_user.user_type_id == 3 %>
-            <div class="ui right dropdown item" id="dropdown-menu-store_manager">
-              <span><%= @current_user.store.store_name %></span>
-              <i class="dropdown icon"></i>
-              <div class="menu">
-                <div class="item"><a href="/stores/<%= @current_user.store.id %>">Store Profile</a></div>
-                <div class="divider"></div>
-                <div class="item"><%= link_to "Log Out", '/logout', method: :delete %></div>
-              </div>
-            </div>
-            <!-- BIZ USER -->
+            <a class="item" href="/"><i class="home icon"></i>Home</a>
+            <a class="item" href="/stores/<%= @current_user.store.id %>"><i class="home icon"></i>Store Info</a>
+            <a class="item" href="/stores/<%= @current_user.store.id %>/edit"><i class="home icon"></i>Update Info</a>
+            <%= link_to "Log Out", '/logout', class: "item", method: :delete %>
+          <!-- BIZ USER -->
           <% elsif @current_user.user_type_id == 2 %>
-            <div class="ui right dropdown item" id="dropdown-menu-biz_user">
-              <span><%= @current_user.biz_user.company_name %></span>
-              <i class="dropdown icon"></i>
-              <div class="menu">
-                <div class="item"><a href="/stores">Stores Profile</a></div>
-                <div class="divider"></div>
-                <div class="item"><%= link_to "Log Out", '/logout', method: :delete %></div>
-              </div>
-            </div>
-            <!-- ADMIN -->
+            <a class="item" href="/"><i class="home icon"></i>Home</a>
+            <a class="item" href="/stores">View Stores</a>
+            <a class="item" href="/biz_users/<%= @current_user.biz_user.id %>">Company Info</a>
+            <%= link_to "Log Out", '/logout', class: "item", method: :delete %>
+          <!-- ADMIN -->
           <% elsif @current_user.user_type_id == 1 %>
-            <div class="ui right dropdown item" id="dropdown-menu-admin">
-              <span>Admin</span>
-              <i class="dropdown icon"></i>
-              <div class="menu">
-                <div class="item"><a href="/biz_users">Business Users</a></div>
-                <div class="item"><a href="/stores">Stores</a></div>
-                <div class="divider"></div>
-                <div class="item"><%= link_to "Log Out", '/logout', method: :delete %></div>
-              </div>
-            </div>
+            <a class="item" href="/"><i class="home icon"></i>Home</a>
+            <a class="item" href="/biz_users">View Companies</a>
+            <a class="item" href="/stores">View Stores</a>
+            <%= link_to "Log Out", '/logout', class: "item", method: :delete %>
           <% end %>
+        <!-- PUBLIC MENU -->
         <% else %>
-        <a class="item" id='check-status'>Check Status</a>
-        <a class="item" href="/biz_users/new">Register</a>
-        <a class="item" id='manq-login-submit'>Sign In</a>
+          <a class="item" href="/"><i class="home icon"></i>Home</a>
+          <a class="item" id='check-status'><i class="block layout icon"></i>Check Status</a>
+          <a class="item" href="/biz_users/new"><i class="smile icon"></i>Register</a>
+          <a class="item" id='manq-login-submit'><i class="calendar icon"></i>Sign In</a>
         <% end %>
       </div>
+      <!-- RENDER LAYOUT INSERTS -->
+      <div class="pusher">
+        <%= yield %>
+      </div>
     </div>
+
 
 <!-- LOG IN MODAL: UNHIDDEN BY JAVASCRIPT -->
     <div class="ui modal" id='login-modal'>
@@ -84,40 +74,34 @@
     </div>
 
 <!-- CHECK QUEUE STATUS MODAL: UNHIDDEN BY JAVASCRIPT -->
-<div class="ui basic small coupled modal" id="check-status-modal">
-  <i class="close icon"></i>
-  <div class="header">
-    Check Queue Status
-  </div>
-  <div class="content">
-    <form class="ui form">
-    <div class="field">
-      <label>Mobile Number</label>
-      <input type="text" name="user[phone_no]" placeholder="Please enter the number you used earlier">
+    <div class="ui basic small coupled modal" id="check-status-modal">
+      <i class="close icon"></i>
+      <div class="header">
+        Check Queue Status
+      </div>
+      <div class="content">
+        <form class="ui inverted form">
+        <div class="field">
+          <label>Mobile Number</label>
+          <input type="text" name="user[phone_no]" placeholder="Please enter the number you used earlier">
+        </div>
+      </div>
+      <div class="actions">
+        <button class="ui button" type="submit">Submit</button>
+        </form>
+      </div>
     </div>
-  </div>
-  <div class="actions">
-    <button class="ui button" type="submit">Submit</button>
-    </form>
-  </div>
-</div>
 
-<div class="ui basic small coupled modal" id="return-status-modal">
-  <i class="close icon"></i>
-  <div class="header">
-    Queue Status
-  </div>
-  <div class="content">
-    <div class="field">
-      show the queue status here
+<!-- RETURN QUEUE STATUS MODAL: UNHIDDEN BY JAVASCRIPT -->
+    <div class="ui basic small coupled modal" id="return-status-modal">
+      <i class="close icon"></i>
+      <div class="header">
+        Queue Status
+      </div>
+      <div class="content">
+      </div>
     </div>
-  </div>
-  <div class="actions">
 
-  </div>
-</div>
 
-<!-- RENDER LAYOUT INSERTS -->
-    <%= yield %>
   </body>
 </html>

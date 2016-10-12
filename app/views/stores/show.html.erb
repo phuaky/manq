@@ -1,28 +1,82 @@
-<h1>Stores#show</h1>
-<p>Find me in app/views/stores/show.html.erb</p>
 
-<div class="ui two column centered grid">
-  <div class="column">
-    <%= cl_image_tag(@store.store_picture) %>
+<div class="ui two column stackable divided padded grid">
+  <div class="row">
+    <div class="twelve wide column">
+      <div class="ui horizontal divider">Waiting</div>
+
+      <table class="ui celled sortable unstackable table">
+        <thead>
+          <tr>
+            <th>Queue #</th>
+            <th>Contact</th>
+            <th>Status</th>
+            <th>Update</th>
+            <th>Update</th>
+            <th>Update</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @customers.each do |customer| %>
+          <tr>
+            <td>#<%= customer.queue_no %></td>
+            <td><%= customer.user.phone_no %></td>
+            <td><%= customer.status.status_type.capitalize %></td>
+            <td class="selectable positive"><a href=''>Served</a></td>
+            <td class="selectable warning"><a href=''>Late</a></td>
+            <td class="selectable negative"><a href=''>Cancel</a></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+
+      <br><br><br>
+      <div class="ui horizontal divider">Processed</div>
+
+      <table class="ui celled sortable unstackable table">
+        <thead>
+          <tr>
+            <th>Queue #</th>
+            <th>Contact</th>
+            <th>Status</th>
+            <th>Update</th>
+            <th>Update</th>
+            <th>Update</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @customers.each do |customer| %>
+          <tr>
+            <td>#<%= customer.queue_no %></td>
+            <td><%= customer.user.phone_no %></td>
+            <td><%= customer.status.status_type.capitalize %></td>
+            <td class="selectable positive"><a href=''>Served</a></td>
+            <td class="selectable warning"><a href=''>Late</a></td>
+            <td class="selectable negative"><a href=''>Cancel</a></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+    <div class="four wide column">
+      <%= cl_image_tag(@store.store_picture) %>
+      <p>
+        <%= @store.biz_user.company_name %>
+        <br>
+        <%= @store.store_name %>
+        <br>
+        <%= @store.store_address %>
+        <br>
+        <%= @store.contact_person %>
+        <br>
+        <%= @store.contact_no %>
+        <br>
+        Customers in Queue: <%= @customers_in_queue %>
+        <br>
+        Average Time in Line: <%= @average_time_in_queue_min %> min(s)
+        <br>
+        Longest Wait: <%= @max_time_in_queue_min %> min(s)
+      </p>
+      <button class="ui secondary basic button"><a href="/stores/<%= @store.id %>/edit">Edit</a></button>
+    </div>
   </div>
 </div>
-
-<p>
-  <%= @store.biz_user.company_name %>
-  <br>
-  <%= @store.store_name %>
-  <br>
-  <%= @store.store_address %>
-  <br>
-  <%= @store.contact_person %>
-  <br>
-  <%= @store.contact_no %>
-  <br>
-  Customers in Queue: <%= @customers_in_queue %>
-  <br>
-  Average Time in Line: <%= @average_time_in_queue_min %> min(s)
-  <br>
-  Longest Wait: <%= @max_time_in_queue_min %> min(s)
-</p>
-
-<button class="ui secondary basic button"><a href="/stores/<%= @store.id %>/edit">Edit</a></button>

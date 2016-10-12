@@ -16,10 +16,19 @@
 // = require semantic-ui
 
 $(document).ready(function (){
+  $('.ui.sidebar')
+    .sidebar({
+      context: $('.bottom.segment')
+    })
+    .sidebar('attach events', '.menu .item')
+  ;
+
   $('.ui.dropdown').dropdown();
 
+  $('table').tablesort();
+
   $('#manq-login-submit').click(function() {
-    $('#login-modal').modal({blurring: true}).modal('show');
+    $('#login-modal').modal({inverted: true}).modal('show');
   });
 
 
@@ -27,9 +36,43 @@ $(document).ready(function (){
 
     $('.coupled.modal').modal({allowMultiple: false});
     $('#return-status-modal').modal('attach events', '#check-status-modal .button');
-    $('#check-status-modal').modal({blurring: true}).modal('show');
+    $('#check-status-modal').modal('show');
     $('#check-status-modal').on('click','.button',function(event) {
       event.preventDefault();
+
+      $.ajax({
+        method: "GET",
+        url: "/customers/queue_status/" + $('#check-status-modal').find('input').val(),
+        success: function(serverResponse) {
+          console.log(serverResponse);
+
+
+
+          $('#return-status-modal').find('.content').empty();
+          for(var i=0; i<serverResponse.length; i++) {
+            string = "<i class='sign in horizontally flipped icon'></i>";
+            for(var j=0; j<serverResponse[i].id; j++) {
+              if(j==serverResponse[i].status_id){
+                string += "<i class='orange male icon' style='margin:-3px'></i>";
+              } else {
+                string += "<i class='black male icon' style='margin:-3px'></i>";
+              }
+            }
+            for(var j=serverResponse[i].id; j<20; j++) {
+              // string += "<i class='inverted male icon' style='margin:-3px'></i>";
+            }
+
+            $('#return-status-modal').find('.content').append(
+              '<h3 class="ui top attached header">'+serverResponse[i].store.biz_user.company_name+'<div class="sub header">'+serverResponse[i].store.store_name+'</div></h3>'+
+              '<div class="ui attached secondary segment">'+string+
+              '<br><i class="wait icon"></i>'+serverResponse[i].user_id+' mins</div>'
+            );
+          }
+        },
+        error: function(error) {
+          console.log("Error:", error)
+        }
+      });
     });
   });
 
@@ -47,8 +90,8 @@ $(document).ready(function (){
   $('.join-queue').click(function() {
     $('#join-queue-modal').find('.header').text('Join Queue - ' + $(this).parent().parent().find('.header').text() + ' - ' + $(this).parent().parent().find('.date').text());
     $('#join-queue-modal').find('form').append("<input type='hidden' name='store_id' value='"+$(this).attr('id')+"'>");
-    $('#join-queue-modal').modal({blurring: true}).modal('show');
+    $('#join-queue-modal').modal({inverted: true}).modal('show');
   });
 
-  
+
 });

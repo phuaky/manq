@@ -31,6 +31,8 @@ gem 'rails_12factor', group: :production
 
 gem 'semantic-ui-sass', github: 'doabit/semantic-ui-sass'
 
+gem 'twilio-ruby'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

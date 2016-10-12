@@ -1,6 +1,7 @@
 <h1>Stores#index</h1>
 <p>Find me in app/views/stores/index.html.erb</p>
 
+<!-- ADD NEW STORES -->
 <div class="ui animated button" tabindex="0">
   <a href="/stores/new">
     <div class="visible content">New Store</div>
@@ -10,39 +11,42 @@
   </a>
 </div>
 
-<div class="ui items">
-  <div class="item">
-    <div class="content">
-      <div class="header">Arrowhead Valley Camp</div>
-      <div class="meta">
-        <span>
-          <% for i in 0..10 %>
-             <i class="male icon"></i>
+<% @stores.each do |store| %>
+
+<div class="ui centered compact center aligned segment grid">
+  <div class="content">
+    <div class="header"><%= link_to store.store_name, '/stores/'+store.id.to_s, method: :get %></div>
+    <div class="meta">
+      <div class="ui horizontal segments">
+        <!-- QUEUE SEGMENT -->
+        <div class="ui segment">
+          <% percentage = store.customers.count % 100 %>
+          <% puts "hello this is % #{percentage}" %>
+          <% for i in 0..19 %>
+            <% unless percentage < i %>
+              <i class="green male icon" style="padding:0; margin:-5px"></i>
+            <%else%>
+              <i class="male icon" style="padding:0; margin:-5px"></i>
+            <% end %>
           <% end %>
-        </span>
-        <span><i class="hourglass half icon"></i></span>
-      </div>
-      <div class="description">
-        <p></p>
+        </div>
+
+        <!-- Calculate Est. Time SEGMENT -->
+        <% total_time = 0 %>
+        <% store.customers.each do |customer| %>
+          <% wait_time =  Time.now.utc - customer.created_at %>
+          <% total_time += wait_time %>
+        <% end %>
+        <div class="ui segment"><i class="hourglass half icon"></i><%= (total_time).floor %></div>
+
+        <!-- TOTAL QUEUE  -->
+        <div class="ui segment">
+          <i class="users icon"></i>
+        </div>
       </div>
     </div>
   </div>
 </div>
 
-<% @stores.each do |store| %>
-<p>
-  <%= store.biz_user.company_name %>
-  <br>
-  <%= link_to store.store_name, '/stores/'+store.id.to_s, method: :get %>
-  <br>
-  <%= store.store_address %>
-  <br>
-  <%= store.contact_person %>
-  <br>
-  <%= store.contact_no %>
-  <br>
-  <%= link_to 'Details', '/stores/' + store.id.to_s, method: :get %>
-  <%= link_to 'Edit', '/stores/' + store.id.to_s + '/edit', method: :get %>
-  <%= link_to 'Delete', '/stores/' + store.id.to_s, method: :delete %>
-</p>
+
 <% end %>

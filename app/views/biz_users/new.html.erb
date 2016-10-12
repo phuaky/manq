@@ -1,94 +1,54 @@
-<h1>Create New BizUsers</h1>
+<div class="ui padded grid" style="padding-top:20px">
+  <h1 class="ui header">Sign up for a business account</h1>
+  <div class="sixteen wide column">
+    <div class="ui form" id='biz_user_registration'>
+      <form action='/biz_users' method='post'>
+        <h4 class="ui dividing header">Account Details</h4>
+        <div class="field">
+          <label>Email</label>
+          <input type="text" name="registered_user[email]" placeholder="Email to be used for logging in">
+        </div>
+        <div class="field">
+          <div class="two fields">
+            <div class="field">
+              <label>Password</label>
+              <input type="password" name="registered_user[password]" placeholder="Should consist of at least 8 characters">
+            </div>
+            <div class="field">
+              <label>Confirm Password</label>
+              <input type="password" name="registered_user[password_confirmation]" placeholder="Key in password again to confirm">
+            </div>
+          </div>
+        </div>
+        <h4 class="ui dividing header">Company Details</h4>
+        <div class="three fields">
+          <div class="four wide field">
+            <label>Company Name</label>
+            <input type="text" name="biz_user[company_name]" placeholder="As per ACRA records">
+          </div>
+          <div class="eight wide field">
+            <label>Business Registration Number</label>
+            <input type="text" name="biz_user[reg_no]" placeholder="As per ACRA records">
+          </div>
+          <div class="four wide field">
+            <label>Company Address</label>
+            <input type="text" name="biz_user[address]" placeholder="Company registered address">
+          </div>
+        </div>
 
-<div class="grid">
-  <form class="mdl-cell s12" action='/biz_users' method='post'>
-    <div class="grid">
-      <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-        <input class="mdl-textfield__input validate" type="text" id="email" placeholder="abc@email.com" name="registered_user[email]">
-        <label class="mdl-textfield__label active" for="email">Email...</label>
-      </div>
-      <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-        <input class="mdl-textfield__input validate" type="password" id="password" name="registered_user[password]">
-        <label class="mdl-textfield__label active" for="password">Password...</label>
-      </div>
-      <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-        <input class="mdl-textfield__input validate" type="password" id="password_confirmation" name="registered_user[password_confirmation]">
-        <label class="mdl-textfield__label active" for="password_confirmation">Confirm Password...</label>
-      </div>
+        <div class="two fields">
+          <div class="field">
+            <label>Contact Person</label>
+            <input type="text" name="biz_user[contact_person]" placeholder="Company go-to person for matters pertaining to this account">
+          </div>
+          <div class="field">
+            <label>Contact Number</label>
+            <input type="text" name="biz_user[contact_no]" placeholder="Contact number of contact person">
+          </div>
+        </div>
+        <div class="ui button" type="submit">Register</div>
+        <div class="ui error message"></div>
+      </form>
     </div>
-    <div class="grid">
-      <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-        <input class="mdl-textfield__input validate" type="text" id="reg_no" name="biz_user[reg_no]">
-        <label class="mdl-textfield__label active" for="reg_no">Business Registration Number...</label>
-      </div>
-      <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-        <input class="mdl-textfield__input validate" type="text" id="company_name" name="biz_user[company_name]">
-        <label class="mdl-textfield__label active" for="company_name">Company Name...</label>
-      </div>
-      <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-        <input class="mdl-textfield__input validate" type="text" id="address" name="biz_user[address]">
-        <label class="mdl-textfield__label active" for="address">Company Address...</label>
-      </div>
-    </div>
-    <div class="grid">
-      <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-        <input class="mdl-textfield__input validate" type="text" id="contact_person" name="biz_user[contact_person]">
-        <label class="mdl-textfield__label active" for="contact_person">Contact Person...</label>
-      </div>
-      <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-        <input class="mdl-textfield__input validate" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="contact_no" name="biz_user[contact_no]">
-        <label class="mdl-textfield__label active" for="contact_no">Contact No...</label>
-        <span class="mdl-textfield__error">Input is not a number!</span>
-      </div>
-    </div>
-    <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent" type="submit" name="action">Submit
-      <i class="material-icons right">play_argrid</i>
-    </button>
-  </form>
+  </div>
 </div>
-<!--
-<div class="row">
-  <form class="col s12" action='/biz_users' method='post'>
-    <div class="row">
-      <div class="input-field col s12 m4">
-        <input placeholder="abc@email.com" id="email" type="text" class="validate" name="registered_user[email]">
-        <label for="email" class="active">Email</label>
-      </div>
-      <div class="input-field col s12 m4">
-        <input id="password" type="password" class="validate" name="registered_user[password]">
-        <label for="password" class="active">Password</label>
-      </div>
-      <div class="input-field col s12 m4">
-        <input id="password_confirmation" type="password" class="validate" name="registered_user[password_confirmation]">
-        <label for="password_confirmation" class="active">Confirm Password</label>
-      </div>
-    </div>
-    <div class="row">
-      <div class="input-field col s12 m4">
-        <input id="reg_no" type="text" class="validate" name="biz_user[reg_no]">
-        <label for="reg_no" class="active">Business Registration Number</label>
-      </div>
-      <div class="input-field col s12 m4">
-        <input id="company_name" type="text" class="validate" name="biz_user[company_name]">
-        <label for="company_name" class="active">Company Name</label>
-      </div>
-      <div class="input-field col s12 m4">
-        <input id="address" type="text" class="validate" name="biz_user[address]">
-        <label for="address" class="active">Company Address</label>
-      </div>
-    </div>
-    <div class="row">
-      <div class="input-field col s12 m6">
-        <input id="contact_person" type="text" class="validate" name="biz_user[contact_person]">
-        <label for="contact_person" class="active">Contact Person</label>
-      </div>
-      <div class="input-field col s12 m6">
-        <input id="contact_no" type="text" class="validate" name="biz_user[contact_no]">
-        <label for="contact_no" class="active">Contact No</label>
-      </div>
-    </div>
-    <button class="btn waves-effect waves-light right" type="submit" name="action">Submit
-      <i class="material-icons right">play_arrow</i>
-    </button>
-  </form>
-</div> -->

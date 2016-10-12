@@ -2,6 +2,8 @@ Rails.application.routes.draw do
 
   # method 'url' => 'controller#action' #description (access rights)
 
+  get '/test_sms' => 'messages#sms'
+
   get '/' => 'main#index' #Landing page (public)
 
   get '/login' => 'sessions#new' #page to login (public) DONE
@@ -29,12 +31,14 @@ Rails.application.routes.draw do
   get 'customers/' => 'customers#index' #show all customers at a store (admin, biz_user, store)
   post 'customers/' => 'customers#create' #customer creation action (public)
   get 'customers/new' => 'customers#new' #page to add a new customer to a store (public)
+  get 'customers/queue_status/:phone_no' => 'customers#ajax' #page for ajax request to get customer queue status(es) (public)
   get 'customers/:id/edit' => 'customers#edit' #page to change status of customer (admin, biz_user, store)
   get 'customers/:id' => 'customers#show' #show a particular customer (admin, biz_user, store_user)
   patch 'customers/:id' => 'customers#update' #customer update action (admin, biz_user, store)
   delete 'customers/:id' => 'customers#destroy' #customer delete action (admin, biz_user)
 
   get 'users/new' => 'users#new'
+
   # get 'users/index'
   # get 'users/show'
   # get 'users/new'

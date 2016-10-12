@@ -3,7 +3,7 @@
   <% @stores.each do |store| %>
   <div class="ui fluid card" id="store-card">
     <div class="image">
-      <img src="https://s-media-cache-ak0.pinimg.com/736x/aa/6f/44/aa6f440cab69783a39bc77624f67d370.jpg">
+      <img src="<%= store.store_picture %>">
     </div>
     <div class="content">
       <a class="header"><%= store.biz_user.company_name %></a>
@@ -18,7 +18,7 @@
           <% total_time += wait_time %>
         <% end %>
         <% total_time = (total_time/60).round(0) %>
-        <span class="left floated"><i class="hourglass half icon"></i>Est. Wait <%= total_time %> mins</span>
+        <span class="left floated"><i class="wait icon"></i>Est. Wait <%= total_time %> mins</span>
       </div>
     </div>
     <div class="extra content">
