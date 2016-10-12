@@ -21,7 +21,7 @@
 - Join a queue and return only when it's your turn!
 - Check out the status of the queue (remaining number of people in front and estimated waiting time) online without having to return to the place.
 - See in advance whether the place you're heading to has a queue, how many people are waiting in line and the estimated waiting time.
-- <strikethrough>Be kiasu</strikethrough>Exercise effective time management and reserve in advance if necessary :)
+- ~~Be kiasu~~ :thumbsup: Exercise effective time management and reserve in advance if necessary :)
 ```
 ### Additional
 ```
