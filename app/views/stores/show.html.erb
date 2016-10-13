@@ -211,9 +211,28 @@
                 </div>
               </div>
               <button class="ui positive right floated button" type="submit" name="action">Submit</button>
-              <div class="ui error message"></div>
             </form>
+            <% if @current_user.user_type_id == 2  || @current_user.user_type_id == 1 %>
+            <button class="ui negative button" id="delete-form">Delete</button>
+            <% end %>
           </div>
         </div>
       </div>
     </div>
+
+    <div class="ui small test modal transition hidden" id ="delete-modal" >
+        <div class="header">
+          Delete Your Account
+        </div>
+        <div class="content">
+          <p>Are you sure you want to delete your store?</p>
+        </div>
+        <div class="actions">
+          <div class="ui negative button">
+            No
+          </div>
+          <a rel="nofollow" data-method="delete" href="/stores/<%= @store.id.to_s %>">
+            <div class="ui positive right button">Delete</div>
+          </a>
+        </div>
+      </div>

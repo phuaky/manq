@@ -1,11 +1,6 @@
-remove company info link on app.layout
-
 who present what
 
-
-
-
-
+remove myself from the queue
 
 KY:
 
@@ -32,6 +27,4 @@ Things left to do:
 Banner - how to use the site
 intro to website
 link new stores photo to store page
-On click of biz card in stores#index, still cant load /biz_users/1/edit
 flash cannot show what individual errors have happen
-delete function stores bizusers companies
