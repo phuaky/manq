@@ -1,68 +1,130 @@
-<div class="ui padded grid" style="padding-top:20px">
-  <h1 class="ui header">Dashboard - All Stores</h1>
-
-
-  <div class="ui two column stackable divided padded grid">
-    <div class="row">
-      <div class="sixteen wide column">
-        <div class="ui horizontal divider">Waiting</div>
-
-        <table class="ui celled sortable unstackable table">
-          <thead>
-            <tr>
-              <th>Store/Branch</th>
-              <th>Customers Served</th>
-              <th>Queue</th>
-              <th>Avg Wait Time</th>
-              <th>Details</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>
-                <div class="ui animated compact button" tabindex="0">
-                  <a id='new-store-submit'>
-                    <div class="visible content"><i class="add square icon"></i>Add a store/branch</div>
-                    <div class="hidden content">
-                      <i class="right arrow icon"></i>
-                    </div>
-                  </a>
+<div class="ui two column stackable divided padded grid" style="padding-top:20px">
+  <div class="row">
+      <div class="four wide column">
+        <div class="ui link cards">
+          <div class="card">
+            <div class="image">
+              <img src="http://www.visakanv.com/blog/wp-content/uploads/2013/05/singapore-google-map.png" />
+            </div>
+            <div class="content">
+              <div class="header">
+                <%= @biz.company_name %>
+                <div class="ui icon buttons right floated">
+                  <button class="ui basic button"><a id='update-store-submit'><i class="edit icon"></i></a></button>
                 </div>
-              </td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-            </tr>
-            <% @stores.each do |store| %>
-            <tr>
-              <td><%= store.store_name %></td>
-              <td><%= store.historical_customers.where(store_id: store.id, status_id: 4).count %></td>
-              <td>
-                <!-- QUEUE SEGMENT -->
-                <% total_time = 0 %>
-                <% store.customers.order(:queue_no).each do |customer| %>
-                  <% wait_time =  (Time.now.utc - customer.created_at)/60 %>
-                  <% total_time += wait_time %>
-                  <% if wait_time > 30 %>
-                    <i class="orange male icon" style="padding:0; margin:-5px"></i>
-                  <% elsif wait_time > 10 %>
-                    <i class="yellow male icon" style="padding:0; margin:-5px"></i>
-                  <% else %>
-                    <i class="olive male icon" style="padding:0; margin:-5px"></i>
+              </div>
+              <div class="description">
+                <i class="registered icon"></i>
+                <%= @biz.reg_no %>
+              </div>
+            </div>
+            <div class="extra content">
+              <span>
+                <i class="marker icon"></i>
+                 <b><%= @total_stores %> </b>Total Store(s)
+              </span>
+            </div>
+
+            <div class="extra content">
+              <div class="ui center aligned grid">
+                  <div class="five wide column">
+                    <div class="ui statistics">
+                      <div class="statistic">
+                        <div class="value">
+                        </div>
+                        <div class="label">
+                          <i class="users icon"></i>Served
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="five wide column">
+                    <div class="ui statistics">
+                      <div class="statistic">
+                        <div class="value">
+                        </div>
+                        <div class="label">
+                          <i class="wait icon"></i>Avg Wait (mins)
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="five wide column">
+                    <div class="ui statistics">
+                      <div class="statistic">
+                        <div class="value">
+                        </div>
+                        <div class="label">
+                          <i class="male icon"></i>in queue
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="twelve wide column">
+          <h1 class="ui header center aligned"><%= @biz.company_name %>'s Dashboard</h1>
+
+          <div class="ui horizontal divider">Overview</div>
+
+          <table class="ui celled sortable unstackable table">
+            <thead>
+              <tr>
+                <th>Store/Branch</th>
+                <th>Customers Served</th>
+                <th>Queue</th>
+                <th>Avg Wait Time</th>
+                <th>Details</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td colspan="5">
+                  <div class="ui animated compact button" tabindex="0">
+                    <a id='new-store-submit'>
+                      <div class="visible content"><i class="add square icon"></i>Add a store/branch</div>
+                      <div class="hidden content">
+                        <i class="right arrow icon"></i>
+                      </div>
+                    </a>
+                  </div>
+                </td>
+              </tr>
+              <% @stores.each do |store| %>
+              <tr>
+                <td><%= store.store_name %></td>
+                <td><%= store.historical_customers.where(store_id: store.id, status_id: 4).count %></td>
+                <td>
+                  <!-- QUEUE SEGMENT -->
+                  <% total_time = 0 %>
+                  <% store.customers.order(:queue_no).each do |customer| %>
+                    <% wait_time =  (Time.now.utc - customer.created_at)/60 %>
+                    <% total_time += wait_time %>
+                    <% if wait_time > 30 %>
+                      <i class="orange male icon" style="padding:0; margin:-5px"></i>
+                    <% elsif wait_time > 10 %>
+                      <i class="yellow male icon" style="padding:0; margin:-5px"></i>
+                    <% else %>
+                      <i class="olive male icon" style="padding:0; margin:-5px"></i>
+                    <% end %>
                   <% end %>
-                <% end %>
-                <% avg_time = total_time/store.customers.count %>
-              </td>
-              <td><%= avg_time.round(0) %><% if avg_time.round(0) > 1 %> <%= "minute".pluralize %><% else %>minute<% end %></td>
-              <td class="selectable"><a href='/stores/<%= store.id %>'>Store Dashboard</a></td>
-            </tr>
-            <% end %>
-          </tbody>
-        </table>
+                  <% avg_time = total_time/store.customers.count %>
+                </td>
+                <td><%= avg_time.round(0) %><% if avg_time.round(0) > 1 %> <%= "minute".pluralize %><% else %>minute<% end %></td>
+                <td class="selectable"><a href='/stores/<%= store.id %>'>Store Dashboard</a></td>
+              </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
-  </div>
+
+
 
 
   <!-- NEW STORE MODAL: UNHIDDEN BY JAVASCRIPT -->

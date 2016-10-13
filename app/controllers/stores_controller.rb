@@ -7,7 +7,18 @@ class StoresController < ApplicationController
       @stores = Store.all
     elsif is_biz_user?
       @stores = Store.where(biz_user_id: @current_user.biz_user.id)
+      @biz = BizUser.find(@current_user.biz_user.id)
+      @total_stores = @biz.stores.count
     end
+    # customers = @stores[0].customers
+    # total_time = 0
+    #
+    # customers.each do |customer|
+    #   wait_time =  (Time.now.utc - customer.created_at)/60
+    #   total_time += wait_time
+    #   @average_time = total_time / customers.length
+    # end
+    # @average_time_in_queue_min = (total_time/[@customers_in_queue,1].max/60).round(0)
   end
 
   def show
