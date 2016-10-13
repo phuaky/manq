@@ -1,6 +1,16 @@
-KY:
+Biz registration client authentication not working
+biz cannot create
+not supposed to appear on modal for log in
+admin cannot create a store - remove button
+biz owner can edit own profile
+remove company info link on app.layout
 
-Flash message
+
+
+
+
+
+KY:
 
 look at validations > forms > behaviours
 
@@ -19,17 +29,11 @@ Tek Yong:
 Things left to do:
   finding nice photos for biz upload to cloudinary/heroku
   populate data
-  planning process
-  how we split up the work
-  all the github features
-  Start to do presentation materials
 
 
 Banner - how to use the site
 intro to website
-company info - put company card at the side
 link new stores photo to store page
-index pages for biz and stores
 On click of biz card in stores#index, still cant load /biz_users/1/edit
 flash cannot show what individual errors have happen
 delete function stores bizusers companies
