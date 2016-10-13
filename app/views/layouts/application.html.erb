@@ -31,7 +31,7 @@
           <!-- ADMIN -->
           <% elsif @current_user.user_type_id == 1 %>
             <a class="item" href="/"><i class="home icon"></i>Home</a>
-            <a class="item" href="/biz_users">View Companies</a>
+            <!-- <a class="item" href="/biz_users">View Companies</a> -->
             <a class="item" href="/stores">View Stores</a>
             <%= link_to "Log Out", '/logout', class: "item", method: :delete %>
           <% end %>

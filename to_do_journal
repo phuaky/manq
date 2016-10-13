@@ -32,3 +32,4 @@ link new stores photo to store page
 index pages for biz and stores
 On click of biz card in stores#index, still cant load /biz_users/1/edit
 flash cannot show what individual errors have happen
+delete function stores bizusers companies
