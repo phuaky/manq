@@ -31,9 +31,14 @@ $(document).ready(function (){
     $('#login-modal').modal({inverted: true}).modal('show');
   });
 
-  //Register new user page
+  //Register new Biz user page
   $('#register-biz-user').click(function() {
     $('#register-modal').modal({inverted: true}).modal('show');
+  });
+
+  //Edit Biz user page
+  $('#update-biz-submit').click(function() {
+    $('#update-biz-modal').modal({inverted: true}).modal('show');
   });
 
 //CHECK STATUS OF CUSTOMER'S QUEUES
@@ -114,7 +119,7 @@ $(document).ready(function (){
     $('#update-store-modal').modal({inverted: true}).modal('show');
   });
 
-  //Stores show page - edit store details
+  //Stores show page - new store details
   $('#new-store-submit').click(function() {
     $('#new-store-modal').modal({inverted: true}).modal('show');
   });

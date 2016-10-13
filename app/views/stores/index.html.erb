@@ -97,6 +97,7 @@
               </tr>
             </thead>
             <tbody>
+              <% if @current_user.user_type_id == 2 %>
               <tr>
                 <td colspan="5">
                   <div class="ui animated compact button" tabindex="0">
@@ -109,6 +110,8 @@
                   </div>
                 </td>
               </tr>
+              <% end %>
+
               <% @stores.each do |store| %>
               <tr>
                 <% if @current_user.user_type_id == 1 %>
@@ -268,3 +271,45 @@
       </div>
     </div>
   </div>
+
+  <!-- EDIT BIZ ACCOUNT MODAL: UNHIDDEN BY JAVASCRIPT -->
+      <div class="ui modal" id='update-biz-modal'>
+        <i class="close icon"></i>
+        <div class="ui padded grid" style="padding-top:20px">
+          <h1 class="ui header">Sign up for a business account</h1>
+          <div class="sixteen wide column">
+            <div class="ui form" id='biz_user_registration'>
+              <form action='/biz_users' method='post'>
+                <h4 class="ui dividing header">Company Details</h4>
+                <div class="three fields">
+                  <div class="four wide field">
+                    <label>Company Name</label>
+                    <input type="text" name="biz_user[company_name]" placeholder="As per ACRA records" value="<%= @biz.company_name %>">
+                  </div>
+                  <div class="eight wide field">
+                    <label>Business Registration Number</label>
+                    <input type="text" name="biz_user[reg_no]" placeholder="As per ACRA records" value="<%= @biz.reg_no %>">
+                  </div>
+                  <div class="four wide field">
+                    <label>Company Address</label>
+                    <input type="text" name="biz_user[address]" placeholder="Company registered address" value="<%= @biz.address %>">
+                  </div>
+                </div>
+
+                <div class="two fields">
+                  <div class="field">
+                    <label>Contact Person</label>
+                    <input type="text" name="biz_user[contact_person]" placeholder="Company go-to person for matters pertaining to this account" value="<%= @biz.contact_person %>">
+                  </div>
+                  <div class="field">
+                    <label>Contact Number</label>
+                    <input type="text" name="biz_user[contact_no]" placeholder="Contact number of contact person" value="<%= @biz.contact_no %>">
+                  </div>
+                </div>
+                <input type="submit" value="Submit" class="ui button" />
+                <div class="ui error message"></div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>

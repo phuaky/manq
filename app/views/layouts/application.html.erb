@@ -57,9 +57,6 @@
 
 <!-- LOG IN MODAL: UNHIDDEN BY JAVASCRIPT -->
     <div class="ui modal" id='login-modal'>
-      <% if flash[:danger] %>
-         <div class="ui error message compact"><%= flash[:danger] %></div>
-       <% end %>
       <i class="close icon"></i>
       <div class="header">
         Sign In
@@ -168,14 +165,13 @@
           </div>
         </div>
       </div>
-
     </div>
 
     <div style="position:absolute;left:50%;margin-left:-43px;top:3px;text-align:center;">
       <% if @current_user %>
-        <img src="/assets/manq-logo.png" height=36px style="display:inline">
+        <img src="http://res.cloudinary.com/phuaky/image/upload/v1476352788/w0pmcnfcea8lx0ymr5em.png" height=36px style="display:inline">
       <% else %>
-        <img src="/assets/qman-logo.png" height=36px style="display:inline">
+        <img src="http://res.cloudinary.com/phuaky/image/upload/v1476352874/wbihowmixjzncc5hends.png" height=36px style="display:inline">
       <% end %>
     </div>
   </body>
