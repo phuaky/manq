@@ -22,7 +22,7 @@ class BizUsersController < ApplicationController
       if @biz_user.save
         session[:registered_user_id] = @registered_user.id
         flash[:success] = "Business successfully registered!"
-        redirect_to '/biz_users'
+        redirect_to '/stores'
       else
         session[:registered_user_id] = nil
         flash[:danger] = "Register fail, please check your entries"
