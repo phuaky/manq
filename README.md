@@ -7,12 +7,10 @@
 - I should be able to join a queue without having to stay there physically. I can shop, walk around and run errands while waiting and only need to return when it is almost my turn.
 - I should be able to see in advance whether there is a queue at the place I am heading to, and if so, reserve in advance if need be so that I can minimize my waiting time when I've reached.
 
-
 ### As a business owner:
 
 - I should be able to use the system without the need to invest in specialized hardware or software.
 - The system should allow me to manage my queue on system automatically which is much more efficient and will reduce the need for manpower.
-
 
 ## Features For Normal Users
 
@@ -75,3 +73,42 @@
 - Entity-Relationship Diagrams
 
 ![Imgur](http://i.imgur.com/O23LpwG.jpg)
+
+
+
+## <span style="color:blue">Our General Approach</span>
+
+
+
+## <span style="color:blue">Installation Procedures for Dependencies</span>
+
+
+
+## <span style="color:blue">Our WireFrames</span>
+
+- WireFrame #1 - App Overview
+![Imgur](http://i.imgur.com/hycfFz2.jpg)
+
+- WireFrame #2 - Users & Biz_Users Differentiation
+![Imgur](http://i.imgur.com/C4rL2k9.jpg)
+
+- WireFrame #3 - Queue Management System
+![Imgur](http://i.imgur.com/hknLx1t.jpg)
+
+- WireFrame #4 - CRUD Design for User Model
+![Imgur](http://i.imgur.com/EgSqwV8.jpg)
+
+- WireFrame #5 - Biz_User Page Design
+![Imgur](http://i.imgur.com/MTyDTrU.jpg)
+
+- WireFrame #6 - Queue Status Display Design
+![Imgur](http://i.imgur.com/tNHCF6B.jpg)
+
+- WireFrame #7 - List of All Major Tasks
+![Imgur](http://i.imgur.com/4g6tDeg.jpg)
+
+- WireFrame #8 - Breakdown of Assignment
+![Imgur](http://i.imgur.com/cFaUqnq.jpg)
+
+
+## <span style="color:blue">Our Major Hurdles/Unsolved Problems</span>
