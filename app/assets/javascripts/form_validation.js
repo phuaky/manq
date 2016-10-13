@@ -153,6 +153,30 @@ $(document).ready(function (){
       }
   });
 
+  $('#join-queue').form({
+    inline: true,
+    on: 'blur',
+    fields: {
+      contact_no: { identifier: 'user[phone_no]',
+                                rules:  [{  type: 'integer',
+                                            prompt: 'Please enter only numbers'},
+                                          { type: 'regExp[/^(8|9)\\d{7}$/]',
+                                            prompt: 'Please enter a valid Singapore mobile number without country code'}]
+                    }
+      }
+  });
 
+  $('#check-queue').form({
+    inline: true,
+    on: 'blur',
+    fields: {
+      contact_no: { identifier: 'user[phone_no]',
+                                rules:  [{  type: 'integer',
+                                            prompt: 'Please enter only numbers'},
+                                          { type: 'regExp[/^(8|9)\\d{7}$/]',
+                                            prompt: 'Please enter a valid Singapore mobile number without country code'}]
+                    }
+      }
+  });
 
 });

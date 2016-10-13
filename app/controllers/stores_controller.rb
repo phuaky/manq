@@ -9,20 +9,32 @@ class StoresController < ApplicationController
       @stores = Store.where(biz_user_id: @current_user.biz_user.id)
       @biz = BizUser.find(@current_user.biz_user.id)
       @total_stores = @biz.stores.count
+
+      @total_customers = 0
+      @total_waiting_customers = 0
+      @wait_time = 0
+      @biz.stores.each do |store|
+        @total_customers += store.historical_customers.where(status_id: 4).count
+        @total_waiting_customers += store.customers.count
+        store.historical_customers.where(status_id: 4).each do |customer|
+          @wait_time += customer.created_at - customer.time
+        end
+      end
+      @wait_time = (@wait_time/[@total_customers,1].max/60).round(0)
     end
-    # customers = @stores[0].customers
-    # total_time = 0
-    #
-    # customers.each do |customer|
-    #   wait_time =  (Time.now.utc - customer.created_at)/60
-    #   total_time += wait_time
-    #   @average_time = total_time / customers.length
-    # end
-    # @average_time_in_queue_min = (total_time/[@customers_in_queue,1].max/60).round(0)
   end
 
   def show
     @store = Store.find(params[:id])
+    if is_biz_user?
+      if @current_user.biz_user.id != @store.biz_user_id
+        redirect_to '/stores'
+      end
+    elsif is_store_user?
+      if @current_user.store.id != @store.id
+        redirect_to '/stores/'+@current_user.store.id.to_s
+      end
+    end
     @customers_in_queue = @store.customers.count
     total_time = 0
     max_time = 0

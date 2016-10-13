@@ -42,7 +42,7 @@ $(document).ready(function (){
     $('.coupled.modal').modal({allowMultiple: false});
     $('#return-status-modal').modal('attach events', '#check-status-modal .button');
     $('#check-status-modal').modal('show');
-    $('#check-status-modal').on('click','.button',function(event) {
+    $('#check-status-modal').on('submit','#check-queue',function(event) {
       event.preventDefault();
 
       $.ajax({

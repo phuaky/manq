@@ -1,5 +1,7 @@
 <div class="ui two column stackable divided padded grid" style="padding-top:20px">
   <div class="row">
+      <% if @current_user.user_type_id == 1 %>
+      <% else %>
       <div class="four wide column">
         <div class="ui link cards">
           <div class="card">
@@ -10,7 +12,7 @@
               <div class="header">
                 <%= @biz.company_name %>
                 <div class="ui icon buttons right floated">
-                  <button class="ui basic button"><a id='update-store-submit'><i class="edit icon"></i></a></button>
+                  <button class="ui basic button"><a id='update-biz-submit'><i class="edit icon"></i></a></button>
                 </div>
               </div>
               <div class="description">
@@ -31,6 +33,7 @@
                     <div class="ui statistics">
                       <div class="statistic">
                         <div class="value">
+                          <%= @total_customers %>
                         </div>
                         <div class="label">
                           <i class="users icon"></i>Served
@@ -42,6 +45,7 @@
                     <div class="ui statistics">
                       <div class="statistic">
                         <div class="value">
+                          <%= @wait_time %>
                         </div>
                         <div class="label">
                           <i class="wait icon"></i>Avg Wait (mins)
@@ -53,6 +57,7 @@
                     <div class="ui statistics">
                       <div class="statistic">
                         <div class="value">
+                          <%= @total_waiting_customers %>
                         </div>
                         <div class="label">
                           <i class="male icon"></i>in queue
@@ -65,19 +70,27 @@
             </div>
           </div>
         </div>
+        <% end %>
 
+        <% if @current_user.user_type_id == 1 %>
+        <div class="sixteen wide column">
+        <% else %>
         <div class="twelve wide column">
-          <h1 class="ui header center aligned"><%= @biz.company_name %>'s Dashboard</h1>
+        <% end %>
+          <h1 class="ui header center aligned">Dashboard<% unless @current_user.user_type_id == 1 %> - <%= @biz.company_name %><% end %></h1>
 
           <div class="ui horizontal divider">Overview</div>
 
           <table class="ui celled sortable unstackable table">
             <thead>
               <tr>
+                <% if @current_user.user_type_id == 1 %>
+                <th>Company</th>
+                <% end %>
                 <th>Store/Branch</th>
                 <th>Customers Served</th>
                 <th>Queue</th>
-                <th>Avg Wait Time</th>
+                <th>Est. Avg Wait Time</th>
                 <th>Details</th>
               </tr>
             </thead>
@@ -96,6 +109,9 @@
               </tr>
               <% @stores.each do |store| %>
               <tr>
+                <% if @current_user.user_type_id == 1 %>
+                <td><%= store.biz_user.company_name %></td>
+                <% end %>
                 <td><%= store.store_name %></td>
                 <td><%= store.historical_customers.where(store_id: store.id, status_id: 4).count %></td>
                 <td>
@@ -249,3 +265,4 @@
         </div>
       </div>
     </div>
+  </div>
