@@ -2,7 +2,11 @@ class BizUsersController < ApplicationController
   before_action :is_biz_user, only: [:index, :edit, :update, :show, :destroy]
 
   def index
-    @biz_users = BizUser.all
+    if is_admin?
+      @biz_users = BizUser.all
+    else
+      redirect_to '/'
+    end
   end
 
   def show
@@ -22,17 +26,17 @@ class BizUsersController < ApplicationController
       if @biz_user.save
         session[:registered_user_id] = @registered_user.id
         flash[:success] = "Business successfully registered!"
-        redirect_to '/biz_users'
+        redirect_to '/stores'
       else
         session[:registered_user_id] = nil
         flash[:danger] = "Register fail, please check your entries"
-        redirect_to '/biz_users/new'
+        redirect_to '/'
       end
     else
       # render :new
       session[:registered_user_id] = nil
       flash[:danger] = "Register fail, please check your entries"
-      redirect_to '/biz_users/new'
+      redirect_to '/'
     end
   end
 

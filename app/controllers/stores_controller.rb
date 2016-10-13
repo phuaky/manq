@@ -61,7 +61,7 @@ class StoresController < ApplicationController
     @registered_user.user_type_id = 3
     if @registered_user.save!
       @store = Store.new(store_params)
-      @store.registered_user_id = @current_user.id
+      @store.registered_user_id = @registered_user.id
       @store.biz_user_id = @current_user.biz_user.id
 
       uploaded_file = params[:store_picture].path
