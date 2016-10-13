@@ -16,12 +16,12 @@ class BizUsersController < ApplicationController
   def create
     @registered_user = RegisteredUser.new(registered_user_params)
     @registered_user.user_type_id = 2
-    if @registered_user.save!
+    if @registered_user.save
       @biz_user = BizUser.new(biz_user_params)
       @biz_user.registered_user_id = @registered_user.id
-      if @biz_user.save!
+      if @biz_user.save
         session[:registered_user_id] = @registered_user.id
-        flash[:success] = "Successfully Logged In!"
+        flash[:success] = "Business successfully registered!"
         redirect_to '/stores'
       else
         session[:registered_user_id] = nil
@@ -29,6 +29,7 @@ class BizUsersController < ApplicationController
         redirect_to '/biz_users/new'
       end
     else
+      # render :new
       session[:registered_user_id] = nil
       flash[:danger] = "Register fail, please check your entries"
       redirect_to '/biz_users/new'

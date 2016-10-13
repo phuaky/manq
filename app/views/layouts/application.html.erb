@@ -36,7 +36,7 @@
           <!-- ADMIN -->
           <% elsif @current_user.user_type_id == 1 %>
             <a class="item" href="/"><i class="home icon"></i>Home</a>
-            <a class="item" href="/biz_users">View Companies</a>
+            <!-- <a class="item" href="/biz_users">View Companies</a> -->
             <a class="item" href="/stores">View Stores</a>
             <%= link_to "Log Out", '/logout', class: "item", method: :delete %>
           <% end %>
@@ -115,12 +115,16 @@
 
 <!-- LOG IN MODAL: UNHIDDEN BY JAVASCRIPT -->
     <div class="ui modal" id='login-modal'>
+      <% if flash[:danger] %>
+         <div class="ui error message compact"><%= flash[:danger] %></div>
+       <% end %>
       <i class="close icon"></i>
       <div class="header">
         Sign In
       </div>
+
       <div class="content">
-        <form class="ui form" action='/login' method='post'>
+        <form class="ui form" id="login" action='/login' method='post'>
           <div class="field">
             <label>Email</label>
             <input type="text" name="registered_user[email]" placeholder="Email">

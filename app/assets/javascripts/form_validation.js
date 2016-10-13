@@ -153,6 +153,7 @@ $(document).ready(function (){
       }
   });
 
+
   $('#join-queue').form({
     inline: true,
     on: 'blur',
@@ -166,6 +167,7 @@ $(document).ready(function (){
       }
   });
 
+
   $('#check-queue').form({
     inline: true,
     on: 'blur',
@@ -178,5 +180,25 @@ $(document).ready(function (){
                     }
       }
   });
+
+
+  $('#login').form({
+    inline: true,
+    on: 'blur',
+    fields: {
+      email:  { identifier: 'registered_user[email]',
+                                rules:  [{  type: 'empty',
+                                            prompt: 'Field must not be empty'},
+                                          { type: 'email',
+                                            prompt: 'Please enter a valid email'}]
+              },
+      password: { identifier: 'registered_user[password]',
+                                rules:  [{  type: 'empty',
+                                            prompt: 'Field must not be empty'},
+                                          { type: 'minLength[8]',
+                                            prompt: 'Your password must be at least {ruleValue} characters'},
+                                          { type: 'maxLength[72]',
+                                            prompt: 'Your superhuman memory is noted, but passwords cannot exceed {ruleValue} characters'}]
+                }}})
 
 });

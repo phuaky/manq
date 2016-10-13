@@ -20,8 +20,10 @@ class CustomersController < ApplicationController
     @customer.status_id = 1
     if @customer.save!
       sms('+65'+@user.phone_no.to_s,'Your queue number for '+@customer.store.biz_user.company_name+' - '+@customer.store.store_name+' is #'+@customer.queue_no.to_s+'.')
+      flash[:success] = "You have joined the queue!"
       redirect_to '/'
     else
+      flash[:danger] = "Error joining queue.. Pls try again"
       redirect_to '/'
     end
 

@@ -119,6 +119,16 @@ $(document).ready(function (){
     $('#new-store-modal').modal({inverted: true}).modal('show');
   });
 
+// Close button for messages
+  $('.message .close')
+    .on('click', function() {
+      $(this)
+        .closest('.message')
+        .transition('fade')
+      ;
+    })
+  ;
+
   $("input").change(function(e) {
 
       for (var i = 0; i < e.originalEvent.srcElement.files.length; i++) {
