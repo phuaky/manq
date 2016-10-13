@@ -31,6 +31,10 @@ $(document).ready(function (){
     $('#login-modal').modal({inverted: true}).modal('show');
   });
 
+  $('#manq-newbiz-create').click(function() {
+    $('#newbiz-modal').modal({inverted: true}).modal('show');
+  });
+
 //CHECK STATUS OF CUSTOMER'S QUEUES
   $('#check-status').click(function() {
 
