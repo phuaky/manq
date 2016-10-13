@@ -21,9 +21,7 @@ $(document).ready(function (){
                                 rules:  [{  type: 'empty',
                                             prompt: 'Field must not be empty'},
                                           { type: 'minLength[8]',
-                                            prompt: 'Your password must be at least {ruleValue} characters'},
-                                          { type: 'match[registered_user[password]]',
-                                            prompt: 'This must match the password you keyed in the previous field'}]
+                                            prompt: 'Your password must be at least {ruleValue} characters'}]
                               },
       company_name: { identifier: 'biz_user[company_name]',
                                 rules:  [{  type: 'empty',

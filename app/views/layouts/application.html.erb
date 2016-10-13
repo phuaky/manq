@@ -1,7 +1,11 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Manq</title>
+    <% if @current_user %>
+      <title>Man-Q: Improve business operations with our advanced queue management system</title>
+    <% else %>
+      <title>Q-Man: Stay in line without being there</title>
+    <% end %>
     <%= csrf_meta_tags %>
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
@@ -9,6 +13,7 @@
   </head>
   <body>
 <!-- NAV BAR -->
+
     <div class="ui top attached menu">
       <a class="item"><i class="sidebar icon"></i>Menu</a>
     </div>
@@ -39,7 +44,7 @@
         <% else %>
           <a class="item" href="/"><i class="home icon"></i>Home</a>
           <a class="item" id='check-status'><i class="block layout icon"></i>Check Status</a>
-          <a class="item" href="/biz_users/new"><i class="smile icon"></i>Register</a>
+          <a class="item" id='register-biz-user'><i class="smile icon"></i>Register</a>
           <a class="item" id='manq-login-submit'><i class="calendar icon"></i>Sign In</a>
         <% end %>
       </div>
@@ -102,6 +107,72 @@
       </div>
     </div>
 
+<!-- NEW BIZ REGISTER ACCOUNT MODAL: UNHIDDEN BY JAVASCRIPT -->
+    <div class="ui modal" id='register-modal'>
+      <i class="close icon"></i>
+      <div class="ui padded grid" style="padding-top:20px">
+        <h1 class="ui header">Sign up for a business account</h1>
+        <div class="sixteen wide column">
+          <div class="ui form" id='biz_user_registration'>
+            <form action='/biz_users' method='post'>
+              <h4 class="ui dividing header">Account Details</h4>
+              <div class="field">
+                <label>Email</label>
+                <input type="text" name="registered_user[email]" placeholder="Email to be used for logging in">
+              </div>
+              <div class="field">
+                <div class="two fields">
+                  <div class="field">
+                    <label>Password</label>
+                    <input type="password" name="registered_user[password]" placeholder="Should consist of at least 8 characters">
+                  </div>
+                  <div class="field">
+                    <label>Confirm Password</label>
+                    <input type="password" name="registered_user[password_confirmation]" placeholder="Key in password again to confirm">
+                  </div>
+                </div>
+              </div>
+              <h4 class="ui dividing header">Company Details</h4>
+              <div class="three fields">
+                <div class="four wide field">
+                  <label>Company Name</label>
+                  <input type="text" name="biz_user[company_name]" placeholder="As per ACRA records">
+                </div>
+                <div class="eight wide field">
+                  <label>Business Registration Number</label>
+                  <input type="text" name="biz_user[reg_no]" placeholder="As per ACRA records">
+                </div>
+                <div class="four wide field">
+                  <label>Company Address</label>
+                  <input type="text" name="biz_user[address]" placeholder="Company registered address">
+                </div>
+              </div>
 
+              <div class="two fields">
+                <div class="field">
+                  <label>Contact Person</label>
+                  <input type="text" name="biz_user[contact_person]" placeholder="Company go-to person for matters pertaining to this account">
+                </div>
+                <div class="field">
+                  <label>Contact Number</label>
+                  <input type="text" name="biz_user[contact_no]" placeholder="Contact number of contact person">
+                </div>
+              </div>
+              <input type="submit" value="Submit" class="ui button" />
+              <div class="ui error message"></div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div style="position:absolute;left:50%;margin-left:-43px;top:3px;text-align:center;">
+      <% if @current_user %>
+        <img src="/assets/manq-logo.png" height=36px style="display:inline">
+      <% else %>
+        <img src="/assets/qman-logo.png" height=36px style="display:inline">
+      <% end %>
+    </div>
   </body>
 </html>
