@@ -1,10 +1,8 @@
 Biz registration client authentication not working
 biz cannot create
-not supposed to appear on modal for log in
-admin cannot create a store - remove button
+
 biz owner can edit own profile
 remove company info link on app.layout
-push logo to cloudinary, hardcode into app.layout..
 
 who present what
 
@@ -15,7 +13,7 @@ who present what
 
 KY:
 
-look at validations > forms > behaviours
+
 
 Yi Hui:
 
@@ -27,6 +25,7 @@ Reservation system:
 
 
 Tek Yong:
+
 
 
 Things left to do:
