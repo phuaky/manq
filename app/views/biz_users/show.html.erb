@@ -4,3 +4,22 @@
   <%= @biz_user.company_name %>
   <br>
 </p>
+
+<button class="ui negative button" id="delete-form">Delete</button>
+
+<div class="ui small test modal transition hidden" id ="delete-modal" >
+    <div class="header">
+      Delete Your Account
+    </div>
+    <div class="content">
+      <p>Are you sure you want to delete <%= @biz_user.company_name %>?</p>
+    </div>
+    <div class="actions">
+      <div class="ui negative button">
+        No
+      </div>
+      <a rel="nofollow" data-method="delete" href="/biz_users/<%= @biz_user.id.to_s %>">
+        <div class="ui positive right button">Delete</div>
+      </a>
+    </div>
+  </div>
