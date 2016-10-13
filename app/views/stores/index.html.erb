@@ -73,6 +73,32 @@
           <div class="sixteen wide column">
             <div class="ui form" id='store-details'>
               <form action='/stores' method='post'>
+                <h4 class="ui dividing header">Account Details</h4>
+                <div class="field">
+                  <div class="three fields">
+                    <div class="four wide field">
+                      <label>Email</label>
+                      <div class="ui left icon input">
+                        <input type="text" placeholder="" name="store[store_name]">
+                        <i class="building icon"></i>
+                      </div>
+                    </div>
+                    <div class="six wide field">
+                      <label>Password</label>
+                      <div class="ui left icon input">
+                        <input type="text" placeholder="" name="store[store_address]">
+                        <i class="marker icon"></i>
+                      </div>
+                    </div>
+                    <div class="six wide field">
+                      <label>Confirm Password</label>
+                      <div class="ui left icon input">
+                        <input type="text" placeholder="" name="store[contact_person]">
+                        <i class="user icon"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
                 <h4 class="ui dividing header">Store Details</h4>
                 <div class="field">
                   <div class="two fields">
@@ -118,13 +144,20 @@
                     </div>
                   </div>
                   <div class="four wide field">
+                    <label>Max Queue Allowable</label>
+                    <div class="ui left icon input">
+                      <input type="text" placeholder="" name="store[max_queue_allow]">
+                      <i class="users icon"></i>
+                    </div>
+                  </div>
+                  <div class="four wide field">
                     <label>Max Leeway</label>
                     <div class="ui left icon input">
                       <input type="text" placeholder="" name="store[max_leeway]">
                       <i class="share icon"></i>
                     </div>
                   </div>
-                  <div class="eight wide field">
+                  <div class="four wide field">
                     <label>Reservation Fee</label>
                     <div class="ui left icon input">
                       <input type="text" placeholder="" name="store[reservation_fee]">
