@@ -279,7 +279,8 @@
           <h1 class="ui header">Sign up for a business account</h1>
           <div class="sixteen wide column">
             <div class="ui form" id='biz_user_registration'>
-              <form action='/biz_users' method='post'>
+              <form action='/biz_users/<%= @biz.id %>' method='post'>
+                <input type="hidden" name="_method" value="patch">
                 <h4 class="ui dividing header">Company Details</h4>
                 <div class="three fields">
                   <div class="four wide field">

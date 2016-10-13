@@ -22,7 +22,7 @@ class BizUsersController < ApplicationController
       if @biz_user.save
         session[:registered_user_id] = @registered_user.id
         flash[:success] = "Business successfully registered!"
-        redirect_to '/stores'
+        redirect_to '/biz_users'
       else
         session[:registered_user_id] = nil
         flash[:danger] = "Register fail, please check your entries"
@@ -41,6 +41,11 @@ class BizUsersController < ApplicationController
   end
 
   def update
+    @biz_user = BizUser.find(params[:id])
+    if @biz_user.update(biz_user_params)
+      flash[:success] = "Business successfully updated!"
+      redirect_to '/stores'
+    end
   end
 
   def destroy
