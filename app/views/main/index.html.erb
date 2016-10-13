@@ -15,13 +15,13 @@
 
   </div>
 
-<img src="/assets/queue-5.jpg" style="width:100%">
+<img src="http://res.cloudinary.com/phuaky/image/upload/v1476377902/queue-5_uc3idn.jpg" style="width:100%">
 
 <div class="ui four stackable cards" style="margin:10px">
   <% @stores.each do |store| %>
   <div class="ui fluid card" id="store-card">
     <div class="image">
-      <%= cl_image_tag("queue-5_uc3idn.jpg", :width=>600, :height=>400, :crop=>"fill") %>
+      <%= cl_image_tag(store.store_picture, :width=>600, :height=>400, :crop=>"fill") %>
     </div>
     <div class="content">
       <a class="header"><%= store.biz_user.company_name %></a>
