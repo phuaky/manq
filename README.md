@@ -1,6 +1,6 @@
 # WDI5 - Project 3 - ManQ
 
-## <span style="color:blue">Target Users</span>
+<span style="color:red">Target Users</span>
 
 ## User Stories
 
