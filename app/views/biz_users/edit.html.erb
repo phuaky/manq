@@ -1,40 +1,53 @@
-<h1>Edit BizUsers</h1>
-
-<div class="grid">
-  <form class="mdl-cell s12" action='/biz_users' method='post'>
-    <div class="grid">
-      <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-        <input class="mdl-textfield__input validate" type="text" id="email" placeholder="abc@email.com" name="registered_user[email]" value="<%= @biz_user.registered_user.email %>">
-        <label class="mdl-textfield__label active" for="email">Email...</label>
-      </div>
+<div class="ui padded grid" style="padding-top:20px">
+  <h1 class="ui header">Editing a business account</h1>
+  <div class="sixteen wide column">
+    <div class="ui form" id='biz_user_edit'>
+      <form action='/biz_users' method='post'>
+        <h4 class="ui dividing header">Account Details</h4>
+        <div class="sixteen wide column">
+          <div class="two fields">
+            <div class="field">
+              <label>Email</label>
+              <input class="validate" type="text" id="email" placeholder="abc@email.com" name="registered_user[email]" value="<%= @biz_user.registered_user.email %>">
+            </div>
+            <div class="field">
+              <label>Business Registration Number</label>
+              <input class="validate" type="text" id="reg_no" name="biz_user[reg_no]" value="<%= @biz_user.reg_no %>">
+            </div>
+          </div>
+          
+          <div class="two fields">
+            <div class="field">
+              <label>Company Name</label>
+              <input class="validate" type="text" id="company_name" name="biz_user[company_name]" value="<%= @biz_user.company_name %>">
+            </div>
+            <div class="field">
+              <label>Company Address</label>
+              <input class="validate" type="text" id="address" name="biz_user[address]" value="<%= @biz_user.address %>">
+            </div>
+          </div>
+          
+          <div class="two fields">
+            <div class="field">
+              <label>Contact Person</label>
+              <input class="validate" type="text" id="contact_person" name="biz_user[contact_person]" value="<%= @biz_user.contact_person %>">
+            </div>
+            <div class="field">
+              <label>Contact No</label>
+              <input class="validate" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="contact_no" name="biz_user[contact_no]" value="<%= @biz_user.contact_no %>">
+            </div>
+          </div>
+       
+          <div class="field">
+            <button class="ui green button" type="submit">Submit
+              <i class="material-icons right">play_argrid</i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </form>
     </div>
-    <div class="grid">
-      <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-        <input class="mdl-textfield__input validate" type="text" id="reg_no" name="biz_user[reg_no]" value="<%= @biz_user.reg_no %>">
-        <label class="mdl-textfield__label active" for="reg_no">Business Registration Number...</label>
-      </div>
-      <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-        <input class="mdl-textfield__input validate" type="text" id="company_name" name="biz_user[company_name]" value="<%= @biz_user.company_name %>">
-        <label class="mdl-textfield__label active" for="company_name">Company Name...</label>
-      </div>
-      <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-        <input class="mdl-textfield__input validate" type="text" id="address" name="biz_user[address]" value="<%= @biz_user.address %>">
-        <label class="mdl-textfield__label active" for="address">Company Address...</label>
-      </div>
-    </div>
-    <div class="grid">
-      <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-        <input class="mdl-textfield__input validate" type="text" id="contact_person" name="biz_user[contact_person]" value="<%= @biz_user.contact_person %>">
-        <label class="mdl-textfield__label active" for="contact_person">Contact Person...</label>
-      </div>
-      <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-        <input class="mdl-textfield__input validate" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="contact_no" name="biz_user[contact_no]" value="<%= @biz_user.contact_no %>">
-        <label class="mdl-textfield__label active" for="contact_no">Contact No...</label>
-        <span class="mdl-textfield__error">Input is not a number!</span>
-      </div>
-    </div>
-    <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent" type="submit" name="action">Submit
-      <i class="material-icons right">play_argrid</i>
-    </button>
-  </form>
+  </div>
 </div>
+
+
