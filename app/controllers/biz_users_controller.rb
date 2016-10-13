@@ -1,6 +1,6 @@
 class BizUsersController < ApplicationController
-  before_action :is_biz_user, only: [:index, :create, :new, :destroy]
-  
+  before_action :is_biz_user, only: [:index, :edit, :update, :show, :destroy]
+
   def index
     @biz_users = BizUser.all
   end

@@ -153,7 +153,6 @@ $(document).ready(function (){
       }
   });
 
-
   $('#join-queue').form({
     inline: true,
     on: 'blur',
@@ -167,7 +166,6 @@ $(document).ready(function (){
       }
   });
 
-
   $('#check-queue').form({
     inline: true,
     on: 'blur',
@@ -180,6 +178,8 @@ $(document).ready(function (){
                     }
       }
   });
+
+
 
 
   $('#login').form({
