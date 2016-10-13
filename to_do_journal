@@ -1,9 +1,6 @@
 KY:
 
-for biz owner when log in should see stores
-stores listed and in cards
-with tabs
-and several stores
+Flash message
 
 look at validations > forms > behaviours
 
@@ -20,7 +17,6 @@ Tek Yong:
 
 
 Things left to do:
-  Flash message
   finding nice photos for biz upload to cloudinary/heroku
   populate data
   planning process
@@ -34,3 +30,5 @@ intro to website
 company info - put company card at the side
 link new stores photo to store page
 index pages for biz and stores
+On click of biz card in stores#index, still cant load /biz_users/1/edit
+flash cannot show what individual errors have happen
