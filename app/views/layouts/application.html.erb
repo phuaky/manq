@@ -31,7 +31,6 @@
           <% elsif @current_user.user_type_id == 2 %>
             <a class="item" href="/"><i class="home icon"></i>Home</a>
             <a class="item" href="/stores">View Stores</a>
-            <a class="item" href="/biz_users/<%= @current_user.biz_user.id %>">Company Info</a>
             <%= link_to "Log Out", '/logout', class: "item", method: :delete %>
           <!-- ADMIN -->
           <% elsif @current_user.user_type_id == 1 %>
