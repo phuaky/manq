@@ -19,6 +19,7 @@ class CustomersController < ApplicationController
     @customer.queue_no = queue
     @customer.status_id = 1
     if @customer.save!
+      sms('+65'+@user.phone_no.to_s,'Your queue number for '+@customer.store.biz_user.company_name+' - '+@customer.store.store_name+' is #'+@customer.queue_no.to_s+'.')
       redirect_to '/'
     else
       redirect_to '/'
@@ -30,6 +31,63 @@ class CustomersController < ApplicationController
   end
 
   def update
+    if params[:type] == 'update'
+      @old_record = Customer.find(params[:customer_id])
+      # Do not do anything if the new status selected is same as old status
+      unless @old_record.status_id == Status.where(status_type: params[:status]).take.id
+        @new_record = HistoricalCustomer.new
+        @new_record.user_id = @old_record.user_id
+        @new_record.store_id = @old_record.store_id
+        @new_record.queue_no = @old_record.queue_no
+        @new_record.status_id = Status.where(status_type: params[:status]).take.id
+        @new_record.time = @old_record.created_at
+        if @new_record.save!
+          @old_record.destroy
+          @customers = Customer.where(store_id: @new_record.store_id).order(queue_no: :asc).limit(3)
+          @third_customer = @customers[2]
+          puts @third_customer.queue_no
+          sms('+65'+@third_customer.user.phone_no.to_s,'From: '+@third_customer.store.biz_user.company_name+' - '+@third_customer.store.store_name+'. You are now third in line.')
+        end
+      end
+    elsif params[:type] == 'change' && params[:status] == 'waiting'
+      @old_record = HistoricalCustomer.find(params[:customer_id])
+      @new_record = Customer.new
+      @new_record.user_id = @old_record.user_id
+      @new_record.store_id = @old_record.store_id
+      @new_record.queue_no = @old_record.queue_no
+      @new_record.status_id = 1
+      @new_record.created_at = @old_record.time
+      if @new_record.save!
+        @duplicate_records = HistoricalCustomer.where(user_id: @new_record.user_id)
+        @duplicate_records.each do |duplicate_record|
+        duplicate_record.destroy
+        end
+      end
+    elsif params[:type] == 'change'
+      @old_record = HistoricalCustomer.find(params[:customer_id])
+      @new_record = HistoricalCustomer.new
+      @new_record.user_id = @old_record.user_id
+      @new_record.store_id = @old_record.store_id
+      @new_record.queue_no = @old_record.queue_no
+      @new_record.status_id = Status.where(status_type: params[:status]).take.id
+      @new_record.time = @old_record.created_at
+      unless @old_record.status_id == @new_record.status_id
+        if @old_record.status_id == 3 || @old_record.status_id == 4
+          @old_record.destroy
+          @new_record.save!
+          until HistoricalCustomer.where(user_id: @new_record.user_id, status_id: @new_record.status_id).count < 2 do
+            @duplicate_record = HistoricalCustomer.where({user_id: @new_record.user_id, status_id: @new_record.status_id}).order(time: :desc).take
+            @duplicate_record.destroy
+          end
+        else
+          @new_record.save!
+          until HistoricalCustomer.where(user_id: @new_record.user_id, status_id: @new_record.status_id).count < 2 do
+            @duplicate_record = HistoricalCustomer.where({user_id: @new_record.user_id, status_id: @new_record.status_id}).order(time: :desc).take
+            @duplicate_record.destroy
+          end
+        end
+      end
+    end
   end
 
   def destroy
@@ -51,7 +109,7 @@ class CustomersController < ApplicationController
         total_time += wait_time
         max_time = [max_time, wait_time].max
       end
-      @average_time_in_queue_min = (total_time/@customers_in_queue/60).round(0)
+      @average_time_in_queue_min = (total_time/[@customers_in_queue,1].max/60).round(0)
       @max_time_in_queue_min = (max_time/60).round(0)
       customer.id = @customers_in_queue #hack for storing the number of customers in queue
       customer.status_id = Customer.where(store_id: customer.store_id).where('queue_no < ?', customer.queue_no).count #hack for storing no of customers in front

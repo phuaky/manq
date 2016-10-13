@@ -1,7 +1,8 @@
 
-<div class="ui two column stackable divided padded grid">
+<div class="ui two column stackable divided padded grid" style="padding-top:20px">
   <div class="row">
     <div class="twelve wide column">
+      <h1 class="ui center aligned header">Store Dashboard</h1>
       <div class="ui horizontal divider">Waiting</div>
 
       <table class="ui celled sortable unstackable table">
@@ -9,7 +10,7 @@
           <tr>
             <th>Queue #</th>
             <th>Contact</th>
-            <th>Status</th>
+            <th>Update</th>
             <th>Update</th>
             <th>Update</th>
             <th>Update</th>
@@ -20,14 +21,16 @@
           <tr>
             <td>#<%= customer.queue_no %></td>
             <td><%= customer.user.phone_no %></td>
-            <td><%= customer.status.status_type.capitalize %></td>
-            <td class="selectable positive"><a href=''>Served</a></td>
-            <td class="selectable warning"><a href=''>Late</a></td>
-            <td class="selectable negative"><a href=''>Cancel</a></td>
+            <td class="active"><%= customer.status.status_type.capitalize %></td>
+            <td class="selectable"><a href='' data-action='update' class='served' id='<%=customer.id%>'>Served</a></td>
+            <td class="selectable"><a href='' data-action='update' class='late' id='<%=customer.id%>'>Late</a></td>
+            <td class="selectable"><a href='' data-action='update' class='no show' id='<%=customer.id%>'>Cancel</a></td>
           </tr>
           <% end %>
         </tbody>
       </table>
+
+
 
       <br><br><br>
       <div class="ui horizontal divider">Processed</div>
@@ -37,46 +40,184 @@
           <tr>
             <th>Queue #</th>
             <th>Contact</th>
-            <th>Status</th>
+            <th>Update</th>
             <th>Update</th>
             <th>Update</th>
             <th>Update</th>
           </tr>
         </thead>
         <tbody>
-          <% @customers.each do |customer| %>
+          <% @historical_customers.each do |x| %>
+          <% historical_customer = HistoricalCustomer.where(user_id: x.user_id).order(status_id: :desc).take %>
+          <% puts historical_customer.inspect %>
           <tr>
-            <td>#<%= customer.queue_no %></td>
-            <td><%= customer.user.phone_no %></td>
-            <td><%= customer.status.status_type.capitalize %></td>
-            <td class="selectable positive"><a href=''>Served</a></td>
-            <td class="selectable warning"><a href=''>Late</a></td>
-            <td class="selectable negative"><a href=''>Cancel</a></td>
+            <td>#<%= historical_customer.queue_no %></td>
+            <td><%= historical_customer.user.phone_no %></td>
+            <td class="selectable"><a href='' data-action='change' class='waiting' id='<%=historical_customer.id%>'>Waiting</a></td>
+            <td class="selectable <% if historical_customer.status.status_type.capitalize == 'Served' %>positive<% end %>"><a href='' data-action='change' class='served' id='<%=historical_customer.id%>'>Served</a></td>
+            <td class="selectable <% if historical_customer.status.status_type.capitalize == 'Late' %>warning<% end %>"><a href='' data-action='change' class='late' id='<%=historical_customer.id%>'>Late</a></td>
+            <td class="selectable <% if historical_customer.status.status_type.capitalize == 'No show' %>negative<% end %>"><a href='' data-action='change' class='no show' id='<%=historical_customer.id%>'>No Show</a></td>
           </tr>
           <% end %>
         </tbody>
       </table>
     </div>
+
+
+
+
+
+
     <div class="four wide column">
-      <%= cl_image_tag(@store.store_picture) %>
-      <p>
-        <%= @store.biz_user.company_name %>
-        <br>
-        <%= @store.store_name %>
-        <br>
-        <%= @store.store_address %>
-        <br>
-        <%= @store.contact_person %>
-        <br>
-        <%= @store.contact_no %>
-        <br>
-        Customers in Queue: <%= @customers_in_queue %>
-        <br>
-        Average Time in Line: <%= @average_time_in_queue_min %> min(s)
-        <br>
-        Longest Wait: <%= @max_time_in_queue_min %> min(s)
-      </p>
-      <button class="ui secondary basic button"><a href="/stores/<%= @store.id %>/edit">Edit</a></button>
+      <div class="ui link cards">
+        <div class="card">
+          <div class="image">
+            <%= cl_image_tag(@store.store_picture) %>
+          </div>
+          <div class="content">
+            <div class="header">
+              <%= @store.biz_user.company_name %>
+              <div class="ui icon buttons right floated">
+                <button class="ui basic button"><a id='update-store-submit'><i class="edit icon"></i></a></button>
+              </div>
+            </div>
+            <div class="meta">
+              <a><%= @store.store_name %></a>
+            </div>
+            <div class="description">
+              <%= @store.store_address %>
+            </div>
+          </div>
+          <div class="extra content">
+            <span class="right floated">
+              <i class="mobile icon"></i>
+              <%= @store.contact_no %>
+            </span>
+            <span>
+              <i class="user icon"></i>
+              <%= @store.contact_person %>
+            </span>
+          </div>
+
+          <div class="extra content">
+            <div class="ui center aligned grid">
+                <div class="five wide column">
+                  <div class="ui statistics">
+                    <div class="statistic">
+                      <div class="value">
+                        <%= HistoricalCustomer.where(store_id: @store.id, status_id: 4).count %>
+                      </div>
+                      <div class="label">
+                        <i class="users icon"></i>Served
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="five wide column">
+                  <div class="ui statistics">
+                    <div class="statistic">
+                      <div class="value">
+                        <%= @average_time_in_queue_min %>
+                      </div>
+                      <div class="label">
+                        <i class="wait icon"></i>Avg Wait (mins)
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="five wide column">
+                  <div class="ui statistics">
+                    <div class="statistic">
+                      <div class="value">
+                        <%= @customers_in_queue %>
+                      </div>
+                      <div class="label">
+                        <i class="male icon"></i>in queue
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
+
+<!-- UPDATE STORE MODAL: UNHIDDEN BY JAVASCRIPT -->
+    <div class="ui modal" id='update-store-modal'>
+      <i class="close icon"></i>
+      <div class="ui padded grid" style="padding-top:20px">
+        <h1 class="ui header">Edit store info</h1>
+        <div class="sixteen wide column">
+          <div class="ui form" id='store-details'>
+            <form action='/stores/<%= @store.id %>' method='post'>
+              <input type="hidden" name="_method" value="patch">
+              <h4 class="ui dividing header">Store Details</h4>
+              <div class="field">
+                <div class="two fields">
+                  <div class="six wide field">
+                    <label>Store Name</label>
+                    <div class="ui left icon input">
+                      <input type="text" placeholder="" name="store[store_name]" value="<%= @store.store_name%>">
+                      <i class="building icon"></i>
+                    </div>
+                  </div>
+                  <div class="ten wide field">
+                    <label>Store Address</label>
+                    <div class="ui left icon input">
+                      <input type="text" placeholder="" name="store[store_address]" value="<%= @store.store_address%>">
+                      <i class="marker icon"></i>
+                    </div>
+                  </div>
+                </div>
+                <div class="two fields">
+                  <div class="eight wide field">
+                    <label>Store Manager</label>
+                    <div class="ui left icon input">
+                      <input type="text" placeholder="" name="store[contact_person]" value="<%= @store.contact_person%>">
+                      <i class="user icon"></i>
+                    </div>
+                  </div>
+                  <div class="eight wide field">
+                    <label>Contact No</label>
+                    <div class="ui left icon input">
+                      <input type="text" placeholder="" name="store[contact_no]" value="<%= @store.contact_no%>">
+                      <i class="mobile icon"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <h4 class="ui dividing header">Settings</h4>
+              <div class="three fields">
+                <div class="four wide field">
+                  <label>Max Queue No</label>
+                  <div class="ui left icon input">
+                    <input type="text" placeholder="" name="store[max_queue_no]" value="<%= @store.max_queue_no%>">
+                    <i class="ticket icon"></i>
+                  </div>
+                </div>
+                <div class="four wide field">
+                  <label>Max Leeway</label>
+                  <div class="ui left icon input">
+                    <input type="text" placeholder="" name="store[max_leeway]" value="<%= @store.max_leeway%>">
+                    <i class="share icon"></i>
+                  </div>
+                </div>
+                <div class="eight wide field">
+                  <label>Reservation Fee</label>
+                  <div class="ui left icon input">
+                    <input type="text" placeholder="" name="store[reservation_fee]" value="<%= @store.reservation_fee%>">
+                    <i class="money icon"></i>
+                  </div>
+                </div>
+              </div>
+              <button class="ui positive right floated button" type="submit" name="action">Submit</button>
+              <div class="ui error message"></div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>

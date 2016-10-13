@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   get '/test_sms' => 'messages#sms'
 
-  get '/' => 'main#index' #Landing page (public)
+  get '/' => 'main#index' #Landing page (public) DONE
 
   get '/login' => 'sessions#new' #page to login (public) DONE
   post '/login' => 'sessions#create' #login create action (public) DONE
