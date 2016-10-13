@@ -72,7 +72,7 @@
       <div class="ui link cards">
         <div class="card">
           <div class="image">
-            <%= cl_image_tag(@store.store_picture) %>
+            <%= cl_image_tag(@store.store_picture, :width=>600, :height=>400, :crop=>"fill") %>
           </div>
           <div class="content">
             <div class="header">

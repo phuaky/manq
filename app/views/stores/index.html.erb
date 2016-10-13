@@ -52,7 +52,7 @@
                     <i class="olive male icon" style="padding:0; margin:-5px"></i>
                   <% end %>
                 <% end %>
-                <% avg_time = total_time/store.customers.count %>
+                <% avg_time = total_time/[store.customers.count,1].max %>
               </td>
               <td><%= avg_time.round(0) %><% if avg_time.round(0) > 1 %> <%= "minute".pluralize %><% else %>minute<% end %></td>
               <td class="selectable"><a href='/stores/<%= store.id %>'>Store Dashboard</a></td>
@@ -66,109 +66,124 @@
 
 
   <!-- NEW STORE MODAL: UNHIDDEN BY JAVASCRIPT -->
-      <div class="ui modal" id='new-store-modal'>
-        <i class="close icon"></i>
-        <div class="ui padded grid" style="padding-top:20px">
-          <h1 class="ui header">New store info</h1>
-          <div class="sixteen wide column">
-            <div class="ui form" id='store-details'>
-              <form action='/stores' method='post'>
-                <h4 class="ui dividing header">Account Details</h4>
-                <div class="field">
-                  <div class="three fields">
-                    <div class="four wide field">
-                      <label>Email</label>
-                      <div class="ui left icon input">
-                        <input type="text" placeholder="" name="store[store_name]">
-                        <i class="building icon"></i>
-                      </div>
-                    </div>
-                    <div class="six wide field">
-                      <label>Password</label>
-                      <div class="ui left icon input">
-                        <input type="text" placeholder="" name="store[store_address]">
-                        <i class="marker icon"></i>
-                      </div>
-                    </div>
-                    <div class="six wide field">
-                      <label>Confirm Password</label>
-                      <div class="ui left icon input">
-                        <input type="text" placeholder="" name="store[contact_person]">
-                        <i class="user icon"></i>
-                      </div>
-                    </div>
+  <div class="ui modal" id='new-store-modal'>
+    <i class="close icon"></i>
+    <div class="ui padded grid" style="padding-top:20px">
+      <h1 class="ui header">New store info</h1>
+      <div class="sixteen wide column">
+        <div class="ui form" id='new-store-details'>
+          <form action='/stores' method='post' enctype="multipart/form-data">
+            <h4 class="ui dividing header">Account Details</h4>
+            <div class="field">
+              <div class="three fields">
+                <div class="four wide field">
+                  <label>Email</label>
+                  <div class="ui left icon input">
+                    <input type="text" placeholder="" name="registered_user[email]">
+                    <i class="mail icon"></i>
                   </div>
                 </div>
-                <h4 class="ui dividing header">Store Details</h4>
-                <div class="field">
-                  <div class="two fields">
-                    <div class="six wide field">
-                      <label>Store Name</label>
-                      <div class="ui left icon input">
-                        <input type="text" placeholder="" name="store[store_name]">
-                        <i class="building icon"></i>
-                      </div>
-                    </div>
-                    <div class="ten wide field">
-                      <label>Store Address</label>
-                      <div class="ui left icon input">
-                        <input type="text" placeholder="" name="store[store_address]">
-                        <i class="marker icon"></i>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="two fields">
-                    <div class="eight wide field">
-                      <label>Store Manager</label>
-                      <div class="ui left icon input">
-                        <input type="text" placeholder="" name="store[contact_person]">
-                        <i class="user icon"></i>
-                      </div>
-                    </div>
-                    <div class="eight wide field">
-                      <label>Contact No</label>
-                      <div class="ui left icon input">
-                        <input type="text" placeholder="" name="store[contact_no]">
-                        <i class="mobile icon"></i>
-                      </div>
-                    </div>
+                <div class="six wide field">
+                  <label>Password</label>
+                  <div class="ui left icon input">
+                    <input type="password" placeholder="Should consist of at least 8 characters" name="registered_user[password]">
+                    <i class="low vision icon"></i>
                   </div>
                 </div>
-                <h4 class="ui dividing header">Settings</h4>
-                <div class="three fields">
-                  <div class="four wide field">
-                    <label>Max Queue No</label>
-                    <div class="ui left icon input">
-                      <input type="text" placeholder="" name="store[max_queue_no]">
-                      <i class="ticket icon"></i>
-                    </div>
-                  </div>
-                  <div class="four wide field">
-                    <label>Max Queue Allowable</label>
-                    <div class="ui left icon input">
-                      <input type="text" placeholder="" name="store[max_queue_allow]">
-                      <i class="users icon"></i>
-                    </div>
-                  </div>
-                  <div class="four wide field">
-                    <label>Max Leeway</label>
-                    <div class="ui left icon input">
-                      <input type="text" placeholder="" name="store[max_leeway]">
-                      <i class="share icon"></i>
-                    </div>
-                  </div>
-                  <div class="four wide field">
-                    <label>Reservation Fee</label>
-                    <div class="ui left icon input">
-                      <input type="text" placeholder="" name="store[reservation_fee]">
-                      <i class="money icon"></i>
-                    </div>
+                <div class="six wide field">
+                  <label>Confirm Password</label>
+                  <div class="ui left icon input">
+                    <input type="password" placeholder="Key in password again to confirm" name="registered_user[password_confirmation]">
+                    <i class="low vision icon"></i>
                   </div>
                 </div>
-                <button class="ui positive right floated button" type="submit" name="action">Save</button>
-                <div class="ui error message"></div>
-              </form>
+              </div>
             </div>
-          </div>
+            <h4 class="ui dividing header">Store Details</h4>
+            <div class="ui stackable grid">
+              <div class="five wide column">
+                <div class="field">
+                  <label>Store Picture</label>
+                  <div class="ui card" style="margin-top:0px">
+                    <div class="ui image">
+                      <img src="http://semantic-ui.com/images/wireframe/white-image.png">
+                    </div>
+                    <div class="content">
+                      <input class="validate" type="file" id="store_picture" name="store_picture">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="eleven wide column">
+                <div class="field">
+                  <div class="field">
+                    <label>Store Name</label>
+                    <div class="ui left icon input">
+                      <input type="text" placeholder="" name="store[store_name]">
+                      <i class="building icon"></i>
+                    </div>
+                  </div>
+                  <div class="field">
+                    <label>Store Address</label>
+                    <div class="ui left icon input">
+                      <input type="text" placeholder="" name="store[store_address]">
+                      <i class="marker icon"></i>
+                    </div>
+                  </div>
+                  <div class="field">
+                    <label>Store Manager</label>
+                    <div class="ui left icon input">
+                      <input type="text" placeholder="" name="store[contact_person]">
+                      <i class="user icon"></i>
+                    </div>
+                  </div>
+                  <div class="field">
+                    <label>Contact No</label>
+                    <div class="ui left icon input">
+                      <input type="text" placeholder="" name="store[contact_no]">
+                      <i class="mobile icon"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+            <h4 class="ui dividing header">Settings</h4>
+            <div class="three fields">
+              <div class="four wide field">
+                <label>Max Queue No</label>
+                <div class="ui left icon input">
+                  <input type="text" placeholder="99" name="store[max_queue_no]">
+                  <i class="ticket icon"></i>
+                </div>
+              </div>
+              <div class="four wide field">
+                <label>Max Queue Allowable</label>
+                <div class="ui left icon input">
+                  <input type="text" placeholder="9999" name="store[max_queue_allow]">
+                  <i class="users icon"></i>
+                </div>
+              </div>
+              <div class="four wide field">
+                <label>Max Leeway</label>
+                <div class="ui left icon input">
+                  <input type="text" placeholder="3" name="store[max_leeway]">
+                  <i class="share icon"></i>
+                </div>
+              </div>
+              <div class="four wide field">
+                <label>Reservation Fee</label>
+                <div class="ui left icon input">
+                  <input type="text" placeholder="0.0" name="store[reservation_fee]">
+                  <i class="money icon"></i>
+                </div>
+              </div>
+            </div>
+            <button class="ui positive right floated button" type="submit" name="action">Save</button>
+            <div class="ui error message"></div>
+          </form>
         </div>
       </div>
+    </div>
+  </div>
