@@ -7,9 +7,9 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 
-# for i in 90000001..90000100 do
-#   User.find_or_create_by!(phone_no: i)
-# end
+for i in 90000001..90000100 do
+  User.find_or_create_by!(phone_no: i)
+end
 
 
 UserType.find_or_create_by!(user_type: 'admin')
@@ -71,16 +71,16 @@ Status.find_or_create_by!(status_type: 'no show')
 Status.find_or_create_by!(status_type: 'served')
 Status.find_or_create_by!(status_type: 'user cancel')
 Status.find_or_create_by!(status_type: 'incorrect entry')
-# 
-# no_of_stores = Store.all.count
-# no_of_users = User.all.count
-#
-# for i in 1..no_of_stores do
-#   j = rand(1..30)
-#   k = 1
-#   while j < no_of_users
-#     customer = Customer.find_or_create_by!(user_id: j, store_id: i, queue_no: k, status_id: 1)
-#     j += rand(1..30)
-#     k += 1
-#   end
-# end
+
+no_of_stores = Store.all.count
+no_of_users = User.all.count
+
+for i in 1..no_of_stores do
+  j = rand(1..30)
+  k = 1
+  while j < no_of_users
+    customer = Customer.find_or_create_by!(user_id: j, store_id: i, queue_no: k, status_id: 1, created_at: Time.now.utc+j*-5)
+    j += rand(1..30)
+    k += 1
+  end
+end

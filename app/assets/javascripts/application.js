@@ -14,6 +14,7 @@
 // = require jquery_ujs
 // = require_tree .
 // = require semantic-ui
+// = require typed
 
 $(document).ready(function (){
   $('.ui.sidebar')

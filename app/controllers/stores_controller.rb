@@ -38,13 +38,13 @@ class StoresController < ApplicationController
     @customers_in_queue = @store.customers.count
     total_time = 0
     max_time = 0
-    @store.customers.each do |customer|
-      wait_time = Time.now.utc - customer.created_at
+    @store.historical_customers.each do |customer|
+      wait_time = customer.created_at - customer.time
       total_time += wait_time
       max_time = [max_time, wait_time].max
     end
 
-    @average_time_in_queue_min = (total_time/[@customers_in_queue,1].max/60).round(0)
+    @average_time_in_queue_min = (total_time/[@store.historical_customers.count,1].max/60).round(0)
     @max_time_in_queue_min = (max_time/60).round(0)
 
     @customers = Customer.where(store_id: params[:id]).order(queue_no: :asc)

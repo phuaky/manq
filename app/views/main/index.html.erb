@@ -1,4 +1,21 @@
 <%= render "partials/flash" %>
+<script src="jquery.js"></script>
+<script src="typed.js"></script>
+<script>
+  $(function(){
+      $(".element1").typed({
+        strings: ["<span style='font-size:2.8em;font-weight:700;text-align:center'>Queue while on your way.</span>^1000<span style='font-size:2.8em;font-weight:700;'> Stay in line while you shop.</span>"],
+        typeSpeed: 0,
+        showCursor: true,
+        cursorChar: "|"
+      });
+  });
+</script>
+  <div class="element1" style="display:inline;position:absolute;margin: 18% 10% 0 18%;color:white;text-align:center;">
+
+  </div>
+
+<img src="/assets/queue-5.jpg" style="width:100%">
 
 <div class="ui four stackable cards" style="margin:10px">
   <% @stores.each do |store| %>
