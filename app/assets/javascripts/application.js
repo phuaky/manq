@@ -31,8 +31,9 @@ $(document).ready(function (){
     $('#login-modal').modal({inverted: true}).modal('show');
   });
 
-  $('#manq-newbiz-create').click(function() {
-    $('#newbiz-modal').modal({inverted: true}).modal('show');
+  //Register new user page
+  $('#register-biz-user').click(function() {
+    $('#register-modal').modal({inverted: true}).modal('show');
   });
 
 //CHECK STATUS OF CUSTOMER'S QUEUES
@@ -127,5 +128,22 @@ $(document).ready(function (){
       ;
     })
   ;
+
+  $("input").change(function(e) {
+
+      for (var i = 0; i < e.originalEvent.srcElement.files.length; i++) {
+
+          var file = e.originalEvent.srcElement.files[i];
+
+          var img = document.createElement("img");
+          var reader = new FileReader();
+          reader.onloadend = function() {
+               img.src = reader.result;
+          }
+          reader.readAsDataURL(file);
+          $(".ui.image").find("img").remove();
+          $(".ui.image").append(img);
+      }
+  });
 
 });
