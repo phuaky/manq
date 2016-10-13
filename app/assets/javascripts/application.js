@@ -151,4 +151,7 @@ $(document).ready(function (){
       }
   });
 
+  $('#delete-form').on('click', function() {
+      $('#delete-modal').modal({inverted: true}).modal('show');
+  });
 });

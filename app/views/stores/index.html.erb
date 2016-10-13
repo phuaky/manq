@@ -276,7 +276,7 @@
       <div class="ui modal" id='update-biz-modal'>
         <i class="close icon"></i>
         <div class="ui padded grid" style="padding-top:20px">
-          <h1 class="ui header">Sign up for a business account</h1>
+          <h1 class="ui header">Edit business account</h1>
           <div class="sixteen wide column">
             <div class="ui form" id='biz_user_registration'>
               <form action='/biz_users/<%= @biz.id %>' method='post'>
@@ -307,8 +307,7 @@
                     <input type="text" name="biz_user[contact_no]" placeholder="Contact number of contact person" value="<%= @biz.contact_no %>">
                   </div>
                 </div>
-                <input type="submit" value="Submit" class="ui button" />
-                <div class="ui error message"></div>
+                <input type="submit" value="Update" class="ui button" />
               </form>
             </div>
           </div>
