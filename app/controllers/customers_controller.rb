@@ -15,7 +15,7 @@ class CustomersController < ApplicationController
     @user = User.find_or_create_by!(user_params)
     @customer = Customer.new(store_id: params[:store_id])
     @customer.user_id = @user.id
-    queue = Customer.where(store_id: params[:store_id]).maximum('queue_no') + 1
+    queue = [Customer.where(store_id: params[:store_id]).maximum('queue_no'),0].max + 1
     @customer.queue_no = queue
     @customer.status_id = 1
     if @customer.save!

@@ -1,0 +1,59 @@
+<div class="ui people shape">
+  <% @stores.each do |store| %>
+
+  <div class="sides">
+    <div class="active side">
+      <div class="ui fluid card" id="store-card">
+        <div class="image">
+          <%= cl_image_tag(store.store_picture, :width=>600, :height=>400, :crop=>"fill") %>
+        </div>
+        <div class="content">
+          <a class="header"><%= store.biz_user.company_name %></a>
+          <div class="meta">
+            <span class="date"><%= store.store_name %></span>
+          </div>
+          <div class="description">
+            <span class="left floated" style="padding-right: 10px"><i class="user icon"></i><%= store.customers.count %> in Queue</span>
+            <% total_time = 0 %>
+            <% store.customers.each do |customer| %>
+              <% wait_time =  Time.now.utc - customer.created_at %>
+              <% total_time += wait_time %>
+            <% end %>
+            <% total_time = (total_time/60).round(0) %>
+            <span class="left floated"><i class="wait icon"></i>Est. Wait <%= total_time %> mins</span>
+          </div>
+        </div>
+        <div class="extra content">
+          <button class="ui labeled icon blue compact basic button right floated join-queue" id="<%=store.id%>"><i class="add user icon"></i>Queue</button>
+        </div>
+      </div>
+    </div>
+    <div class="side">
+      <div class="ui card">
+        <div class="image">
+          <%= cl_image_tag(store.store_picture, :width=>600, :height=>400, :crop=>"fill") %>
+        </div>
+        <div class="content">
+          <%= @store.biz_user.company_name %>
+          <div class="meta">
+            <a><%= @store.store_name %></a>
+          </div>
+          <div class="description">
+            <%= @store.store_address %>
+          </div>
+        </div>
+        <div class="extra content">
+          <span class="right floated">
+            <i class="mobile icon"></i>
+            <%= @store.contact_no %>
+          </span>
+          <span>
+            <i class="user icon"></i>
+            <%= @store.contact_person %>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <% end %>
+</div>

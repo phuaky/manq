@@ -155,4 +155,9 @@ $(document).ready(function (){
   $('#delete-form').on('click', function() {
       $('#delete-modal').modal({inverted: true}).modal('show');
   });
+
+  $('.shape')
+  .shape('set next side', '.second.side')
+  .shape('flip up')
+;
 });
