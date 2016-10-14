@@ -67,6 +67,8 @@
   - status
 - All major CRUD functions included in the main models biz_user & store.
 - Authentication added to restrict access to the biz_users & store_users.
+- Use cloudinary to render and post pictures.
+- Use seeding to control and manage the database models revision.
 - Inform users about queue status using SMS on Twilio platform.
 - Layout & Styling using Semantic UI.
 - Employed the Feature Branch model for Git Workflow.
